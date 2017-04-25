@@ -488,3 +488,30 @@ module.exports = {
 `System.import`已经在webpack v2.1.0-beta.28中被弃用，并被`import()`取代。
 
 ### require.ensure()
+
+编译时，webpack会静态的解析应用程序中的`require.ensure()`，其回调函数中`require()`的依赖将会被添加到一个新的chunk。
+
+`require.ensure()`的具体使用语法如下：
+
+```javascript
+require.ensure(
+  dependencies: String[],
+  callback: function(require),
+  errorCallback: function(error),
+  chunkName: String
+)
+```
+
+现在我们使用`require.ensure()`来重新上面`import()`的例子：
+
+> index.js
+
+```javascript
+function determineDate() {
+  require.ensure([], function(require) {
+    var moment = require('moment');
+    console.log(moment().format());
+  });
+}
+
+

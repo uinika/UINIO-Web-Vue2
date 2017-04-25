@@ -246,6 +246,8 @@ module.exports = function(env) {
 
 现在让我们通过添加多个entry point来尝试解决这个问题。
 
+> webpack.config.js
+
 ```javascript
 var path = require('path');
 
@@ -266,6 +268,8 @@ module.exports = function (env) {
 执行webpack之后，可以发现项目被打包为了2个文件，但是moment.js也被同时打包进这2个文件中。这是因为moment是应用程序index.js的主依赖，而每个entry point都会打包各自的依赖。因此，这里我们需要引入`CommonsChunkPlugin`插件。
 
 该插件可以协助开发人员将不同包下的通用模块抽取到一个通用的包当中，从而完成第3方库与项目源代码的分离。
+
+> webpack.config.js
 
 ```javascript
 var webpack = require('webpack');
@@ -292,3 +296,32 @@ module.exports = function (env) {
 
 ### Implicit Common Vendor Chunk
 
+可以让CommonsChunkPlugin只处理第3方库。
+
+> webpack.config.js
+
+```javascript
+var webpack = require('webpack');
+var path = require('path');
+
+module.exports = function () {
+  return {
+    entry: {
+      main: './app/index.js'
+    },
+    output: {
+      filename: '[name].[chunkhash].js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module) {
+          // this assumes your vendor imports exist in the node_modules directory
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        }
+      })
+    ]
+  };
+}
+```

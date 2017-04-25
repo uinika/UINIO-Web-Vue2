@@ -10,7 +10,7 @@
   "author": "Hank",
   "license": "MIT",
   "scripts": {
-    "run": "webpack --config webpack.config.js"
+    "start": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "jquery": "^3.2.1",

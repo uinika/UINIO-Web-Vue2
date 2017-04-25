@@ -390,3 +390,101 @@ module.exports = function () {
   };
 }
 ```
+
+
+## Code Splitting - Async
+
+对于应用代码的按需异步加载，webpack支持2种方式：
+
+* import()：首选，ES6建议。
+* require.ensure()：传统，webpack指定。
+
+### Dynamic import: import()
+
+webpack实现了import()函数，该函数以模块名称作为参数，并返回一个promise。
+
+> index.js
+
+```javascript
+function determineDate() {
+  import('moment').then(function(moment) {
+    console.log(moment().format());
+  }).catch(function(err) {
+    console.log('Failed to load moment', err);
+  });
+}
+
+determineDate();
+```
+
+例如，`import("./locale/${language}.json")`会根据解析后的`${language}`变量加载`english.json`或`german.json`。
+
+#### Promise polyfill
+
+import()内部实现依赖于浏览器内置的Promise对象，对于旧版本浏览器，需要使用es6-promise或promise-polyfill等polyfill。
+
+```javascript
+import Es6Promise from 'es6-promise';
+Es6Promise.polyfill();
+// or
+import 'es6-promise/auto';
+// or
+import Promise from 'promise-polyfill';
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+```
+
+#### Chunk names
+
+从webpack2.4开始，动态引用的chunk名称可以通过魔法注释进行指定。
+
+```javascript
+import(/* webpackChunkName: "my-chunk-name" */ 'module');
+```
+
+#### Usage with Babel
+
+如果要使用babel的`import`，需要添加`syntax-dynamic-import`插件支持。
+
+> webpack.config.js
+
+```javascript
+module.exports = {
+  entry: './index-es2015.js',
+  output: {
+    filename: 'dist.js',
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['es2015', { modules: false }]
+          ],
+          plugins: ['syntax-dynamic-import']
+        }
+      }]
+    }]
+  }
+};
+```
+
+#### Usage with Babel and async/await
+
+如果需要使用babel实现的ES2017 async/await，需要再额外添加如下代码支持。
+
+    'syntax-dynamic-import',
+    'transform-async-to-generator',
+    'transform-regenerator',
+    'transform-runtime'
+
+
+#### System.import is deprecated
+
+`System.import`已经在webpack v2.1.0-beta.28中被弃用，并被`import()`取代。
+
+### require.ensure()

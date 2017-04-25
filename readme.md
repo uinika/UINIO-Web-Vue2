@@ -176,19 +176,72 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 * `css-loader`：用于解释并解析CSS中的`@import`和`url()`，
 
-* `style-loader`：通过向DOM插入<style>标签的方式动态插入CSS样式。
+* `style-loader`：通过向DOM插入`<style>`标签的方式动态插入CSS样式。
 
 ```javascript
 module.exports = {
-    module: {
-        rules: [{
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
-        }]
-    }
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }]
+  }
 }
 ```
 
 > 这种方式的缺点在于，不能使用浏览器的能力去异步、并行的加载CSS，页面必须等待全部JS包被加载后，CSS样式才能生效。
 
 ### Using `ExtractTextWebpackPlugin`
+
+使用`extract-text-webpack-plugin`插件打包CSS，可以解决上面提到的问题，但是需要在html中手动引入CSS外部文件。
+
+```javascript
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+module.exports = {
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        use: 'css-loader'
+      })
+    }]
+  },
+  plugins: [
+    new ExtractTextPlugin('styles.css'),
+  ]
+}
+```
+
+
+## Code Splitting - Libraries
+
+项目中引用的第3方插件和库，开发过程中通常不会进行修改，打包这些插件和库到项目代码中，对于浏览器缓存而言是无效的。
+
+> index.js
+
+```javascript
+var moment = require('moment');
+console.log(moment().format());
+```
+
+> webpack.config.js
+
+```javascript
+var path = require('path');
+
+module.exports = function(env) {
+    return {
+        entry: './index.js',
+        output: {
+            filename: '[name].[chunkhash].js',
+            path: path.resolve(__dirname, 'dist')
+        }
+    }
+}
+```
+
+> 上面的方式，会将moment.js和index.js的代码打包在一起，所以这并不是一个好主意。
+
+### Multiple Entries
+
+现在让我们来尝试解决这个问题，

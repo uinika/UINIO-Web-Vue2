@@ -325,3 +325,68 @@ module.exports = function () {
   };
 }
 ```
+
+### Manifest File
+
+通过上面方法打包后的JS文件会，会在修改应用代码后，在包名的后缀上添加随机生成的哈希值，但是这样就无法让浏览器缓存打包后的通用第3方库。造成这个问题的原因，是每一次打包，webpack都会生成一些辅助完成其工作的运行时代码。只打包成一个文件时，运行时代码被编译到该文件。但是，当多个bundle生成的时候，这些运行时代码会被编译到通用第3方库所处的包(*例如我们例子中的vendor*)。
+
+解决这个问题，需要将运行时代码，放置到专门的manifest文件，从而稳定通用包的哈希后缀。
+
+> webpack.config.js
+
+```javascript
+var webpack = require('webpack');
+var path = require('path');
+
+module.exports = function (env) {
+  return {
+    entry: {
+      main: './app/index.js',
+      vendor: 'moment'
+    },
+    output: {
+      filename: '[name].[chunkhash].js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest'] // Specify the common bundle's name.
+      })
+    ]
+  }
+};
+```
+
+通过使用隐式的*common vendor chunk*，可以达到相同的目的。
+
+> webpack.config.js
+
+```javascript
+var webpack = require('webpack');
+var path = require('path');
+
+module.exports = function () {
+  return {
+    entry: {
+      main: './app/index.js' //Notice that we do not have an explicit vendor entry here
+    },
+    output: {
+      filename: '[name].[chunkhash].js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module) {
+          // this assumes your vendor imports exist in the node_modules directory
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        }
+      }),
+      //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+      })
+    ]
+  };
+}
+```

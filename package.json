@@ -1,6 +1,6 @@
 {
   "name": "aves",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "an vue2 & webpack2 Project.",
   "main": "index.html",
   "repository": {
@@ -10,7 +10,7 @@
   "author": "Hank",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "run": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "jquery": "^3.2.1",

@@ -244,4 +244,27 @@ module.exports = function(env) {
 
 ### Multiple Entries
 
-现在让我们来尝试解决这个问题，
+现在让我们通过添加多个entry point来尝试解决这个问题。
+
+```javascript
+var path = require('path');
+
+module.exports = function (env) {
+  return {
+    entry: {
+      main: './app/index.js',
+      vendor: 'moment'
+    },
+    output: {
+      filename: '[name].[chunkhash].js',
+      path: path.resolve(__dirname, 'dist')
+    }
+  }
+}
+```
+
+执行webpack之后，可以发现项目被打包为了2个文件，但是moment.js也被同时打包进这2个文件中。这是因为moment是应用程序index.js的主依赖，而每个entry point都会打包各自的依赖。因此，这里我们需要引入`CommonsChunkPlugin`。
+
+
+
+

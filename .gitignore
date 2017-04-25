@@ -1,2 +1,5 @@
 # Node modules' directory
 node_modules
+
+dist
+

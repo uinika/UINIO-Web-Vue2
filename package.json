@@ -1,0 +1,31 @@
+{
+  "name": "aves",
+  "version": "0.1.1",
+  "description": "an vue2 & webpack2 Project.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uinika/aves.git"
+  },
+  "author": "Hank",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "vue": "^2.2.6",
+    "vue-router": "^2.5.1",
+    "vue-strap": "^1.1.37",
+    "vuex": "^2.3.1"
+  },
+  "devDependencies": {
+    "express": "^4.15.2",
+    "forever-monitor": "^1.7.1",
+    "vue-loader": "^11.3.4",
+    "webpack": "^2.4.1",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-hot-middleware": "^2.18.0"
+  }
+}

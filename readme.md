@@ -513,5 +513,255 @@ function determineDate() {
     console.log(moment().format());
   });
 }
+```
 
 
+## Building for Production
+
+下面的内容，将会讲述webpack用于生产环境的一些最佳实践和工具。
+
+### The Automatic Way
+
+运行`webpack -p`等价于操作`webpack --optimize-minimize --define process.env.NODE_ENV="'production'")`，这将会执行以下步骤：
+
+* （1）使用UglifyJsPlugin进行代码混淆。
+* （2）执行LoaderOptionsPlugin。
+* （3）设置nodejs环境变量，从而以不同方式去编译指定的包。
+
+#### Minification
+
+在命令行指定`--optimize-minimize`选项时，下面的plugin配置将会被添加。
+
+> 需要依赖devtool options，从而生成Source Maps。
+
+```javascript
+// webpack.config.js
+const webpack = require('webpack');
+
+module.exports = {
+  /*...*/
+  plugins:[
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: options.devtool && (options.devtool.indexOf("sourcemap") >= 0 || options.devtool.indexOf("source-map") >= 0)
+    })
+  ]
+};
+```
+
+#### Source Maps
+
+在webpack配置文件中，可以通过`devtool`对象去设置Source Map类型(*目前webpack支持7种Source Map类型*)，其中`cheap-module-source-map`是最简单的一个选项，可以对每行进行单独映射。
+
+#### Node Environment Variable
+
+运行`webpack -p`或`--define process.env.NODE_ENV="'production'"`的时候，将会以下面的方式调用`DefinePlugin`。
+
+```javascript
+// webpack.config.js
+const webpack = require('webpack');
+
+module.exports = {
+  /*...*/
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
+};
+```
+
+`DefinePlugin`用于对源代码执行**搜索或替换**操作，代码中所有`process.env.NODE_ENV`都会被`"production"`替换，然后再由UglifyJS进行混淆操作。
+
+```
+// 下面这句代码
+if (process.env.NODE_ENV !== 'production') console.log('...')
+// 都会被渲染为
+if (false) console.log('...')
+```
+
+### The Manual Way
+
+可以针对不同的场景，分离webpack配置文件。
+
+#### Simple Approach
+
+最简单的方式是直接去定义2个完整的配置文件：
+
+> webpack.dev.js
+
+```javascript
+module.exports = {
+  devtool: 'cheap-module-source-map',
+
+  output: {
+    path: path.join(__dirname, '/../dist/assets'),
+    filename: '[name].bundle.js',
+    publicPath: publicPath,
+    sourceMapFilename: '[name].map'
+  },
+
+  devServer: {
+    port: 7777,
+    host: 'localhost',
+    historyApiFallback: true,
+    noInfo: false,
+    stats: 'minimal',
+    publicPath: publicPath
+  }
+}
+```
+
+> webpack.prod.js
+
+```javascript
+module.exports = {
+  output: {
+    path: path.join(__dirname, '/../dist/assets'),
+    filename: '[name].bundle.js',
+    publicPath: publicPath,
+    sourceMapFilename: '[name].map'
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
+      },
+      compress: {
+        screw_ie8: true
+      },
+      comments: false
+    })
+  ]
+}
+```
+
+> webpack.config.js
+
+```javascript
+module.exports = function(env) {
+  return require('./webpack.${env}.js')
+}
+```
+
+> package.json
+
+```javascript
+"scripts": {
+  "build:dev": "webpack --env=dev --progress --profile --colors",
+  "build:dist": "webpack --env=prod --progress --profile --colors"
+}
+```
+
+#### Advanced Approach
+
+更复杂的方式是去抽象一个可以放置不同运行环境下通用配置的base，然后通过环境变量来具体指定merge哪一个配置。
+
+具体的merge操作需要使用到`webpack-merge`并提供相应选项，下面将会展现一个比较简单的版本。
+
+> webpack.common.js
+
+```javascript
+module.exports = {
+  entry: {
+    'polyfills': './src/polyfills.ts',
+    'vendor': './src/vendor.ts',
+    'main': './src/main.ts'
+  },
+
+  output: {
+    path: path.join(__dirname, '/../dist/assets'),
+    filename: '[name].bundle.js',
+    publicPath: publicPath,
+    sourceMapFilename: '[name].map'
+  },
+
+  resolve: {
+    extensions: ['.ts', '.js', '.json'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: [/\.(spec|e2e)\.ts$/],
+        use: [
+          'awesome-typescript-loader',
+          'angular2-template-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: ['to-string-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000
+          }
+        }
+      }
+    ]
+  },
+
+  plugins: [
+    new ForkCheckerPlugin(),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['polyfills', 'vendor'].reverse()
+    }),
+
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      chunksSortMode: 'dependency'
+    })
+  ]
+}
+```
+
+> webpack.prod.js
+
+```javascript
+const Merge = require('webpack-merge');
+const CommonConfig = require('./base.js');
+
+module.exports = function(env) {
+  return Merge(CommonConfig, {
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
+        mangle: {
+          screw_ie8: true,
+          keep_fnames: true
+        },
+        compress: {
+          screw_ie8: true
+        },
+        comments: false
+      })
+    ]
+  })
+}
+You will noti
+```

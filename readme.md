@@ -765,3 +765,122 @@ module.exports = function(env) {
 }
 You will noti
 ```
+
+
+## Caching
+
+如果需要长期缓存webpack生成的静态资源，需要执行如下步骤操作：
+
+* 1. 使用`[chunkhash]`添加内容依赖的缓存克星。
+
+* 2. 抽取webpack manifest清单到分散的文件中去。
+
+* 3. 确保包含启动代码的entry point chunk不会为同一组依赖改变哈希。
+
+当然，我们还可以进行进一步的调优：
+
+* 1. 当在HTML中需要相关资源的时候，通过compiler stats去获取文件的名称。
+* 2. 在加载资源前，生成chunk manifest JSON并且将其内联到HTML页面。
+
+### The problem
+
+通过在webpack配置文件的output中设置占位符，从而为打包后的文件名添加唯一的哈希值。
+
+下面代码会生成2个文件(每个entry一个文件)，
+
+```javascript
+// webpack.config.js
+const path = require("path");
+
+module.exports = {
+  entry: {
+    vendor: "./src/vendor.js",
+    main: "./src/index.js"
+  },
+  output: {
+    path: path.join(__dirname, "build"),
+    filename: "[name].[hash].js"
+  }
+};
+```
+
+运行这个配置后会得到如下信息：
+
+```javascript
+Hash: 2a6c1fee4b5b0d2c9285
+Version: webpack 2.2.0
+Time: 62ms
+                         Asset     Size  Chunks             Chunk Names
+vendor.2a6c1fee4b5b0d2c9285.js  2.58 kB       0  [emitted]  vendor
+  main.2a6c1fee4b5b0d2c9285.js  2.57 kB       1  [emitted]  main
+   [0] ./src/index.js 63 bytes {1} [built]
+   [1] ./src/vendor.js 63 bytes {0} [built]
+```
+
+但是，问题在于，当执行任意修改操作之后，webpack会更新所有的文件名，而浏览器无法进行缓存。
+
+### Generating unique hashes for each file
+
+webpack可以基于文件的内容来生成hash，只需要用`[chunkhash]`替换`[hash]`。
+
+```javascript
+module.exports = {
+  /*...*/
+  output: {
+    /*...*/
+-   filename: "[name].[hash].js"
++   filename: "[name].[chunkhash].js"
+  }
+};
+```
+
+执行之后，webpack会生成拥有不同hash值的2个文件：
+
+```javascript
+module.exports = {
+  /*...*/
+  output: {
+    /*...*/
+-   filename: "[name].[hash].js"
++   filename: "[name].[chunkhash].js"
+  }
+};
+```
+
+> 不要在开发过程中使用[chunkhash]，因为这样会拖慢编译的时间。最好能够分离开发环境和生产环境，在开发环境使用`[name].js`，生产环境下使用`[name].[chunkhash].js`。
+
+### Get filenames from webpack compilation stats
+
+因为webpack打包后的js文件名是通过哈希动态生成的，所以需要借助compilation stats在html页面中正确的引入这些随机生成的js文件。
+
+```javascript
+// webpack.config.js
+const path = require("path");
+
+module.exports = {
+  /*...*/
+  plugins: [
+    function() {
+      this.plugin("done", function(stats) {
+        require("fs").writeFileSync(
+          path.join(__dirname, "build", "stats.json"),
+          JSON.stringify(stats.toJson()));
+      });
+    }
+  ]
+};
+```
+
+> 另外，也可以通过插件assets-webpack-plugin或webpack-manifest-plugin导出stats.json。
+
+### Deterministic hashes
+
+为了缩小生成代码的体积，webpack使用标识符来代替模块的名称。编译时映射到chunk文件名的标识符会被生成，并会被放置到一个被称为`chunk manifest`的javascript对象。
+
+为了在编译过程中生成这些标识符，webpack会使用NamedModulesPlugin(*开发环境*)和NamedModulesPlugin(*生产环境*)插件。
+
+这个`chunk manifest`对象会和启动、运行时代码一起放置到入口点chunk，从而协助webpack打包后的代码的运行。
+
+但是问题在于，
+
+

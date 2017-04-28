@@ -13,6 +13,8 @@
     "start": "webpack --config webpack.config.js"
   },
   "dependencies": {
+    "admin-lte": "^2.3.11",
+    "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
@@ -29,7 +31,6 @@
     "style-loader": "^0.16.1",
     "vue-loader": "^11.3.4",
     "webpack": "^2.4.1",
-    "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "^2.4.4",
     "webpack-hot-middleware": "^2.18.0"
   }

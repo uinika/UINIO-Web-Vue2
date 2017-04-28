@@ -1052,4 +1052,75 @@ devtool: "inline-source-map"
 
 #### webpack-dev-server
 
+可以很容易的通过设置，提供实时加载的web服务。
+
+首先确保在`index.html`中引入`output.filename`属性所指定的打包文件，例如像下面例子中那样引入`bundle.js`：
+
+```html
+<script src="/bundle.js"></script>
+```
+
+然后安装webpack-dev-server：
+
+```
+npm install --save-dev webpack-dev-server
+```
+
+最后，运行下面命令行会自动打开浏览器`http://localhost:8080`：
+
+```
+webpack-dev-server --open
+```
+
+这样，每次修改文件并保存后，webpack就会自动执行编译任务，html页面也会自动刷新。
+
+> 接下来可以考虑添加Hot Module Replacement支持，从而可以在无需刷新页面的情况下，自动替换相应模块。
+
+> webpack-dev-server的功能比较强大，例如可以代理请求到后台服务器，更多的配置请查看`devServer`的配置选项。
+
 #### webpack-dev-middleware
+
+webpack-dev-middleware基于nodejs的connect中间件栈，可以用于在已经拥有nodejs服务器的情况下，或者是需要完全的控制服务器的场景下。
+
+该中间件可以在内存中进行编译，并且在编译的过程中，将会延迟请求的响应，直到编译完成。
+
+> 该中间件主要适用于高级用户，相比之下，webpack-dev-server的使用更加容易。
+
+通过下面npm指令安装相关依赖：
+
+```
+npm install --save-dev express webpack-dev-middleware
+```
+
+安装之后，可以像下面这样使用中间件：
+
+```javascript
+var express = require("express");
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpack = require("webpack");
+var webpackConfig = require("./webpack.config");
+
+var app = express();
+var compiler = webpack(webpackConfig);
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: "/" // Same as `output.publicPath` in most cases.
+}));
+
+app.listen(3000, function () {
+  console.log("Listening on port 3000!");
+});
+```
+
+取决于webpack配置当中的`output.publicPath`和`output.filename`属性，打包出来的`bundle`将会在URL地址`http://localhost:3000/bundle.js`上可用。
+
+`watch mode`默认会被启用，当然你也可以使用`lazy mode`，即只在有请求的时候才会重新编译
+
+如下代码配置，会只在请求`bundle.js`时才进行编译打包操作：
+
+```javascript
+app.use(webpackDevMiddleware(compiler, {
+  lazy: true,
+  filename: "bundle.js" // Same as `output.filename` in most cases.
+}));
+```

@@ -877,10 +877,179 @@ module.exports = {
 
 为了缩小生成代码的体积，webpack使用标识符来代替模块的名称。编译时映射到chunk文件名的标识符会被生成，并会被放置到一个被称为`chunk manifest`的javascript对象。
 
-为了在编译过程中生成这些标识符，webpack会使用NamedModulesPlugin(*开发环境*)和NamedModulesPlugin(*生产环境*)插件。
+> 为了在编译过程中生成这些标识符，webpack会使用NamedModulesPlugin(*开发环境*)和NamedModulesPlugin(*生产环境*)插件。
 
-这个`chunk manifest`对象会和启动、运行时代码一起放置到入口点chunk，从而协助webpack打包后的代码的运行。
+这个`chunk manifest`对象会和启动、运行时的代码一起，被放置到入口点chunk，从而协助webpack打包后代码的运行。
 
-但是问题在于，
+但是问题在于，修改应用代码任意位置时，都会更新我们的entry chunk去包含新的manifest，从而产生新的哈希，导致浏览器的缓存失效。
+
+修复这个问题， 需要使用`ChunkManifestWebpackPlugin`将manifest抽象到单独的json文件，在webpack运行时通过1个变量替换chunk manifest。当然，另外一个更好的实践是通过`CommonsChunkPlugin`将运行时的代码抽象到单独的文件，
+
+下面webpack配置文件，展示了如何生成manifest和运行时文件到编译目录：
+
+> webpack.config.js
+
+```javascript
+// webpack.config.js
+var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
+
+module.exports = {
+  /*...*/
+  plugins: [
+    /*...*/
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ["vendor", "manifest"], // vendor libs + extracted manifest
+      minChunks: Infinity,
+    }),
+    /*...*/
+    new ChunkManifestPlugin({
+      filename: "chunk-manifest.json",
+      manifestVariable: "webpackManifest"
+    })
+  ]
+};
+```
+
+> 上面代码中的manifestVariable属性是用于指向manifest JSON的全局变量，它将会在HTML引入bundle前被定义。
+
+下面是已经完成JSON嵌入了的HTML代码：
+
+```html
+<html>
+  <head>
+    <script>
+    //<![CDATA[
+    window.webpackManifest = {"0":"main.5f020f80c23aa50ebedf.js","1":"vendor.81adc64d405c8b218485.js"}
+    //]]>
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+最后，我们可以使用`webpack-chunk-hash`或`webpack-md5-hash`来根据文件内容的不同，去生成不同的hash值.
+
+> 最终webpack.config.js看起来是这样的。
+
+```javascript
+var path = require("path");
+var webpack = require("webpack");
+var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
+var WebpackChunkHash = require("webpack-chunk-hash");
+
+module.exports = {
+  entry: {
+    vendor: "./src/vendor.js", // vendor reference file(s)
+    main: "./src/index.js" // application code
+  },
+  output: {
+    path: path.join(__dirname, "build"),
+    filename: "[name].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].js"
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ["vendor", "manifest"], // vendor libs + extracted manifest
+      minChunks: Infinity,
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new WebpackChunkHash(),
+    new ChunkManifestPlugin({
+      filename: "chunk-manifest.json",
+      manifestVariable: "webpackManifest"
+    })
+  ]
+};
+```
+
+上面的配置当中，vendor chunk将不会改变其hash(*除非修改了代码及其依赖*)，下面代码是moduleB.js被修改2次后的输出：
+
+```
+> node_modules/.bin/webpack
+
+Hash: f0ae5bf7c6a1fd3b2127
+Version: webpack 2.2.0
+Time: 102ms
+                           Asset       Size  Chunks             Chunk Names
+    main.9ebe4bf7d99ffc17e75f.js  509 bytes    0, 2  [emitted]  main
+  vendor.81adc64d405c8b218485.js  159 bytes    1, 2  [emitted]  vendor
+             chunk-manifest.json   73 bytes          [emitted]
+manifest.d41d8cd98f00b204e980.js    5.56 kB       2  [emitted]  manifest
+```
+
+```
+> node_modules/.bin/webpack
+
+Hash: b5fb8e138b039ab515f3
+Version: webpack 2.2.0
+Time: 87ms
+                           Asset       Size  Chunks             Chunk Names
+    main.5f020f80c23aa50ebedf.js  521 bytes    0, 2  [emitted]  main
+  vendor.81adc64d405c8b218485.js  159 bytes    1, 2  [emitted]  vendor
+             chunk-manifest.json   73 bytes          [emitted]
+manifest.d41d8cd98f00b204e980.js    5.56 kB       2  [emitted]  manifest
+```
+
+### Manifest inlining
+
+在webpack运行时嵌入chunk manifest(*防止产生多余的HTTP请求*)，需要依赖于开发人员的服务器配置。
+
+对于基于nodejs的服务器端渲染，可以使用`webpack-isomorphic-tools`工具。
+
+> 如果开发人员的服务器不支持任何的服务器端渲染，通常会只生成一个index.html文件，此时可以通过`HtmlWebpackPlugin`和`ScriptExtHtmlWebpackPlugin`或`InlineManifestWebpackPlugin`配合使用来简化设置。
 
 
+## Development
+
+本节将会讲解webpack在真实开发环境下的使用方法以及相关的工具链，但是不能将其用于生产环境。
+
+### Source Maps
+
+webpack打包代码后，当异常发生时，需要查看错误发生在具体哪一行。source maps提供了许多配置选项来解决这个问题，这些选项各有优缺点，但刚开始通常会使用下面的配置项。
+
+```
+devtool: "cheap-eval-source-map"
+```
+
+### Choosing a Tool
+
+webpack可以和watch mode特性一起使用，当检测到文件修改时，可以自动重新进行打包编译。
+
+webpack通过`webpack-dev-server`提供了一个热部署的HTTP服务器环境。
+
+如果你已经拥有开发服务器，并希望具备一定的灵活性，可以使用`webpack-dev-middleware `中间件。
+
+`webpack-dev-server`和`webpack-dev-middleware`都使用了内存编译技术(*in-memory compilation*)，这意味bundle并不会保存到硬盘，因而大幅提高了编译速度。
+
+> 通常情况下都会使用`webpack-dev-server`，因为它提供了更多开箱即用的特性。
+
+### webpack Watch Mode
+
+webpack自带的watch model可以检测文件的变化，当任何改变被检测到时都会重新进行编译打包。
+
+可以使用以下命令行，来开启编译打包的进度条：
+
+```
+webpack --progress --watch
+```
+
+> 原生的watch model不支持web服务器环境，你可以使用`npm install -g serve`指定任意的目录为web服务目录。
+
+### Watch Mode with Chrome DevTools Workspaces
+
+当开发人员将chrome设置为`persist changes when saving from the Sources panel`，就可以不用在chrome上点击刷新，而只需要简单的将webpack设置为：
+
+```
+devtool: "inline-source-map"
+```
+
+**但是这里存在一些使用上的陷阱**：
+
+* 1.巨大的chunks(通用chunk体积可以超过1M)可能会导致页面加载打包文件不及时，导致出现空白页面，导致需要你手动去刷新浏览器。
+
+* 2.更小的chunks运行更快，但是`inline-source-map`会对源代码进行base64编码，从而延缓运行速度。
+
+#### webpack-dev-server
+
+#### webpack-dev-middleware

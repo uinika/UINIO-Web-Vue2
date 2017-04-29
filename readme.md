@@ -1124,3 +1124,36 @@ app.use(webpackDevMiddleware(compiler, {
   filename: "bundle.js" // Same as `output.filename` in most cases.
 }));
 ```
+
+
+## Dependency Management
+
+* es6 modules
+* commonjs
+* amd
+
+### require with expression
+
+当你的请求包含表达式的时候，一个context将会被建立，所以确切的module不能被识别。
+
+```javascript
+require("./template/" + name + ".ejs");
+```
+
+webpack将会解析require()调用，并且抽取一些信息：
+
+```
+Directory: ./template
+Regular expression: /^.*\.ejs$/
+```
+
+#### context module
+
+context module包含该目录下所有module的引用，这些引用在请求匹配上面正则表达式的时候会被需要，
+
+
+
+### require.context
+
+
+### context module API

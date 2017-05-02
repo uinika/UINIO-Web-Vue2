@@ -1,4 +1,6 @@
-# Webpack 2.3.3 Concepts & Guides
+# Webpack 2.4.1 Concepts & Guides
+
+# Concepts
 
 ## Concepts
 
@@ -77,6 +79,41 @@ const config = {
 
 module.exports = config;
 ```
+
+
+## Entry Points
+
+### Single Entry (Shorthand) Syntax
+
+```
+entry: string|Array<string>
+```
+
+```javascript
+const config = {
+  entry: {
+    main: './path/to/my/entry/file.js'
+  }
+};
+```
+
+也可以使用更简洁的写法：
+
+```javascript
+const config = {
+  entry: './path/to/my/entry/file.js'
+};
+
+module.exports = config;
+```
+
+> 
+
+
+
+
+
+# GUIDES
 
 
 ## Getting Started
@@ -1134,13 +1171,13 @@ app.use(webpackDevMiddleware(compiler, {
 
 ### require with expression
 
-当你的请求包含表达式的时候，一个context将会被建立，所以确切的module不能被识别。
+当请求模块的路径包含表达式时，一个上下文将会被建立，因此确切的模块在编译时不能被正确感知。
 
 ```javascript
 require("./template/" + name + ".ejs");
 ```
 
-webpack将会解析require()调用，并且抽取一些信息：
+webpack将会解析require()调用，并且抽取一些有用的信息：
 
 ```
 Directory: ./template
@@ -1149,7 +1186,8 @@ Regular expression: /^.*\.ejs$/
 
 #### context module
 
-context module包含该目录下所有module的引用，这些引用在请求匹配上面正则表达式的时候会被需要，
+
+上下文模块(*context module*)包含该目录下所有module的引用，这些引用在请求匹配上面正则表达式的时候会被需要，
 
 
 

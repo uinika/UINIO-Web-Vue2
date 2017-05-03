@@ -13,7 +13,8 @@ gulp.task("default", function () {
     watchContentBase: true,
     stats: {
       colors: true
-    }
+    },
+    hot: true
   });
   server.listen(8000, "127.0.0.1", function () {
     console.log("Starting server on http://localhost:8000");

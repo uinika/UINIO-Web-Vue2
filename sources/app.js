@@ -2,13 +2,29 @@ import _ from "lodash";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import "./parts/test.scss";
-import test from "./parts/test.js"
+import test from "./parts/test.js";
 
-var app = new Vue({
-  el: "#app",
-  data: {
-    message: "Hello Vue!"
-  }
-});
+Vue.use(VueRouter);
 
-test();
+const Foo = {
+  template: "<div>foo</div>"
+}
+const Bar = {
+  template: "<div>bar</div>"
+}
+
+const routes = [{
+  path: "/foo",
+  component: Foo
+}, {
+  path: "/bar",
+  component: Bar
+}]
+
+const router = new VueRouter({
+  routes
+})
+
+const app = new Vue({
+  router
+}).$mount("#app")

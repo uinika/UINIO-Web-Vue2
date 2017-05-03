@@ -25,7 +25,7 @@ module.exports = {
     extractSass,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
+      name: ["vendor", "manifest"]
     })
   ],
   resolve: {

@@ -1,6 +1,6 @@
 {
   "name": "aves",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "an vue2 & webpack2 Project.",
   "main": "index.html",
   "repository": {

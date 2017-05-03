@@ -7,7 +7,7 @@ const gulp = require("gulp"),
     const compiler = webpack(webpackConfig);
     const server = new webpackDevServer(compiler, {
       contentBase: "./sources",
-      publicPath: "/bundles/",
+      publicPath: "/build/bundles/",
       watchContentBase: true,
       stats: {
         colors: true

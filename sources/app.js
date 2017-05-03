@@ -1,11 +1,11 @@
-import _ from 'lodash';
-import "./parts/test.scss"
+import _ from "lodash";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import "./parts/test.scss";
 
-function component () {
-  var element = document.createElement('div');
-  element.innerHTML = _.join(['Hello','webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+var app = new Vue({
+  el: "#app",
+  data: {
+    message: "Hello Vue!"
+  }
+});

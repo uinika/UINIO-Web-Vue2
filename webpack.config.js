@@ -2,10 +2,10 @@ var path = require("path");
 
 module.exports = {
   context: path.resolve(__dirname, "sources"),
-  entry: "./index.js",
+  entry: ["./app.js", 'webpack-dev-server/client?http://localhost:8000/', 'webpack/hot/dev-server'],
   output: {
     filename: "scripts.js",
-    path: path.resolve(__dirname, "bundles")
+    path: path.resolve(__dirname, "sources/bundles")
   },
   module: {
     rules: [{

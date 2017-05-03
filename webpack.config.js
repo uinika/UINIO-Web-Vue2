@@ -1,4 +1,5 @@
-var path = require("path");
+var path = require("path"),
+  webpack = require('webpack');
 
 module.exports = {
   context: path.resolve(__dirname, "sources"),
@@ -7,6 +8,10 @@ module.exports = {
     filename: "scripts.js",
     path: path.resolve(__dirname, "sources/bundles")
   },
+  devtool: 'cheap-module-eval-source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     rules: [{
       test: /\.vue$/,

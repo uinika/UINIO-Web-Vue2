@@ -4,22 +4,17 @@ import VueRouter from "vue-router";
 import "./parts/test.scss";
 import test from "./parts/test.js";
 import 'element-ui/lib/theme-default/index.css';
+import layout from "./parts/layout/main.vue";
+import login from "./parts/login/main.vue";
 
 Vue.use(VueRouter);
 
-const Foo = {
-  template: "<div>foo</div>"
-}
-const Bar = {
-  template: "<div>bar</div>"
-}
-
 const routes = [{
   path: "/foo",
-  component: Foo
+  component: layout
 }, {
   path: "/bar",
-  component: Bar
+  component: login
 }]
 
 const router = new VueRouter({

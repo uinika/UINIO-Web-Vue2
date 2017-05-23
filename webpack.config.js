@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     extractSass,
     new HtmlWebpackPlugin({
-      template: 'index.ejs',
+      template: "index.html",
       filename: "index.html"
     }),
     new webpack.HotModuleReplacementPlugin(),

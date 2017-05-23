@@ -2,7 +2,6 @@
   <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
 </template>
 
-
 <script>
 import {Tree} from "element-ui";
 export default {

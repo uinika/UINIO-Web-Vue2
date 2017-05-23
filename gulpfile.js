@@ -1,6 +1,6 @@
 const gulp = require("gulp"),
   webpack = require("webpack"),
-  del = require("del");
+  del = require("del"),
   webpackConfig = require("./webpack.config.js"),
   webpackDevServer = require("webpack-dev-server");
 
@@ -9,7 +9,7 @@ gulp.task("default", function () {
   const compiler = webpack(webpackConfig);
   const server = new webpackDevServer(compiler, {
     contentBase: "./sources",
-    publicPath: "/build/bundles/",
+    publicPath: "/wiserv",
     watchContentBase: true,
     stats: {
       colors: true
@@ -17,7 +17,10 @@ gulp.task("default", function () {
     hot: true
   });
   server.listen(8000, "127.0.0.1", function () {
-    console.log("Starting server on http://localhost:8000");
+    console.info(
+      "Starting server on \
+      http://localhost:8000/bundle/index.html"
+    );
   });
 });
 

@@ -1,5 +1,6 @@
 const path = require("path"),
   webpack = require("webpack"),
+  HtmlWebpackPlugin = require("html-webpack-plugin"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
@@ -10,19 +11,32 @@ module.exports = {
   context: path.resolve(__dirname, "sources"),
   entry: {
     app: "./app.js",
-    webpack: [
+    live: [
       "webpack/hot/dev-server",
       "webpack-dev-server/client?http://localhost:8000/"
     ],
-    vendor: ["jquery", "lodash", "moment"]
+    vendor: [
+      "jquery",
+      "lodash",
+      "moment",
+      "element-ui",
+      "vue",
+      "vuex",
+      "vue-router",
+      "vue-resource",
+    ]
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "build/bundles")
+    filename: "[name].[hash].js",
+    path: path.resolve(__dirname, "build")
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
     extractSass,
+    new HtmlWebpackPlugin({
+      template: 'index.ejs',
+      filename: "index.html"
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["vendor", "manifest"]
@@ -38,6 +52,9 @@ module.exports = {
     rules: [{
       test: /\.vue$/,
       loader: "vue-loader",
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
     }, {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
       loader: "url-loader",

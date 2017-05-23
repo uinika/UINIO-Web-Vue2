@@ -3,6 +3,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import "./parts/test.scss";
 import test from "./parts/test.js";
+import 'element-ui/lib/theme-default/index.css';
 
 Vue.use(VueRouter);
 

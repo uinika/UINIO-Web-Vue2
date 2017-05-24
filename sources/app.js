@@ -1,8 +1,12 @@
-import _ from "lodash";
+// library
 import Vue from "vue";
 import VueRouter from "vue-router";
+import _ from "lodash";
+import "element-ui/lib/theme-default/index.css";
+// common
 import "./common/base.scss";
-import 'element-ui/lib/theme-default/index.css';
+import "./common/color.scss";
+// router component
 import layout from "./component/layout/main.vue";
 import login from "./component/login/main.vue";
 

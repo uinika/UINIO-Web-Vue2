@@ -1,11 +1,10 @@
 import _ from "lodash";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import "./parts/test.scss";
-import test from "./parts/test.js";
+import "./common/base.scss";
 import 'element-ui/lib/theme-default/index.css';
-import layout from "./parts/layout/main.vue";
-import login from "./parts/login/main.vue";
+import layout from "./component/layout/main.vue";
+import login from "./component/login/main.vue";
 
 Vue.use(VueRouter);
 

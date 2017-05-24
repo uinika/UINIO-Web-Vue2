@@ -1,7 +1,6 @@
 // library
 import Vue from "vue";
 import VueRouter from "vue-router";
-import _ from "lodash";
 import "element-ui/lib/theme-default/index.css";
 // common
 import "./common/base.scss";

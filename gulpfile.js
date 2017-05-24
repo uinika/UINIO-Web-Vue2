@@ -8,7 +8,7 @@ const gulp = require("gulp"),
 
 /** gulp default */
 gulp.task("default", function () {
-  const compiler = webpack(webpackConfig);
+  const compiler = webpack(webpackConfig.development);
   const server = new webpackDevServer(compiler, {
     contentBase: "./sources",
     publicPath: "/wiserv",
@@ -26,8 +26,16 @@ gulp.task("default", function () {
   });
 });
 
+/** gulp build */
+gulp.task("build", () => {
+  console.info("production", webpackConfig.production);
+  return gulp.src('./sources/app.js')
+    .pipe(webpack(webpackConfig.production))
+    .pipe(gulp.dest('./build/'));
+});
+
 /** gulp release */
-gulp.task("release", () => {
+gulp.task("release", ["build"], () => {
   const timestamp = moment().format("YYYY-MM-DD HH.mm.ss");
   const file = ("release " + timestamp + ".zip");
   gulp.src("./build/**/*")

@@ -1,6 +1,8 @@
 const gulp = require("gulp"),
   webpack = require("webpack"),
   del = require("del"),
+  moment = require("moment"),
+  gulpZip = require("gulp-zip"),
   webpackConfig = require("./webpack.config.js"),
   webpackDevServer = require("webpack-dev-server");
 
@@ -22,6 +24,15 @@ gulp.task("default", function () {
       http://localhost:8000/bundle/index.html"
     );
   });
+});
+
+/** gulp release */
+gulp.task("release", () => {
+  const timestamp = moment().format("YYYY-MM-DD HH.mm.ss");
+  const file = ("release " + timestamp + ".zip");
+  gulp.src("./build/**/*")
+    .pipe(gulpZip(file))
+    .pipe(gulp.dest("./release"))
 });
 
 /** gulp clean */

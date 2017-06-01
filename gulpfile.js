@@ -28,10 +28,11 @@ gulp.task("default", function () {
 
 /** gulp build */
 gulp.task("build", () => {
-  console.info("production", webpackConfig.production);
-  return gulp.src('./sources/app.js')
-    .pipe(webpack(webpackConfig.production))
-    .pipe(gulp.dest('./build/'));
+  const compiler = webpack(webpackConfig.production);
+  compiler.run((err, stats) => {
+    // console.error(err);
+    // console.info(stats);
+  });
 });
 
 /** gulp release */

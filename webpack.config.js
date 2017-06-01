@@ -1,7 +1,5 @@
 const path = require("path"),
   webpack = require("webpack"),
-  _ = require("lodash"),
-  Merge = require('webpack-merge'),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -23,8 +21,8 @@ const development = {
     ]
   },
   output: {
+    path: "/wiserv",
     filename: "[name].[hash].js",
-    path: path.resolve(__dirname, "build")
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
@@ -81,11 +79,15 @@ const production = {
     ]
   },
   output: {
+    path: path.resolve(__dirname, "build"),
     filename: "[name].[hash].js",
-    path: path.resolve(__dirname, "build")
   },
   plugins: [
     styles,
+    new HtmlWebpackPlugin({
+      template: "index.html",
+      filename: "index.html"
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["vendor", "manifest"]
     })

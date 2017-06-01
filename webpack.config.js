@@ -15,7 +15,7 @@ const development = {
     app: "./app.js",
     live: [
       "webpack/hot/dev-server",
-      "webpack-dev-server/client?http://localhost:8000/"
+      "webpack-dev-server/client?http://localhost:8000/wiserv"
     ],
     vendor: [
       "jquery", "lodash", "moment", "element-ui",

@@ -21,7 +21,7 @@ gulp.task("default", function () {
   server.listen(8000, "127.0.0.1", function () {
     console.info(
       "Starting server on \
-      http://localhost:8000/bundle/index.html"
+      http://localhost:8000/wiserv/index.html"
     );
   });
 });

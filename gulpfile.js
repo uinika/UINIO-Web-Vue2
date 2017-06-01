@@ -28,6 +28,7 @@ gulp.task("default", function () {
 
 /** gulp build */
 gulp.task("build", () => {
+  console.log(webpackConfig.production)
   const compiler = webpack(webpackConfig.production);
   compiler.run((err, stats) => {
     // console.error(err);

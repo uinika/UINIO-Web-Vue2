@@ -31,6 +31,7 @@ const development = {
   plugins: [
     styles,
     new HtmlWebpackPlugin({
+      favicon: "assets/favicon.ico",
       template: "index.html",
       filename: "index.html"
     }),

@@ -26,21 +26,8 @@ gulp.task("default", function () {
   const server = new webpackDevServer(compiler, devServer);
   server.listen(8000, "127.0.0.1", () => {
     console.info(
-      "Starting server on \
+      "Starting webpackDevServer on \
       http://localhost:8000/wiserv/index.html"
-    );
-  });
-});
-
-/** gulp test */
-gulp.task("test", () => {
-  var app = express();
-  const compiler = webpack(webpackConfig.development);
-  app.use(webpackDevMiddleware(compiler, devServer));
-  app.listen(5000, () => {
-    console.info(
-      "Starting server on \
-      http://localhost:5000/wiserv/index.html"
     );
   });
 });
@@ -68,4 +55,30 @@ gulp.task("clean", () => {
   del([
     "./release/**/*", "./build/**/*"
   ]);
+});
+
+/** gulp test */
+gulp.task("test", () => {
+  var app = express();
+  const compiler = webpack(webpackConfig.development);
+  app.use(webpackDevMiddleware(compiler, devServer));
+  app.listen(5000, () => {
+    console.info(
+      "Starting express on \
+      http://localhost:5000/wiserv/index.html"
+    );
+  });
+});
+
+/** gulp express */
+gulp.task("express", () => {
+  var app = express();
+  const compiler = webpack(webpackConfig.development);
+  app.use(webpackDevMiddleware(compiler, devServer));
+  app.listen(5000, () => {
+    console.info(
+      "Starting express on \
+      http://localhost:5000/wiserv/index.html"
+    );
+  });
 });

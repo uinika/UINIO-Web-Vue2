@@ -34,10 +34,11 @@ gulp.task("default", function () {
 
 /** gulp build */
 gulp.task("build", () => {
-  console.log(webpackConfig.production)
-  const compiler = webpack(webpackConfig.production);
+  const development = webpackConfig.development;
+  const production = webpackConfig.production(development);
+  const compiler = webpack(production);
   compiler.run((err, stats) => {
-    console.error(err);
+    // console.error(err);
   });
 });
 

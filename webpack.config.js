@@ -15,7 +15,7 @@ const development = {
     app: "./app.js",
     live: [
       "webpack/hot/dev-server",
-      "webpack-dev-server/client?http://localhost:8000/wiserv"
+      "webpack-dev-server/client?http://localhost:8000"
     ],
     vendor: [
       "jquery", "lodash", "moment", "element-ui",
@@ -73,9 +73,8 @@ const development = {
   }
 };
 
-const production = () => {
-  let product = {};
-  _.assign(product, development);
+const production = (development) => {
+  const product = development;
   if (delete product.entry.live) {
     product.devtool = "source-map";
     product.plugins.push(new webpack.optimize.UglifyJsPlugin({
@@ -89,5 +88,5 @@ const production = () => {
 
 module.exports = {
   development,
-  production: production()
+  production
 };

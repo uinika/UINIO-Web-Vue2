@@ -25,6 +25,7 @@ const development = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "[name].[hash].js",
+    publicPath: ""
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
@@ -71,25 +72,21 @@ const development = {
   }
 };
 
-const production = _.assignIn({}, development, {
-  entry: {
-    app: "./app.js",
-    vendor: [
-      "jquery", "lodash", "moment", "element-ui",
-      "vue", "vuex", "vue-router", "vue-resource",
-    ]
-  },
-  devtool: "source-map",
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
+const production = () => {
+  let product = {};
+  _.assign(product, development);
+  if (delete product.entry.live) {
+    product.devtool = "source-map";
+    product.plugins.push(new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
-    }),
-  ]
-});
+    }));
+    return product;
+  }
+};
 
 module.exports = {
-  production,
-  development
+  development,
+  production: production()
 };

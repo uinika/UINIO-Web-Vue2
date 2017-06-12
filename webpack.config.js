@@ -24,8 +24,9 @@ const development = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "[name].[hash].js",
-    publicPath: ""
+    publicPath: "",
+    filename: "[name].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].js"
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
@@ -35,9 +36,9 @@ const development = {
       template: "index.html",
       filename: "index.html"
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ["vendor", "manifest"]
+      names: ["vendor", "manifest"]
     })
   ],
   resolve: {

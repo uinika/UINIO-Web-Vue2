@@ -60,12 +60,12 @@ const development = {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: "url-loader",
     }, {
-      test: /\.scss$/,
+      test: /\.less$/,
       use: styles.extract({
         use: [{
           loader: "css-loader"
         }, {
-          loader: "sass-loader"
+          loader: "less-loader"
         }],
         fallback: "style-loader"
       })

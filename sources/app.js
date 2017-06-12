@@ -3,8 +3,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import "element-ui/lib/theme-default/index.css";
 // common
-import "./common/base.scss";
-import "./common/color.scss";
+import "./common/base.less";
+import "./common/color.less";
 // router component
 import layout from "./component/layout/main.vue";
 import login from "./component/login/main.vue";

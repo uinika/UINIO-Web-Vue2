@@ -38,7 +38,14 @@ gulp.task("build", () => {
   const production = webpackConfig.production(development);
   const compiler = webpack(production);
   compiler.run((err, stats) => {
-    // console.error(err);
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.info(stats.toString({
+      chunks: false,
+      colors: true
+    }));
   });
 });
 

@@ -41,7 +41,7 @@ gulp.task("build", () => {
     if (err) {
       console.error(err);
       return;
-    }
+    };
     console.info(stats.toString({
       chunks: false,
       colors: true

@@ -1,6 +1,6 @@
 {
   "name": "aves",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "an vue2 & webpack2 Project.",
   "main": "index.html",
   "repository": {
@@ -43,7 +43,6 @@
     "vue-template-compiler": "^2.3.4",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",
-    "webpack-dev-server": "^2.4.5",
-    "webpack-merge": "^4.1.0"
+    "webpack-dev-server": "^2.4.5"
   }
 }

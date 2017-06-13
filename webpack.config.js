@@ -2,8 +2,7 @@ const path = require("path"),
   _ = require("lodash"),
   webpack = require("webpack"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
-  ExtractTextPlugin = require("extract-text-webpack-plugin"),
-  webpackMerge = require('webpack-merge');
+  ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const target = "bundles";
 

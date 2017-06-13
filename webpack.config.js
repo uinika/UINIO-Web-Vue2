@@ -5,10 +5,10 @@ const path = require("path"),
   ExtractTextPlugin = require("extract-text-webpack-plugin"),
   webpackMerge = require('webpack-merge');
 
-const base = "bundles";
+const target = "bundles";
 
 const styles = new ExtractTextPlugin({
-  filename: path.join(base, "[name].[contenthash].css")
+  filename: path.join(target, "[name].[contenthash].css")
 });
 
 const development = {
@@ -26,8 +26,8 @@ const development = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: path.join(base, "[name].[chunkhash].js"),
-    chunkFilename: path.join(base, "[name].[chunkhash].js")
+    filename: path.join(target, "[name].[chunkhash].js"),
+    chunkFilename: path.join(target, "[name].[chunkhash].js")
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [

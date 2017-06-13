@@ -79,12 +79,14 @@ const production = (development) => {
   const product = development;
   if (delete product.entry.live) {
     product.devtool = "source-map";
-    product.plugins.push(new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      sourceMap: true,
-      compress: true,
-      comments: false
-    }));
+    product.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        },
+        sourceMap: true
+      })
+    );
     return product;
   }
 };

@@ -59,13 +59,21 @@ const development = {
       loader: "babel-loader"
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: "style-loader!css-loader"
     }, {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
       loader: "url-loader",
+      options: {
+        limit: 10000,
+        name: "assets/images/[name].[hash].[ext]"
+      }
     }, {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: "url-loader",
+      options: {
+        limit: 10000,
+        name: "assets/fonts/[name].[hash].[ext]"
+      }
     }, {
       test: /\.less$/,
       use: styles.extract({

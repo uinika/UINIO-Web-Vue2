@@ -1,6 +1,7 @@
 // library
 import Vue from "vue";
 import VueRouter from "vue-router";
+import "font-awesome/css/font-awesome.css";
 import "element-ui/lib/theme-default/index.css";
 // common
 import "./common/base.less";

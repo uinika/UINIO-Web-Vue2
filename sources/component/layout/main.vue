@@ -1,11 +1,12 @@
 <template>
-  <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+  <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick">
+  </el-tree>
 </template>
 
 <script>
-import {Tree} from "element-ui";
+import { Tree } from "element-ui";
 export default {
-  components: {"el-tree": Tree},
+  components: { "el-tree": Tree },
   data() {
     return {
       data: [{

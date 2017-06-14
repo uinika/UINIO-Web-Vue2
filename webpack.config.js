@@ -32,6 +32,11 @@ const development = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: '"development"'
+      }
+    }),
     styles,
     new HtmlWebpackPlugin({
       favicon: "assets/favicon.ico",
@@ -92,8 +97,13 @@ const production = (development) => {
   const product = development;
   if (delete product.entry.live) {
     product.devtool = "source-map";
-    product.plugins.splice(0, 2);
+    product.plugins.splice(0, 3);
     product.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: '"production"'
+        }
+      }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false

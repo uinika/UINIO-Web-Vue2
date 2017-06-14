@@ -27,8 +27,7 @@ gulp.task("default", function () {
   const server = new webpackDevServer(compiler, devServer);
   server.listen(8000, "127.0.0.1", () => {
     console.info(
-      "Starting webpackDevServer on \
-      http://localhost:8000/wiserv/index.html"
+      chalk.blue.bgGreen("Starting webpackDevServer on http://localhost:8000/wiserv/index.html")
     );
   });
 });

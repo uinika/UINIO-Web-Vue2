@@ -25,11 +25,13 @@ const development = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: path.join(target, "[name].[chunkhash].js"),
+    filename: path.join(target, "[name].[hash].js"),
     chunkFilename: path.join(target, "[name].[chunkhash].js")
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     styles,
     new HtmlWebpackPlugin({
       favicon: "assets/favicon.ico",
@@ -82,6 +84,7 @@ const production = (development) => {
   const product = development;
   if (delete product.entry.live) {
     product.devtool = "source-map";
+    product.plugins.splice(0, 2);
     product.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
         compress: {

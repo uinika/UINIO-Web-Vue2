@@ -4,9 +4,10 @@ const gulp = require("gulp"),
   express = require("express"),
   moment = require("moment"),
   gulpZip = require("gulp-zip"),
+  chalk = require("chalk"),
   webpackConfig = require("./webpack.config.js"),
-  webpackDevMiddleware = require("webpack-dev-middleware"),
-  webpackDevServer = require("webpack-dev-server");
+  webpackDevServer = require("webpack-dev-server"),
+  webpackDevMiddleware = require("webpack-dev-middleware");
 
 // config for devServer
 const devServer = {

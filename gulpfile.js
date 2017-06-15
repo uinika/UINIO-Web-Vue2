@@ -7,6 +7,7 @@ const gulp = require("gulp"),
   chalk = require("chalk"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
+  merge = require('webpack-merge'),
   webpackDevServer = require("webpack-dev-server"),
   webpackDevMiddleware = require("webpack-dev-middleware");
 
@@ -64,8 +65,8 @@ gulp.task("clean", () => {
   ]);
 });
 
-/** gulp test */
-gulp.task("test", () => {
+/** gulp express */
+gulp.task("middleware", () => {
   var app = express();
   const compiler = webpack(webpackConfig.development);
   app.use(webpackDevMiddleware(compiler, devServer));
@@ -77,15 +78,7 @@ gulp.task("test", () => {
   });
 });
 
-/** gulp express */
-gulp.task("express", () => {
-  var app = express();
-  const compiler = webpack(webpackConfig.development);
-  app.use(webpackDevMiddleware(compiler, devServer));
-  app.listen(5000, () => {
-    console.info(
-      "Starting express on \
-      http://localhost:5000/wiserv/index.html"
-    );
-  });
+/** gulp test */
+gulp.task("test", () => {
+
 });

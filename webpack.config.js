@@ -58,6 +58,9 @@ const development = {
     rules: [{
       test: /\.vue$/,
       loader: "vue-loader",
+      options: {
+        extractCSS: true
+      }
     }, {
       test: /\.js$/,
       exclude: /node_modules/,

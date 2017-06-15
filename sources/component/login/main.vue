@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import {Table, TableColumn} from "element-ui";
+import { Table, TableColumn } from "element-ui";
 
 export default {
-  components: {"ElTable":Table, TableColumn},
+  components: { "ElTable": Table, TableColumn },
   data() {
     return {
       tableData: [{

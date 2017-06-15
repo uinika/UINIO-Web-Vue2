@@ -8,8 +8,8 @@ import "element-ui/lib/theme-default/index.css";
 import "./common/base.less";
 import "./common/color.less";
 // router component
-import layout from "./component/layout/main.vue";
-import login from "./component/login/main.vue";
+import layout from "./layout/main.vue";
+import login from "./login/main.vue";
 
 Vue.use(VueRouter);
 

@@ -73,14 +73,14 @@ const develop = {
       loader: "url-loader",
       options: {
         limit: 10000,
-        name: "assets/images/[name].[hash].[ext]"
+        name: "assets/images/[name].[ext]"
       }
     }, {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: "url-loader",
       options: {
         limit: 10000,
-        name: "assets/fonts/[name].[hash].[ext]"
+        name: "assets/fonts/[name].[ext]"
       }
     }, {
       test: /\.less$/,

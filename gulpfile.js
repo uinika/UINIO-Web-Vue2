@@ -5,7 +5,8 @@ const gulp = require("gulp"),
   moment = require("moment"),
   gulpZip = require("gulp-zip"),
   chalk = require("chalk"),
-  webpackConfig = require("./webpack.config.js"),
+  develop = require("./config/develop.js"),
+  product = require("./config/product.js"),
   webpackDevServer = require("webpack-dev-server"),
   webpackDevMiddleware = require("webpack-dev-middleware");
 
@@ -23,7 +24,7 @@ const devServer = {
 
 /** gulp default */
 gulp.task("default", function () {
-  const compiler = webpack(webpackConfig.development);
+  const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServer);
   server.listen(8000, "127.0.0.1", () => {
     console.info(
@@ -34,9 +35,7 @@ gulp.task("default", function () {
 
 /** gulp build */
 gulp.task("build", () => {
-  const development = webpackConfig.development;
-  const production = webpackConfig.production(development);
-  const compiler = webpack(production);
+  const compiler = webpack(product);
   compiler.run((err, stats) => {
     if (err) {
       console.error(err);

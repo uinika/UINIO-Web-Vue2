@@ -1,12 +1,5 @@
 <template>
-  <ElTable :data="tableData" style="width: 100%">
-    <TableColumn prop="date" label="日期" width="180">
-    </TableColumn>
-    <TableColumn prop="name" label="姓名" width="180">
-    </TableColumn>
-    <TableColumn prop="address" label="地址">
-    </TableColumn>
-  </ElTable>
+  <h1>login</h1>
 </template>
 
 <script>

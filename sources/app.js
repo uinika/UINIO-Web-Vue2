@@ -10,15 +10,23 @@ import "./common/color.less";
 // router component
 import layout from "./layout/main.vue";
 import login from "./login/main.vue";
+import dashboard from "./dashboard/main.vue";
 
 Vue.use(VueRouter);
 
 const routes = [{
-  path: "/foo",
-  component: layout
-}, {
-  path: "/bar",
+  path: "/",
   component: login
+}, {
+  path: "/login",
+  component: login
+}, {
+  path: "/layout",
+  component: layout,
+  children: [{
+    path: "dashboard",
+    component: dashboard
+  }]
 }]
 
 const router = new VueRouter({

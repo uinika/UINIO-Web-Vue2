@@ -4,6 +4,7 @@ const path = require("path"),
   base = require("./base"),
   HtmlWebpackPlugin = require("html-webpack-plugin");
 
+/** Base Config */
 module.exports = {
   target: "bundles",
   context: path.resolve(__dirname, "../sources"),
@@ -53,22 +54,6 @@ module.exports = {
       "style-css-loader": {
         test: /\.css$/,
         loader: "style-loader!css-loader"
-      },
-      "url-image-loader": {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/images/[name].[hash].[ext]"
-        }
-      },
-      "url-font-loader": {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/fonts/[name].[hash].[ext]"
-        }
       }
     }
   }

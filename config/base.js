@@ -22,12 +22,6 @@ module.exports = {
     }
   },
   plugins: {
-    UglifyJsPlugin: new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: true
-    }),
     HtmlWebpackPlugin: new HtmlWebpackPlugin({
       favicon: "assets/favicon.ico",
       template: "index.html",

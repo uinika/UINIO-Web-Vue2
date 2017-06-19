@@ -28,7 +28,8 @@ module.exports = {
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
-    styles,
+    base.plugins.HtmlWebpackPlugin,
+    base.plugins.CommonsChunkPlugin,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -37,8 +38,7 @@ module.exports = {
         NODE_ENV: '"development"'
       }
     }),
-    base.plugins.HtmlWebpackPlugin,
-    base.plugins.CommonsChunkPlugin,
+    styles
   ],
   module: {
     rules: [

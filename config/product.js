@@ -25,15 +25,20 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
-    styles,
+    base.plugins.HtmlWebpackPlugin,
+    base.plugins.CommonsChunkPlugin,
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      sourceMap: true
+    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: '"production"'
       }
     }),
-    base.plugins.UglifyJsPlugin,
-    base.plugins.HtmlWebpackPlugin,
-    base.plugins.CommonsChunkPlugin,
+    styles
   ],
   module: {
     rules: [

@@ -6,16 +6,18 @@
     <el-input placeholder="请输入内容" v-model="password">
       <template slot="prepend">密码</template>
     </el-input>
+    <el-button type="primary" native-type="submit">登陆</el-button>
   </el-card>
 </template>
 
 <script>
-import { Card, Input } from "element-ui";
+import { Card, Input, Button } from "element-ui";
 
 export default {
   components: {
     "el-card": Card,
-    "el-input": Input
+    "el-input": Input,
+    "el-button": Button
   },
   data: function () {
     return {
@@ -29,6 +31,6 @@ export default {
 
 <style lang="less" scoped>
 .el-input {
-  background: red;
+
 }
 </style>

@@ -1,13 +1,15 @@
 <template>
-  <el-card class="box-card">
-    <el-input placeholder="请输入内容" v-model="username">
-      <template slot="prepend">用户名</template>
-    </el-input>
-    <el-input placeholder="请输入内容" v-model="password">
-      <template slot="prepend">密码</template>
-    </el-input>
-    <el-button type="primary" native-type="submit">登陆</el-button>
-  </el-card>
+  <div id="login">
+    <el-card class="box-card">
+      <el-input class="hank.zheng" placeholder="请输入内容" v-model="username">
+        <template slot="prepend">用户名</template>
+      </el-input>
+      <el-input placeholder="请输入内容" v-model="password">
+        <template slot="prepend">密码</template>
+      </el-input>
+      <el-button type="primary" native-type="submit">登陆</el-button>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -30,7 +32,10 @@ export default {
 
 
 <style lang="less" scoped>
-.el-input {
-
+#login {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 </style>

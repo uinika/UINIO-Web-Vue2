@@ -1,5 +1,7 @@
 # Aves
 
+![](sources/assets/favicon.ico)
+
 ## Domain Object
 * login`login`
 * layout`layout`
@@ -14,9 +16,10 @@
 5. Open browser http://localhost:8000/wiserv/index.html
 
 ## Thirdparty Library
-* [Vue 2.3.4](https://cn.vuejs.org/)
-* [NodeJS 6.11.0](https://nodejs.org/)
-* [Element-UI 1.3.6](element.eleme.io/)
+* [Vue 2.3.x](https://vuejs.org/)
+* [Webpack 2.6.x](https://webpack.js.org/)
+* [NodeJS 6.11.x](https://nodejs.org/)
+* [Element-UI 1.3.x](element.eleme.io/)
 
 ## Transfer Protocol
 

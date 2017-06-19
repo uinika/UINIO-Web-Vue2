@@ -1,7 +1,7 @@
-const path = require("path"),
+const base = require("./base"),
   _ = require("lodash"),
+  path = require("path"),
   webpack = require("webpack"),
-  base = require("./base"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const target = base.target;

@@ -35,9 +35,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "../common/base.less";
+
 #layout-main {
-  div {
-    background: white
-  }
+  .fill;
 }
 </style>

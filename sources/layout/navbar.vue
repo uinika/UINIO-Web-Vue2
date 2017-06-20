@@ -20,6 +20,7 @@
           <li class="user right">
             <el-dropdown>
               <span class="el-dropdown-link">
+                <i class="fa fa-user-o"></i>
                 用户
                 <i class="el-icon-caret-bottom el-icon--right"></i>
               </span>

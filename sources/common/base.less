@@ -1,16 +1,16 @@
 @import "./color.less";
-body {
-  background: @dark-white;
-}
 
 html {
   .fill;
   .clean;
+  font-size: 16px;
   body {
     .fill;
     .clean;
+    background: @dark-white;
     #app {
       .fill;
+      .clean;
     }
   }
 }
@@ -25,4 +25,8 @@ html {
   padding: 0;
   outline: none;
   border: none;
+}
+
+#container {
+  margin: 0.5rem;
 }

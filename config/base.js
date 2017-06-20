@@ -13,6 +13,7 @@ module.exports = {
     vendor: [
       "jquery", "lodash", "moment", "element-ui",
       "vue", "vuex", "vue-router", "vue-resource",
+      "echarts"
     ]
   },
   resolve: {

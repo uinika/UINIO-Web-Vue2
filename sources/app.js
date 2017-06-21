@@ -8,10 +8,10 @@ import "font-awesome/css/font-awesome.css";
 // ui
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
-// router component
-import layout from "./layout/main.vue";
-import login from "./login/main.vue";
-import dashboard from "./dashboard/main.vue";
+// component
+import Layout from "./layout/main.vue";
+import Login from "./login/main.vue";
+import Dashboard from "./dashboard/main.vue";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
@@ -19,16 +19,19 @@ Vue.use(ElementUI);
 const router = new VueRouter({
   routes: [{
     path: "/",
-    component: login
+    component: Login
   }, {
     path: "/login",
-    component: login
+    component: Login
   }, {
     path: "/layout",
-    component: layout,
+    component: Layout,
     children: [{
       path: "dashboard",
-      component: dashboard
+      component: Dashboard
+    }, {
+      path: "demo",
+      component: resolve => require(["./demo/main.vue"], resolve)
     }]
   }]
 })

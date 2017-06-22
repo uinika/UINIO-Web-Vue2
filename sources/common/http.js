@@ -25,6 +25,8 @@ const wrapped = {
       data.head.status === status &&
       data.hasOwnProperty("body"))
       return true;
+    else
+      return false;
   }
 };
 

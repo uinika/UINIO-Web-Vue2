@@ -1,32 +1,37 @@
 import _ from "lodash";
-import Request from "superagent";
+import superagent from "superagent";
 
-export default () => {
-  const token = sessionStorage.getItem("token");
-  if (token) {
-    return {
-      get(url) {
-        return Request.get(url).set({
-          "Authorization": "Wiserv " + token
-        });
-      },
-      put(url) {
-        return Request.put(url).set({
-          "Authorization": "Wiserv " + token
-        });
-      },
-      delete(url) {
-        return Request.delete(url).set({
-          "Authorization": "Wiserv " + token
-        });
-      },
-      post(url) {
-        return Request.post(url).set({
-          "Authorization": "Wiserv " + token
-        });
-      }
-    }
-  } else {
-    return Request;
+const token = sessionStorage.getItem("token");
+
+const wrapped = {
+  url: window.url,
+  header: {
+    "Authorization": "Wiserv " + token
+  },
+  get(url) {
+    return Request.get(url).set(this.header);
+  },
+  put(url) {
+    return Request.put(url).set(this.header);
+  },
+  post(url) {
+    return Request.post(url).set(this.header);
+  },
+  delete(url) {
+    return Request.delete(url).set(this.header);
+  },
+  verify(data, status) {
+    if (data && data.head &&
+      data.head.status === status &&
+      data.hasOwnProperty("body"))
+      return true;
   }
 };
+
+const unwrapped = () => {
+  superagent.url = wrapped.url;
+  superagent.verify = wrapped.verify;
+  return superagent;
+};
+
+export default token ? wrapped : unwrapped();

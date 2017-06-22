@@ -1,16 +1,19 @@
 <template>
-  <h1>dashboard</h1>
+  <h1>
+    dashboard</h1>
 </template>
 
 <script>
 import Http from "../common/http.js";
 
+const master = Http.url.master;
+
 export default {
   mounted() {
-    Http().get("http://172.16.0.96:8080/adap_server/sys/logs")
-    .then(function(result){
-      console.log(result)
-    })
+    Http().get(master + "/sys/logs")
+      .then(function (result) {
+        console.log(result);
+      })
   }
 }
 </script>

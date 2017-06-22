@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Http from "superagent";
+import Http from "../common/http.js";
 import Encrypt from "../common/encrypt.js";
 
 export default {
@@ -40,13 +40,26 @@ export default {
       const router = this.$router;
       let username = this.username;
       let password = this.password;
-      Http.post("http://172.16.0.96:8080/adap_server/login")
+      Http().post("http://172.16.0.96:8080/adap_server/login")
+        .set("Authorization", "Wiserv ")
         .send({
           loginName: Encrypt.sha(username),
           password: Encrypt.sha(password)
         }).then(
         // success
-        function () {
+        function (result) {
+          let token = result.body.head.token;
+          if(result && result.data){
+            var data = result.data;
+            switch(data.head.status) {
+              case 200: {
+                sessionStorage.setItem("token", data.head.token);
+              } break;
+              default: {
+                alert(data.head.message);
+              }
+            }
+          }
           router.push("/layout/dashboard")
         },
         // failure

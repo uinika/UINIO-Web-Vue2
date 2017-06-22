@@ -7,7 +7,6 @@ const gulp = require("gulp"),
   chalk = require("chalk"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
-  merge = require('webpack-merge'),
   webpackDevServer = require("webpack-dev-server"),
   webpackDevMiddleware = require("webpack-dev-middleware");
 

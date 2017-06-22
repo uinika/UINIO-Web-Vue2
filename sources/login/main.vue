@@ -35,32 +35,34 @@ export default {
       password: ""
     }
   },
+  mounted() {
+    Encrypt.removeToken();
+  },
   methods: {
     onSubmit() {
       const router = this.$router;
       let username = this.username;
       let password = this.password;
       Http().post("http://172.16.0.96:8080/adap_server/login")
-        .set("Authorization", "Wiserv ")
         .send({
           loginName: Encrypt.sha(username),
           password: Encrypt.sha(password)
         }).then(
         // success
         function (result) {
-          let token = result.body.head.token;
-          if(result && result.data){
-            var data = result.data;
-            switch(data.head.status) {
+          if (result && result.body) {
+            let data = result.body;
+            console.log(data);
+            switch (data.head.status) {
               case 200: {
-                sessionStorage.setItem("token", data.head.token);
+                Encrypt.setToken(data.head.token);
+                router.push("/layout/dashboard")
               } break;
               default: {
                 alert(data.head.message);
               }
             }
           }
-          router.push("/layout/dashboard")
         },
         // failure
         function () {

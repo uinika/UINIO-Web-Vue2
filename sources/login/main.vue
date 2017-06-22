@@ -25,6 +25,9 @@
 </template>
 
 <script>
+import Http from "superagent";
+import Encrypt from "../common/encrypt.js";
+
 export default {
   data() {
     return {
@@ -33,8 +36,23 @@ export default {
     }
   },
   methods: {
-    onSubmit: function () {
-      this.$router.push("/layout/dashboard")
+    onSubmit() {
+      const router = this.$router;
+      let username = this.username;
+      let password = this.password;
+      Http.post("http://172.16.0.96:8080/adap_server/login")
+        .send({
+          loginName: Encrypt.sha(username),
+          password: Encrypt.sha(password)
+        }).then(
+        // success
+        function () {
+          router.push("/layout/dashboard")
+        },
+        // failure
+        function () {
+
+        })
     }
   }
 }

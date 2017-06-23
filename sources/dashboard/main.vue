@@ -10,9 +10,9 @@ const master = Http.url.master;
 
 export default {
   mounted() {
-    Http().get(master + "/sys/logs")
+    Http.get(master + "/sys/logs")
       .then(function (result) {
-        console.log(result);
+        console.log("sys/logs ", result);
       })
   }
 }

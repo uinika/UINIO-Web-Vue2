@@ -9,16 +9,16 @@ const wrapped = {
     "Authorization": "Wiserv " + token
   },
   get(url) {
-    return Request.get(url).set(this.header);
+    return superagent.get(url).set(this.header);
   },
   put(url) {
-    return Request.put(url).set(this.header);
+    return superagent.put(url).set(this.header);
   },
   post(url) {
-    return Request.post(url).set(this.header);
+    return superagent.post(url).set(this.header);
   },
   delete(url) {
-    return Request.delete(url).set(this.header);
+    return superagent.delete(url).set(this.header);
   },
   verify(data, status) {
     if (data && data.head &&

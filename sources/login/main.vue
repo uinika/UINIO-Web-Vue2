@@ -1,27 +1,29 @@
 <template>
-  <el-row class="fill" type="flex" justify="center" align="middle">
-    <el-col :span="8">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span style="line-height: 36px;">Login</span>
-        </div>
-        <el-form>
-          <el-form-item label="用户名">
-            <el-input placeholder="请输入内容" v-model="username"></el-input>
-          </el-form-item>
-          <el-form-item label="密码">
-            <el-input placeholder="请输入内容" v-model="password"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button class="submit" type="primary" @click="onSubmit">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-              <span>登陆</span>
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </el-card>
-    </el-col>
-  </el-row>
+  <div id="login">
+    <el-row class="fill" type="flex" justify="center" align="middle">
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span style="line-height: 36px;">Login</span>
+          </div>
+          <el-form>
+            <el-form-item label="用户名">
+              <el-input placeholder="请输入内容" v-model="username"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input placeholder="请输入内容" v-model="password"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button class="submit" type="primary" @click="onSubmit">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                <span>登陆</span>
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -42,13 +44,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      const router = this.$router;
-      let username = this.username;
-      let password = this.password;
+      const vm = this;
       Http.post(master + "/login")
         .send({
-          loginName: Encrypt.sha(username),
-          password: Encrypt.sha(password)
+          loginName: Encrypt.sha(this.username),
+          password: Encrypt.sha(this.password)
         }).then(
         // success
         function (result) {
@@ -57,7 +57,7 @@ export default {
             switch (data.head.status) {
               case 200: {
                 Encrypt.setToken(data.head.token);
-                router.push("/layout/dashboard")
+                vm.$router.push("/layout/dashboard")
               } break;
               default: {
                 alert(data.head.message);
@@ -74,12 +74,16 @@ export default {
 }
 </script>
 
-
 <style lang="less" scoped>
-.submit {
-  width: 100%;
-  span {
-    letter-spacing: 0.5rem;
+@import "../common/base.less";
+
+#login {
+  .fill;
+  .submit {
+    width: 100%;
+    span {
+      letter-spacing: 0.5rem;
+    }
   }
 }
 </style>

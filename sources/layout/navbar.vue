@@ -27,6 +27,9 @@
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>用户信息</el-dropdown-item>
                 <el-dropdown-item>修改密码</el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link :to="'/login'">退出</router-link>
+                </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </li>

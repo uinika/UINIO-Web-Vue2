@@ -23,6 +23,14 @@
         </el-card>
       </el-col>
     </el-row>
+    <!-- -->
+    <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny">
+      <span>这是一段信息</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -36,41 +44,46 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      dialogVisible: false
     }
-  },
-  mounted() {
-    Encrypt.removeToken();
   },
   methods: {
     onSubmit() {
       const vm = this;
       Http.post(master + "/login")
         .send({
-          loginName: Encrypt.sha(this.username),
-          password: Encrypt.sha(this.password)
-        }).then(
+          loginName: Encrypt.sha(vm.username),
+          password: Encrypt.sha(vm.password)
+        })
+        .then(
         // success
         function (result) {
           if (result && result.body) {
-            let data = result.body;
-            switch (data.head.status) {
+            let head = result.body.head;
+            switch (head.status) {
               case 200: {
-                Encrypt.setToken(data.head.token);
-                vm.$router.push("/layout/dashboard")
+                Encrypt.setToken(head.token);
+                vm.$router.push("/layout/dashboard");
               } break;
               default: {
-                alert(data.head.message);
+                alert(head.message);
               }
             }
           }
-        },
-        // failure
-        function () {
-          alert();
         })
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done();
+        })
+        .catch(_ => { });
     }
-  }
+  },
+  beforeCreate() {
+    Encrypt.removeToken();
+  },
 }
 </script>
 

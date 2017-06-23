@@ -1,7 +1,8 @@
 import _ from "lodash";
 import superagent from "superagent";
+import Encrypt from "./encrypt";
 
-const token = sessionStorage.getItem("token");
+const token = Encrypt.getToken();
 
 const wrapped = {
   url: window.url,

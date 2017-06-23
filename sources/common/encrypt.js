@@ -8,6 +8,10 @@ export default {
     if (token)
       sessionStorage.setItem("token", token);
   },
+  getToken() {
+    const token = sessionStorage.getItem("token")
+    return token ? token : "Unable to get token";
+  },
   removeToken() {
     sessionStorage.removeItem("token");
   }

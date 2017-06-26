@@ -14,10 +14,5 @@ export default {
   },
   removeToken() {
     sessionStorage.removeItem("token");
-  },
-  permit() {
-    if (!this.getToken()) {
-      console.log(to);
-    }
   }
-}
+};

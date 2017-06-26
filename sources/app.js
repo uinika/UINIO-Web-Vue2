@@ -8,7 +8,7 @@ import "font-awesome/css/font-awesome.css";
 // ui
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
-// common
+// util
 import Encrypt from "./common/encrypt.js";
 // component
 import Layout from "./layout/main.vue";
@@ -30,27 +30,36 @@ const router = new VueRouter({
     component: Layout,
     children: [{
       path: "dashboard",
+      meta: {
+        auth: true
+      },
       component: Dashboard
     }, {
       path: "demo",
+      meta: {
+        auth: true
+      },
       component: resolve => require(["./demo/main.vue"], resolve)
     }]
   }]
 });
 
-// router.beforeEach((to, from, next) => {
-//   // const token = Encrypt.getToken();
-//   // if (!token) {
-//   //   next({
-//   //     path: '/login',
-//   //     query: {
-//   //       redirect: to.fullPath
-//   //     }
-//   //   })
-//   // } else {
-//   //   next();
-//   // }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    if (!Encrypt.getToken()) {
+      next({
+        path: "/login",
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 
 const app = new Vue({
   router

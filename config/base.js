@@ -11,8 +11,8 @@ module.exports = {
   entry: {
     app: "./app.js",
     vendor: [
-      "vue", "vuex", "vue-router", "element-ui",
-      "jquery", "lodash", "moment", "superagent", "echarts",
+      "vue", "vuex", "vue-router", "element-ui", "axios",
+      "jquery", "lodash", "moment", "echarts",
     ]
   },
   resolve: {

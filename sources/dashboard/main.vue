@@ -10,10 +10,13 @@ const master = Http.url.master;
 
 export default {
   mounted() {
-    Http.get(master + "/sys/logs")
-      .then(function (result) {
-        console.log(result.body.head);
-      })
+    Http.fetch({
+      method: "GET",
+      url: master + "/sys/logs"
+    })
+    .then(function (result) {
+      console.log(result.data.head);
+    })
   }
 }
 </script>

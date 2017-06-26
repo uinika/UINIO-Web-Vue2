@@ -51,16 +51,17 @@ export default {
   methods: {
     onSubmit() {
       const vm = this;
-      Http.post(master + "/login")
-        .send({
+      Http.fetch({
+        method: "post",
+        url: master + "/login",
+        data: {
           loginName: Encrypt.sha(vm.username),
           password: Encrypt.sha(vm.password)
-        })
-        .then(
-        // success
+        }
+      }).then(
         function (result) {
-          if (result && result.body) {
-            let head = result.body.head;
+          if (result && result.data) {
+            let head = result.data.head;
             switch (head.status) {
               case 200: {
                 Encrypt.setToken(head.token);

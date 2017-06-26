@@ -10,6 +10,7 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
 // util
 import Encrypt from "./common/encrypt.js";
+import Auth from "./common/auth.js";
 // component
 import Layout from "./layout/main.vue";
 import Login from "./login/main.vue";
@@ -45,20 +46,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.auth)) {
-    if (!Encrypt.getToken()) {
-      next({
-        path: "/login",
-        query: {
-          redirect: to.fullPath
-        }
-      })
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
+  Auth.permit(to, from, next);
 })
 
 const app = new Vue({

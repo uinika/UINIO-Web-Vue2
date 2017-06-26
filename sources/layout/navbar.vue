@@ -19,7 +19,7 @@
       </el-menu>
     </div>
     <div class="right">
-      <el-dropdown>
+      <el-dropdown @command="handleCommand" trigger="hover">
         <span class="el-dropdown-link">
           <i class="fa fa-user-o"></i>
           用户
@@ -27,13 +27,11 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>用户信息</el-dropdown-item>
-          <el-dropdown-item>修改密码</el-dropdown-item>
-          <router-link :to="'/login'">
-            <el-dropdown-item>
-              <i class="fa fa-reply"></i>
-              退出
-            </el-dropdown-item>
-          </router-link>
+          <el-dropdown-item divided>修改密码</el-dropdown-item>
+          <el-dropdown-item command="quit" divided>
+            <i class="fa fa-reply"></i>
+            <span>退出</span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -41,11 +39,23 @@
 </template>
 
 <script>
+import Encrypt from "../common/encrypt.js";
+
 export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    handleCommand(command) {
+      const vm = this;
+      switch(command){
+        case "quit": {
+          vm.$router.push("/login");
+          Encrypt.removeToken();
+        } break;
+      }
+    }
+  }
 }
 </script>
 

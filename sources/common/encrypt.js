@@ -10,9 +10,14 @@ export default {
   },
   getToken() {
     const token = sessionStorage.getItem("token")
-    return token ? token : "Unable to get token";
+    return token ? token : undefined;
   },
   removeToken() {
     sessionStorage.removeItem("token");
+  },
+  permit() {
+    if (!this.getToken()) {
+      console.log(to);
+    }
   }
 }

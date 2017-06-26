@@ -8,6 +8,8 @@ import "font-awesome/css/font-awesome.css";
 // ui
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
+// common
+import Encrypt from "./common/encrypt.js";
 // component
 import Layout from "./layout/main.vue";
 import Login from "./login/main.vue";
@@ -34,7 +36,21 @@ const router = new VueRouter({
       component: resolve => require(["./demo/main.vue"], resolve)
     }]
   }]
-})
+});
+
+// router.beforeEach((to, from, next) => {
+//   // const token = Encrypt.getToken();
+//   // if (!token) {
+//   //   next({
+//   //     path: '/login',
+//   //     query: {
+//   //       redirect: to.fullPath
+//   //     }
+//   //   })
+//   // } else {
+//   //   next();
+//   // }
+// });
 
 const app = new Vue({
   router

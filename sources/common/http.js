@@ -2,24 +2,25 @@ import _ from "lodash";
 import superagent from "superagent";
 import Encrypt from "./encrypt";
 
-const token = Encrypt.getToken();
-
-const wrapped = {
+export default {
   url: window.url,
-  header: {
-    "Authorization": "Wiserv " + token
-  },
   get(url) {
-    return superagent.get(url).set(this.header);
+    return superagent.get(url).set(this.handler());
   },
   put(url) {
-    return superagent.put(url).set(this.header);
+    return superagent.put(url).set(this.handler());
   },
   post(url) {
-    return superagent.post(url).set(this.header);
+    return superagent.post(url).set(this.handler());
   },
   delete(url) {
-    return superagent.delete(url).set(this.header);
+    return superagent.delete(url).set(this.handler());
+  },
+  handler() {
+    const token = Encrypt.getToken();
+    return token ? {
+      "Authorization": "Wiserv " + token
+    } : {};
   },
   verify(data, status) {
     if (data && data.head &&
@@ -30,11 +31,3 @@ const wrapped = {
       return false;
   }
 };
-
-const unwrapped = () => {
-  superagent.url = wrapped.url;
-  superagent.verify = wrapped.verify;
-  return superagent;
-};
-
-export default token ? wrapped : unwrapped();

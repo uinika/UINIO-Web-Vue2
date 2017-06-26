@@ -3,15 +3,11 @@ import Axios from "axios";
 
 export const url = window.url;
 
-// export const refreshToken = () => {
-//   return Encrypt.getToken();
-// };
-
 export const http = Axios.create({
   timeout: 1000,
-  headers: {
-    "Authorization": "Wiserv " + Encrypt.getToken()
-  }
+  // headers: {
+  //   "Authorization": "Wiserv " + Encrypt.getToken()
+  // }
 });
 
 export const verify = (data, status) => {
@@ -23,7 +19,15 @@ export const verify = (data, status) => {
     return false;
 };
 
-export const timeout = () => {
+export const Interceptor = () => {
+  http.interceptors.request.use(function (config) {
+    const token = Encrypt.getToken();
+    if (token)
+      config.headers.Authorization = "Wiserv " + token;
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
   http.interceptors.response.use(function (response) {
     const head = response.data.head;
     if (head && typeof head === "object" && head.hasOwnProperty("status")) {

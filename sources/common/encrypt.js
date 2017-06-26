@@ -14,5 +14,21 @@ export default {
   },
   removeToken() {
     sessionStorage.removeItem("token");
+  },
+  permit(to, from, next) {
+    if (to.matched.some(record => record.meta.auth)) {
+      if (!this.getToken()) {
+        next({
+          path: "/login",
+          query: {
+            redirect: to.fullPath
+          }
+        })
+      } else {
+        next()
+      }
+    } else {
+      next()
+    }
   }
 };

@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import Http from "../common/http.js";
+import {url, http} from "../common/http.js";
 import Encrypt from "../common/encrypt.js";
 
-const master = Http.url.master;
+const master = url.master;
 
 export default {
   data() {
@@ -51,7 +51,7 @@ export default {
   methods: {
     onSubmit() {
       const vm = this;
-      Http.fetch({
+      http({
         method: "post",
         url: master + "/login",
         data: {

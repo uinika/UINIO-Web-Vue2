@@ -9,8 +9,8 @@ import "font-awesome/css/font-awesome.css";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
 // util
+import {timeout, http} from "./common/http.js";
 import Encrypt from "./common/encrypt.js";
-import Auth from "./common/auth.js";
 // component
 import Layout from "./layout/main.vue";
 import Login from "./login/main.vue";
@@ -46,7 +46,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  Auth.permit(to, from, next);
+  Encrypt.permit(to, from, next);
+  timeout();
 })
 
 const app = new Vue({

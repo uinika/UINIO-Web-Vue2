@@ -4,7 +4,7 @@
       <el-col :span="8">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">Login</span>
+            <span>Demo</span>
           </div>
           <el-form>
             <el-form-item label="用户名">
@@ -89,9 +89,11 @@ export default {
 
 <style lang="less" scoped>
 @import "../common/base.less";
+@import "../common/color.less";
 
 #login {
   .fill;
+  background: @light-black;
   .submit {
     width: 100%;
     span {

@@ -11,7 +11,6 @@ const master = Http.url.master;
 
 export default {
   mounted() {
-    // console.log("ITEM", Encrypt.getToken());
     Http.get(master + "/sys/logs")
       .then(function (result) {
         console.log(result.body.head);

@@ -1,20 +1,12 @@
 <template>
   <div id="layout-main">
-    <el-row>
-      <el-col :span="24">
-        <nav-bar></nav-bar>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="4">
-        <side-bar></side-bar>
-      </el-col>
-      <el-col :span="20">
-        <div id="container">
-          <router-view></router-view>
-        </div>
-      </el-col>
-    </el-row>
+    <div id="head">
+      <nav-bar id="navbar"></nav-bar>
+    </div>
+    <div id="body">
+      <side-bar id="sidebar"></side-bar>
+      <router-view id="container"></router-view>
+    </div>
   </div>
 </template>
 
@@ -39,5 +31,21 @@ export default {
 
 #layout-main {
   .fill;
+  display: flex;
+  flex-direction: column;
+  #head {
+    width: 100%;
+  }
+  #body {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    #sidebar {
+      width: 16rem;
+    }
+    #container {
+      width: 100%;
+    }
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-navbar">
+  <nav class="layout-navbar">
     <div class="left">
       <h3>DEMO</h3>
     </div>
@@ -35,7 +35,7 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
   methods: {
     handleCommand(command) {
       const vm = this;
-      switch(command){
+      switch (command) {
         case "quit": {
           vm.$router.push("/login");
           Encrypt.token.empty();

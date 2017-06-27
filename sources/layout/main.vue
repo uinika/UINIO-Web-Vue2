@@ -40,9 +40,6 @@ export default {
     display: flex;
     flex-direction: row;
     height: 100%;
-    #container {
-      width: 100%;
-    }
   }
 };
 </style>

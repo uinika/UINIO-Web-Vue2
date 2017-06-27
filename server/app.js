@@ -22,7 +22,15 @@ app.use("/", (request, response, next) => {
   next();
 });
 
-app.listen(6000);
+const server = app.listen(6200, () => {
+  console.info("START");
+});
+
+process.on("SIGINT", function () {
+  server.close(() => {
+    console.info("CLOSE");
+  });
+});
 
 /** Custom routers */
 app.use("/", require("./login/api"));

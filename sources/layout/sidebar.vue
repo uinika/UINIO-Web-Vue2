@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-sidebar">
+  <aside id="layout-sidebar">
     <el-menu mode="vertical" default-active="1">
       <el-menu-item-group title="分组一">
         <router-link to="dashboard">
@@ -20,7 +20,7 @@
           <i class="el-icon-message"></i>导航四</el-menu-item>
       </el-menu-item-group>
     </el-menu>
-  </div>
+  </aside>
 </template>
 
 <script>
@@ -32,11 +32,12 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-  .layout-sidebar{
+
+<style lang="less">
+#layout-sidebar {
+  width: 16rem;
+  .el-menu {
     height: 100%;
-    .el-menu {
-      height: 100%;
-    }
   }
+}
 </style>

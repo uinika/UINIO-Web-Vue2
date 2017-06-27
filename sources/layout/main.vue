@@ -1,22 +1,24 @@
 <template>
-  <div id="layout-main">
-    <div id="head">
-      <nav-bar id="navbar"></nav-bar>
-    </div>
-    <div id="body">
-      <side-bar id="sidebar"></side-bar>
-      <router-view id="container"></router-view>
-    </div>
+  <div id="layout">
+    <header>
+      <navbar></navbar>
+    </header>
+    <main>
+      <sidebar></sidebar>
+      <container></container>
+    </main>
   </div>
 </template>
 
 <script>
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
+import navbar from "./navbar";
+import sidebar from "./sidebar";
+import container from "./container";
 export default {
   components: {
-    "nav-bar": Navbar,
-    "side-bar": Sidebar
+    navbar,
+    sidebar,
+    container
   },
   data() {
     return {}
@@ -27,20 +29,17 @@ export default {
 
 <style lang="less" scoped>
 @import "../common/base.less";
-#layout-main {
+#layout {
   .fill;
   display: flex;
   flex-direction: column;
-  #head {
+  >header {
     width: 100%;
   }
-  #body {
+  >main {
     display: flex;
     flex-direction: row;
     height: 100%;
-    #sidebar {
-      width: 16rem;
-    }
     #container {
       width: 100%;
     }

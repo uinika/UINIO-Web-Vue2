@@ -2,7 +2,7 @@ const express = require("express"),
   app = express(),
   cors = require("cors"),
   bodyParser = require("body-parser"),
-  Middleware = require("./common/middleware.js"),
+  logger = require("./common/logger.js"),
   chalk = require("chalk");
 
 /** Test server for build folder */
@@ -18,7 +18,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use("/", (request, response, next) => {
-  Middleware.log(request, response);
+  logger(request, response);
   next();
 });
 

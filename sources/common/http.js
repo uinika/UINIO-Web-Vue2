@@ -7,9 +7,10 @@ export default {
     timeout: 1000,
     withCredentials: false
   }),
-  verify(data, status) {
+  protocol(data, status) {
     if (data && data.head &&
       data.head.status === status &&
+      data.hasOwnProperty("head") &&
       data.hasOwnProperty("body"))
       return true;
     else

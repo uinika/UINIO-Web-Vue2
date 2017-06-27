@@ -1,30 +1,28 @@
-const Express = require("express"),
-  App = Express(),
-  Cors = require("cors"),
-  BodyParser = require("body-parser"),
+const express = require("express"),
+  app = express(),
+  cors = require("cors"),
+  bodyParser = require("body-parser"),
   Middleware = require("./common/middleware.js"),
-  Color = require("colors/safe");
+  chalk = require("chalk");
 
-/** Middlewares */
-App.use("/build", Express.static("./build"));
+/** Test server for build folder */
+app.use("/build", express.static("./build"));
 
-App.use(Cors({
+/** Express middleware */
+app.use(cors({
   origin: "*",
   methods: "GET, POST, PUT, DELETE, OPTIONS",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
   maxAge: 1728000
 }));
-App.use(BodyParser.json());
-App.use("/", (request, response, next) => {
+app.use(bodyParser.json());
+app.use("/", (request, response, next) => {
   Middleware.log(request, response);
   next();
 });
-App.listen(7000);
 
-/* Informations */
-console.info(Color.blue("Livereload  started on http://localhost:5008"));
+app.listen(6000);
 
-/** Routers */
-App.use("/", require("./login/api"));
-
+/** Custom routers */
+app.use("/", require("./login/api"));

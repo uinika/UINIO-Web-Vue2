@@ -3,8 +3,9 @@ const gulp = require("gulp"),
   del = require("del"),
   express = require("express"),
   moment = require("moment"),
-  gulpZip = require("gulp-zip"),
   chalk = require("chalk"),
+  gulpZip = require("gulp-zip"),
+  forever = require("forever-monitor"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
   webpackDevServer = require("webpack-dev-server"),
@@ -31,6 +32,15 @@ gulp.task("default", function () {
       chalk.blue.bgGreen("Starting webpackDevServer on http://localhost:8000/wiserv/index.html")
     );
   });
+  // const monitor = new(forever.Monitor)("./server/app.js", {
+  //   max: 1,
+  // });
+  // monitor.on("exit", function () {
+  //   console.info(
+  //     chalk.blue.bgGreen("Express has exited")
+  //   );
+  // });
+  // monitor.start();
 });
 
 /** gulp build */

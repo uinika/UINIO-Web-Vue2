@@ -1,18 +1,16 @@
-const Color = require("colors/safe"),
-      Moment = require("moment"),
-      _ = require("lodash");
+const chalk = require("chalk"),
+  moment = require("moment");
 
 /** Log for http request */
 exports.log = (request, response) => {
-  console.info(Color.cyan(
-    "============================== "+ 
-    Moment().format('YYYY-MM-DD, HH:MM:SS')
-    +" =============================")
-  );
-  console.info(Color.cyan("Request URL =>"), Color.magenta(request.path));
-  console.info(Color.cyan("Request Type =>"), Color.red(request.method));
-  console.info(Color.cyan("Request Body =>"), Color.yellow(JSON.stringify(request.body.data)));
-  console.info(Color.cyan("Request Cookie =>"), Color.yellow(JSON.stringify(request.cookies)));
-  console.info(Color.cyan("Request Query =>"), Color.yellow(JSON.stringify(request.query)));
-  console.info(Color.cyan("Request Parameter =>"), Color.yellow(JSON.stringify(request.params)));
+  console.info(chalk.cyan(
+    "============================== " /
+    moment().format('YYYY-MM-DD, HH:MM:SS') /
+    " ============================="));
+  console.info(chalk.cyan("Request URL =>"), chalk.magenta(request.path));
+  console.info(chalk.cyan("Request Type =>"), chalk.red(request.method));
+  console.info(chalk.cyan("Request Body =>"), chalk.yellow(JSON.stringify(request.body.data)));
+  console.info(chalk.cyan("Request Cookie =>"), chalk.yellow(JSON.stringify(request.cookies)));
+  console.info(chalk.cyan("Request Query =>"), chalk.yellow(JSON.stringify(request.query)));
+  console.info(chalk.cyan("Request Parameter =>"), chalk.yellow(JSON.stringify(request.params)));
 };

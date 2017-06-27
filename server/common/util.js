@@ -1,15 +1,15 @@
-const JsonLoader = require('load-json-file'),
-      Path = require('path');
+const jsonfile = require("jsonfile"),
+  path = require("path");
 
 /** Basic path */
-exports.url = (url) => {
+exports.url = url => {
   return __dirname + url
 };
 
 /** Json loader */
 exports.json = name => {
-  return JsonLoader.sync(
-    Path.resolve(__dirname, '..') + name
+  return jsonfile.readFileSync(
+    path.resolve(__dirname, "..") + name
   );
 };
 
@@ -19,11 +19,11 @@ exports.protocol = (head, body) => {
   body = body || {};
   return {
     "head": {
-      "status": head.status || '',
-      "token": head.token || '',
-      "message": head.message || '',
-      "total": head.total || ''
+      "status": head.status || "",
+      "token": head.token || "",
+      "message": head.message || "",
+      "total": head.total || ""
     },
-    "body": body || ''
+    "body": body || ""
   }
 };

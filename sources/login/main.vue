@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import {url, http} from "../common/http.js";
-import Encrypt from "../common/encrypt.js";
+import {url, Http} from "../common/http.js";
+import {Token, sha} from "../common/encrypt.js";
 
 const master = url.master;
 
@@ -51,12 +51,12 @@ export default {
   methods: {
     onSubmit() {
       const vm = this;
-      http({
+      Http({
         method: "post",
         url: master + "/login",
         data: {
-          loginName: Encrypt.sha(vm.username),
-          password: Encrypt.sha(vm.password)
+          loginName: sha(vm.username),
+          password: sha(vm.password)
         }
       }).then(
         function (result) {
@@ -64,7 +64,7 @@ export default {
             let head = result.data.head;
             switch (head.status) {
               case 200: {
-                Encrypt.setToken(head.token);
+                Token.set(head.token);
                 vm.$router.push("/layout/dashboard");
               } break;
               default: {
@@ -83,7 +83,7 @@ export default {
     }
   },
   beforeCreate() {
-    Encrypt.removeToken();
+    Token.remove();
   },
 }
 </script>

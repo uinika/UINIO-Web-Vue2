@@ -9,8 +9,8 @@ import "font-awesome/css/font-awesome.css";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-default/index.css";
 // util
-import {Interceptor, http} from "./common/http.js";
-import Encrypt from "./common/encrypt.js";
+import {Http} from "./common/http.js";
+import {accessibility, interceptor} from "./common/auth.js";
 // component
 import Layout from "./layout/main.vue";
 import Login from "./login/main.vue";
@@ -46,8 +46,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  Encrypt.permit(to, from, next);
-  Interceptor();
+  accessibility(to, from, next);
+  interceptor();
 })
 
 const app = new Vue({

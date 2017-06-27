@@ -4,18 +4,18 @@
 </template>
 
 <script>
-import { http, url } from "../common/http.js";
+import {Http, url} from "../common/http.js";
 import Encrypt from "../common/encrypt";
 
 export default {
   mounted() {
-    http({
+    Http({
       method: "GET",
       url: url.master + "/sys/logs"
     })
-      .then(function (result) {
-        console.log(result.data.head);
-      })
+    .then(function (result) {
+      console.log(result.data.head);
+    })
   }
 }
 </script>

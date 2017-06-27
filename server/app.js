@@ -22,15 +22,22 @@ app.use("/", (request, response, next) => {
   next();
 });
 
-const server = app.listen(6200, () => {
-  console.info("START");
+/** Server & handler */
+const port = 5000;
+const server = app.listen(port, () => {
+  console.info(
+    chalk.yellow.bgBlue("express-mock-server started on http://localhost:"+port+"/")
+  );
 });
-
-process.on("SIGINT", function () {
+const handler = () => {
   server.close(() => {
-    console.info("CLOSE");
+    console.info(
+      chalk.white.bgRed("express-mock-server closed on http://localhost:"+port+"/")
+    );
   });
-});
+};
+process.on('SIGTERM', handler);
+process.on("SIGINT", handler);
 
 /** Custom routers */
 app.use("/", require("./login/api"));

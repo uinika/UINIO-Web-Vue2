@@ -3,8 +3,8 @@ const router = require("express").Router(),
       _ = require("lodash");
 
 router.route("/login")
-  .post(function(request, response) {
-    response.json(util.json("login/data/login.json"));
+  .get(function(request, response) {
+    response.json(util.json("/login/data/login.json"));
 });
 
 module.exports = router;

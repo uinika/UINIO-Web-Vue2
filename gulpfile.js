@@ -5,7 +5,7 @@ const gulp = require("gulp"),
   moment = require("moment"),
   chalk = require("chalk"),
   gulpZip = require("gulp-zip"),
-  forever = require("forever-monitor"),
+  nodemon = require("gulp-nodemon"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
   webpackDevServer = require("webpack-dev-server"),
@@ -23,24 +23,29 @@ const devServer = {
   },
 };
 
+// config for express mock server
+const mockServer = {
+  path: "./server/app.js"
+};
+
 /** gulp default */
 gulp.task("default", function () {
+  nodemon({
+    script: mockServer.path,
+    execMap: {
+      js: "node --harmony"
+    },
+    env: {
+      "NODE_ENV": "development"
+    }
+  });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServer);
   server.listen(8000, "127.0.0.1", () => {
     console.info(
-      chalk.blue.bgGreen("Starting webpackDevServer on http://localhost:8000/wiserv/index.html")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:8000/wiserv/index.html")
     );
   });
-  // const monitor = new(forever.Monitor)("./server/app.js", {
-  //   max: 1,
-  // });
-  // monitor.on("exit", function () {
-  //   console.info(
-  //     chalk.blue.bgGreen("Express has exited")
-  //   );
-  // });
-  // monitor.start();
 });
 
 /** gulp build */

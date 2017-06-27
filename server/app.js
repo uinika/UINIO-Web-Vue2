@@ -26,17 +26,17 @@ app.use("/", (request, response, next) => {
 const port = 5000;
 const server = app.listen(port, () => {
   console.info(
-    chalk.yellow.bgBlue("express-mock-server started on http://localhost:"+port+"/")
+    chalk.yellow.bgBlue("express-mock-server started on http://localhost:" + port + "/")
   );
 });
 const handler = () => {
   server.close(() => {
     console.info(
-      chalk.white.bgRed("express-mock-server closed on http://localhost:"+port+"/")
+      chalk.white.bgRed("express-mock-server closed on http://localhost:" + port + "/")
     );
   });
 };
-process.on('SIGTERM', handler);
+process.on("SIGTERM", handler);
 process.on("SIGINT", handler);
 
 /** Custom routers */

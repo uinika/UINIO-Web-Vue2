@@ -41,3 +41,4 @@ process.on("SIGINT", handler);
 
 /** Custom routers */
 app.use("/", require("./login/api"));
+app.use("/", require("./system/api"));

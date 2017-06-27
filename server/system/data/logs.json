@@ -1,0 +1,15 @@
+{
+  "head": {
+    "status": 200,
+    "token": null,
+    "message": null,
+    "total": 1
+  },
+  "body": [{
+    "loginName": "admin",
+    "maxDate": "2017-06-27 19:19:32",
+    "maxIp": "172.16.8.81",
+    "todayAmount": 40,
+    "amount": 184
+  }]
+}

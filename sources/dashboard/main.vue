@@ -4,14 +4,13 @@
 </template>
 
 <script>
-import {Http, url} from "../common/http.js";
-import Encrypt from "../common/encrypt";
+import Http from "../common/http.js";
 
 export default {
   mounted() {
-    Http({
+    Http.fetch({
       method: "GET",
-      url: url.master + "/sys/logs"
+      url: Http.url.master + "/sys/logs"
     })
     .then(function (result) {
       console.log(result.data.head);

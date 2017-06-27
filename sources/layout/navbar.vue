@@ -51,7 +51,7 @@ export default {
       switch(command){
         case "quit": {
           vm.$router.push("/login");
-          Encrypt.removeToken();
+          Encrypt.token.empty();
         } break;
       }
     }

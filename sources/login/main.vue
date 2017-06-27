@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import {url, Http} from "../common/http.js";
-import {Token, sha} from "../common/encrypt.js";
+import Http from "../common/http.js";
+import Encrypt from "../common/encrypt.js";
 
-const master = url.master;
+const master = Http.url.master;
 
 export default {
   data() {
@@ -51,12 +51,12 @@ export default {
   methods: {
     onSubmit() {
       const vm = this;
-      Http({
+      Http.fetch({
         method: "post",
         url: master + "/login",
         data: {
-          loginName: sha(vm.username),
-          password: sha(vm.password)
+          loginName: Encrypt.sha(vm.username),
+          password: Encrypt.sha(vm.password)
         }
       }).then(
         function (result) {
@@ -64,7 +64,7 @@ export default {
             let head = result.data.head;
             switch (head.status) {
               case 200: {
-                Token.set(head.token);
+                Encrypt.token.set(head.token);
                 vm.$router.push("/layout/dashboard");
               } break;
               default: {
@@ -83,7 +83,7 @@ export default {
     }
   },
   beforeCreate() {
-    Token.remove();
+    Encrypt.token.empty();
   },
 }
 </script>

@@ -21,7 +21,7 @@ export default {
       console.log(result.data.head);
     })
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

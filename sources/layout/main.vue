@@ -13,7 +13,6 @@
 <script>
 import Navbar from "./navbar";
 import Sidebar from "./sidebar";
-
 export default {
   components: {
     "nav-bar": Navbar,
@@ -28,7 +27,6 @@ export default {
 
 <style lang="less" scoped>
 @import "../common/base.less";
-
 #layout-main {
   .fill;
   display: flex;
@@ -47,5 +45,5 @@ export default {
       width: 100%;
     }
   }
-}
+};
 </style>

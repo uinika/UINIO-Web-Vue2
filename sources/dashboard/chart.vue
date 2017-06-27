@@ -14,7 +14,6 @@
 <script>
 import Http from "../common/http.js";
 import {chart} from "../common/helper.js";
-
 export default {
   mounted() {
     chart(".uinika", {
@@ -36,7 +35,7 @@ export default {
       }]
     });
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

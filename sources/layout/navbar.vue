@@ -40,7 +40,6 @@
 
 <script>
 import Encrypt from "../common/encrypt.js";
-
 export default {
   data() {
     return {}
@@ -56,13 +55,12 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
 @import "../common/color.less";
 @import "../common/base.less";
-
 .layout-navbar {
   display: flex;
   flex-direction: row;

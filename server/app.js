@@ -2,7 +2,7 @@ const express = require("express"),
   app = express(),
   cors = require("cors"),
   chalk = require("chalk"),
-  base = require("./base"),
+  base = require("../config/base"),
   bodyParser = require("body-parser"),
   logger = require("./common/logger.js");
 

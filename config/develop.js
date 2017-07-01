@@ -1,10 +1,10 @@
-const base = require("./base"),
+const common = require("./common"),
   _ = require("lodash"),
   path = require("path"),
   webpack = require("webpack"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const target = base.target;
+const target = common.target;
 
 const styles = new ExtractTextPlugin({
   filename: "[name].css"
@@ -12,24 +12,24 @@ const styles = new ExtractTextPlugin({
 
 /** Develop Config */
 module.exports = {
-  context: base.context,
+  context: common.context,
   entry: {
-    app: base.entry.app,
-    vendor: base.entry.vendor,
+    app: common.entry.app,
+    vendor: common.entry.vendor,
     live: [
       "webpack/hot/dev-server",
       "webpack-dev-server/client?http://localhost:8000"
     ]
   },
-  resolve: base.resolve,
+  resolve: common.resolve,
   output: {
     publicPath: "",
     filename: "[name].js",
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
-    base.plugins.HtmlWebpackPlugin,
-    base.plugins.CommonsChunkPlugin,
+    common.plugins.HtmlWebpackPlugin,
+    common.plugins.CommonsChunkPlugin,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -42,9 +42,9 @@ module.exports = {
   ],
   module: {
     rules: [
-      base.module.rules["vue-loader"],
-      base.module.rules["babel-loader"],
-      base.module.rules["style-css-loader"], {
+      common.module.rules["vue-loader"],
+      common.module.rules["babel-loader"],
+      common.module.rules["style-css-loader"], {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {

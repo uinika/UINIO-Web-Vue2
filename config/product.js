@@ -1,10 +1,10 @@
-const base = require("./base"),
+const common = require("./common"),
   _ = require("lodash"),
   path = require("path"),
   webpack = require("webpack"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const target = base.target;
+const target = common.target;
 
 const styles = new ExtractTextPlugin({
   filename: path.join(target, "[name].[contenthash].css")
@@ -12,12 +12,12 @@ const styles = new ExtractTextPlugin({
 
 /** Product Config */
 module.exports = {
-  context: base.context,
+  context: common.context,
   entry: {
-    app: base.entry.app,
-    vendor: base.entry.vendor
+    app: common.entry.app,
+    vendor: common.entry.vendor
   },
-  resolve: base.resolve,
+  resolve: common.resolve,
   output: {
     path: path.resolve(__dirname, "../build"),
     filename: path.join(target, "[name].[chunkhash].js"),
@@ -25,8 +25,8 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
-    base.plugins.HtmlWebpackPlugin,
-    base.plugins.CommonsChunkPlugin,
+    common.plugins.HtmlWebpackPlugin,
+    common.plugins.CommonsChunkPlugin,
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -42,9 +42,9 @@ module.exports = {
   ],
   module: {
     rules: [
-      base.module.rules["vue-loader"],
-      base.module.rules["babel-loader"],
-      base.module.rules["style-css-loader"], {
+      common.module.rules["vue-loader"],
+      common.module.rules["babel-loader"],
+      common.module.rules["style-css-loader"], {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {

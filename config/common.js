@@ -1,12 +1,10 @@
 const path = require("path"),
-  _ = require("lodash"),
-  webpack = require("webpack"),
   base = require("./base"),
+  webpack = require("webpack"),
   HtmlWebpackPlugin = require("html-webpack-plugin");
 
 /** Base Config */
 module.exports = {
-  target: "bundles",
   context: path.resolve(__dirname, "../sources"),
   entry: {
     app: "./app.js",

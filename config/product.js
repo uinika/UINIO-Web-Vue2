@@ -1,10 +1,10 @@
-const common = require("./common"),
-  _ = require("lodash"),
-  path = require("path"),
+const path = require("path"),
+  base = require("./base"),
+  common = require("./common"),
   webpack = require("webpack"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const target = common.target;
+const target = base.target;
 
 const styles = new ExtractTextPlugin({
   filename: path.join(target, "[name].[contenthash].css")
@@ -62,7 +62,10 @@ module.exports = {
         test: /\.less$/,
         use: styles.extract({
           use: [{
-            loader: "css-loader"
+            loader: "css-loader",
+            options: {
+              minimize: true
+            }
           }, {
             loader: "less-loader"
           }],

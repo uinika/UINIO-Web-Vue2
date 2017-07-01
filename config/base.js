@@ -1,5 +1,5 @@
 module.exports = {
   target: "bundles",
-  front: "5000",
-  backend: "8000"
+  front: "8000",
+  backend: "5000"
 }

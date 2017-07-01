@@ -14,7 +14,6 @@ import Auth from "./common/auth.js";
 // component
 import Layout from "./layout/main.vue";
 import Login from "./login/main.vue";
-import Dashboard from "./dashboard/main.vue";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
@@ -34,7 +33,7 @@ const router = new VueRouter({
       meta: {
         auth: true
       },
-      component: Dashboard
+      component: resolve => require(["./dashboard/main.vue"], resolve)
     }, {
       path: "demo",
       meta: {

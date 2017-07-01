@@ -1,6 +1,6 @@
-const common = require("./common"),
-  _ = require("lodash"),
-  path = require("path"),
+const path = require("path"),
+  base = require("./base"),
+  common = require("./common"),
   webpack = require("webpack"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -18,7 +18,7 @@ module.exports = {
     vendor: common.entry.vendor,
     live: [
       "webpack/hot/dev-server",
-      "webpack-dev-server/client?http://localhost:8000"
+      "webpack-dev-server/client?http://localhost:" + base.front
     ]
   },
   resolve: common.resolve,

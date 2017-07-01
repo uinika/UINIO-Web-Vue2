@@ -6,6 +6,7 @@ const gulp = require("gulp"),
   chalk = require("chalk"),
   gulpZip = require("gulp-zip"),
   nodemon = require("gulp-nodemon"),
+  base = require("./config/base.js"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
   webpackDevServer = require("webpack-dev-server"),
@@ -41,9 +42,9 @@ gulp.task("default", function () {
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServer);
-  server.listen(8000, "127.0.0.1", () => {
+  server.listen(base.front, "127.0.0.1", () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:8000/wiserv/index.html")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/wiserv/index.html")
     );
   });
 });
@@ -84,10 +85,10 @@ gulp.task("middleware", () => {
   var app = express();
   const compiler = webpack(webpackConfig.development);
   app.use(webpackDevMiddleware(compiler, devServer));
-  app.listen(5000, () => {
+  app.listen(base.front, () => {
     console.info(
       "Starting express on \
-      http://localhost:5000/wiserv/index.html"
+      http://localhost:" + base.front + "/wiserv/index.html"
     );
   });
 });

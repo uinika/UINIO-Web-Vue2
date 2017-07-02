@@ -34,9 +34,6 @@ module.exports = {
       "vue-loader": {
         test: /\.vue$/,
         loader: "vue-loader",
-        options: {
-          extractCSS: true
-        }
       },
       "babel-loader": {
         test: /\.js$/,

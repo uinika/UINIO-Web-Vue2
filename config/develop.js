@@ -6,10 +6,6 @@ const path = require("path"),
 
 const target = common.target;
 
-const styles = new ExtractTextPlugin({
-  filename: "[name].css"
-});
-
 /** Develop Config */
 module.exports = {
   context: common.context,
@@ -37,8 +33,7 @@ module.exports = {
       "process.env": {
         NODE_ENV: '"development"'
       }
-    }),
-    styles
+    })
   ],
   module: {
     rules: [
@@ -60,14 +55,13 @@ module.exports = {
         }
       }, {
         test: /\.less$/,
-        use: styles.extract({
-          use: [{
-            loader: "css-loader"
-          }, {
-            loader: "less-loader"
-          }],
-          fallback: "style-loader"
-        })
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "less-loader"
+        }]
       }
     ]
   }

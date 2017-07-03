@@ -2,6 +2,7 @@ const path = require("path"),
   base = require("./base"),
   common = require("./common"),
   webpack = require("webpack"),
+  OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const target = base.target;
@@ -38,13 +39,28 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
-    styles
+    styles,
+    new OptimizeCssAssetsPlugin({
+      cssProcessor: require("cssnano"),
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true
+        }
+      },
+      canPrint: true
+    })
   ],
   module: {
     rules: [
-      common.module.rules["vue-loader"],
       common.module.rules["babel-loader"],
-      common.module.rules["style-css-loader"], {
+      common.module.rules["style-css-loader"],
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        options: {
+          extractCSS: true
+        }
+      }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {
@@ -63,9 +79,6 @@ module.exports = {
         use: styles.extract({
           use: [{
             loader: "css-loader",
-            options: {
-              minimize: true
-            }
           }, {
             loader: "less-loader"
           }],

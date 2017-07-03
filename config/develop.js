@@ -37,9 +37,12 @@ module.exports = {
   ],
   module: {
     rules: [
-      common.module.rules["vue-loader"],
       common.module.rules["babel-loader"],
-      common.module.rules["style-css-loader"], {
+      common.module.rules["style-css-loader"],
+      {
+        test: /\.vue$/,
+        loader: "vue-loader"
+      }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {

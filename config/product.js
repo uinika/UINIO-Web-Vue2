@@ -75,12 +75,12 @@ module.exports = {
           name: "assets/fonts/[name].[hash].[ext]"
         }
       }, {
-        test: /\.less$/,
+        test: /\.scss$/,
         use: styles.extract({
           use: [{
             loader: "css-loader",
           }, {
-            loader: "less-loader"
+            loader: "sass-loader"
           }],
           fallback: "style-loader"
         })

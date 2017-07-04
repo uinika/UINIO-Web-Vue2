@@ -12,11 +12,12 @@ import "element-ui/lib/theme-default/index.css";
 import Http from "./common/http.js";
 import Auth from "./common/auth.js";
 // component
-import Layout from "./layout/main.vue";
-import Login from "./login/main.vue";
+import Layout from "./layout/index.vue";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+
+const Login = resolve => require(["./dashboard/index.vue"], resolve);
 
 const router = new VueRouter({
   routes: [{
@@ -33,13 +34,13 @@ const router = new VueRouter({
       meta: {
         auth: true
       },
-      component: resolve => require(["./dashboard/main.vue"], resolve)
+      component: resolve => require(["./dashboard/index.vue"], resolve)
     }, {
       path: "demo",
       meta: {
         auth: true
       },
-      component: resolve => require(["./demo/main.vue"], resolve)
+      component: resolve => require(["./demo/index.vue"], resolve)
     }]
   }]
 });

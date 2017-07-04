@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 @import "../common/color.less";
 @import "../common/base.less";
 .layout-navbar {

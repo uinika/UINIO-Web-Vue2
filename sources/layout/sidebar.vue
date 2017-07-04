@@ -33,7 +33,7 @@ export default {
 </script>
 
 
-<style lang="less">
+<style lang="scss" scoped>
 #layout-sidebar {
   width: 16rem;
   .el-menu {

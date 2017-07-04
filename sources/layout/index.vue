@@ -13,12 +13,10 @@
 <script>
 import navbar from "./navbar";
 import sidebar from "./sidebar";
-import container from "./container";
 export default {
   components: {
     navbar,
-    sidebar,
-    container
+    sidebar
   },
   data() {
     return {}
@@ -27,19 +25,6 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@import "../common/base.less";
-#layout {
-  .fill;
-  display: flex;
-  flex-direction: column;
-  >header {
-    width: 100%;
-  }
-  >main {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-  }
-};
+<style lang="scss" scoped>
+@import "../common/helper.scss";
 </style>

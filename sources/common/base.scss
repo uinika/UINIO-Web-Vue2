@@ -19,3 +19,38 @@ $light-gray:#E5E9F2;
 $extra-light-gray:#EFF2F7;
 $dark-white:#F9FAFC;
 $white:#FFFFFF;
+
+/** Helper */
+
+.row {
+  .fill;
+  margin-top: 1.4%;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.clean {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.text-center {
+  text-align: center;
+}

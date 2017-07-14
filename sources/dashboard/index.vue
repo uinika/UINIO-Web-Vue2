@@ -6,12 +6,8 @@
 
 <script>
 import Http from "../common/http.js";
-import chart from "./chart.vue";
 
 export default {
-  components: {
-    chart: chart
-  },
   mounted() {
     Http.fetch({
       method: "GET",

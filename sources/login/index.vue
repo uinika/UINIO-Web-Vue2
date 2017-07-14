@@ -16,5 +16,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../common/helper.scss";
+
 </style>

@@ -2,7 +2,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 // css
-import "./common/reset.sass";
+import "./common/reset.scss";
 import "font-awesome/css/font-awesome.css";
 // ui
 import ElementUI from "element-ui";

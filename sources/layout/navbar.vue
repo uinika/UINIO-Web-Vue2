@@ -19,7 +19,7 @@
       </el-menu>
     </div>
     <div class="right">
-      <el-dropdown @command="handleCommand" trigger="hover">
+      <el-dropdown $command="handleCommand" trigger="hover">
         <span class="el-dropdown-link">
           <i class="fa fa-user-o"></i>
           用户
@@ -59,33 +59,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../common/color.less";
-@import "../common/base.less";
+@import "../common/base.scss";
 .layout-navbar {
   display: flex;
   flex-direction: row;
-  color: @gray;
-  background-color: @light-black;
+  color: $gray;
+  background-color: $light-black;
   .left {
     text-align: center;
     width: 17rem;
-    h3 {
-      .clear;
-    }
   }
   .center {
     width: 100%
   }
   .right {
     width: 10rem;
-    background-color: @light-black;
+    background-color: $light-black;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     margin-right: 1rem;
     .el-dropdown {
-      color: @gray;
+      color: $gray;
     }
   }
 }

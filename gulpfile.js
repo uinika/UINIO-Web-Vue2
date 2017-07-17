@@ -1,11 +1,12 @@
 const gulp = require("gulp"),
   webpack = require("webpack"),
+  fs = require("fs"),
   del = require("del"),
   archiver = require("archiver"),
+  nodemon = require("nodemon"),
   express = require("express"),
   moment = require("moment"),
   chalk = require("chalk"),
-  nodemon = require("nodemon"),
   base = require("./config/base.js"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
@@ -60,12 +61,16 @@ gulp.task("build", () => {
 });
 
 /** gulp release */
-gulp.task("release", ["build"], () => {
+gulp.task("release", () => {
   const timestamp = moment().format("YYYY-MM-DD HH.mm.ss");
-  const file = ("release " + timestamp + ".zip");
-  gulp.src("./build/**/*")
-    .pipe(gulpZip(file))
-    .pipe(gulp.dest("./release"))
+  !fs.existsSync("release") ? fs.mkdirSync("release") : {};
+  const output = fs.createWriteStream("./release/release " + timestamp + ".zip");
+  const archive = archiver("zip", {
+    prefix: "release"
+  });
+  archive.pipe(output);
+  archive.directory("./build", false);
+  archive.finalize();
 });
 
 /** gulp clean */

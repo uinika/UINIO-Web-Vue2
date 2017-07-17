@@ -11,10 +11,11 @@ const gulp = require("gulp"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
   webpackDevServer = require("webpack-dev-server"),
-  webpackDevMiddleware = require("webpack-dev-middleware");
+  webpackDevMiddleware = require("webpack-dev-middleware"),
+  webpackHotMiddleware = require("webpack-hot-middleware");
 
 // config for devServer
-const devServer = {
+const devServerConfig = {
   publicPath: "/wiserv",
   contentBase: "./sources",
   watchContentBase: true,
@@ -31,16 +32,33 @@ const mockServer = {
 };
 
 /** gulp default */
-gulp.task("default", function () {
+gulp.task("default", () => {
+  nodemon({
+    script: mockServer.path,
+    watch: ["./server/*.js"],
+  });
+  var app = express();
+  const compiler = webpack(develop);
+  app.use(webpackDevMiddleware(compiler, devServerConfig));
+  app.use(webpackHotMiddleware(compiler));
+  app.listen(base.front, () => {
+    console.info(
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
+    );
+  });
+});
+
+/** gulp test */
+gulp.task("test", function () {
   nodemon({
     script: mockServer.path,
     watch: ["./server/*.js"],
   });
   const compiler = webpack(develop);
-  const server = new webpackDevServer(compiler, devServer);
+  const server = new webpackDevServer(compiler, devServerConfig);
   server.listen(base.front, () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/wiserv/index.html")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
     );
   });
 });
@@ -78,21 +96,4 @@ gulp.task("clean", () => {
   del([
     "./release/**/*", "./build/**/*"
   ]);
-});
-
-/** gulp test */
-gulp.task("test", () => {
-  nodemon({
-    script: mockServer.path,
-    watch: ["./server/*.js"],
-  });
-  var app = express();
-  const compiler = webpack(develop);
-  app.use(webpackDevMiddleware(compiler, devServer));
-  app.use(require("webpack-hot-middleware")(compiler));
-  app.listen(base.front, () => {
-    console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/wiserv/index.html")
-    );
-  });
 });

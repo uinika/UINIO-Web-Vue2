@@ -10,7 +10,7 @@ module.exports = {
     app: "./app.js",
     vendor: [
       "vue", "vuex", "vue-router", "element-ui", "axios",
-      "jquery", "lodash", "moment", "echarts",
+      "jquery", "lodash", "moment",
     ]
   },
   resolve: {

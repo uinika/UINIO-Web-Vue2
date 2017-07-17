@@ -23,6 +23,7 @@
     "vuex": "^2.3.1"
   },
   "devDependencies": {
+    "archiver": "^2.0.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
@@ -42,12 +43,10 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-zip": "^4.0.0",
     "html-webpack-plugin": "^2.29.0",
     "jsonfile": "^3.0.1",
     "node-sass": "^4.5.3",
-    "opn": "^5.1.0",
+    "nodemon": "^1.11.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",

@@ -1,11 +1,11 @@
 const gulp = require("gulp"),
   webpack = require("webpack"),
   del = require("del"),
+  archiver = require("archiver"),
   express = require("express"),
   moment = require("moment"),
   chalk = require("chalk"),
-  gulpZip = require("gulp-zip"),
-  nodemon = require("gulp-nodemon"),
+  nodemon = require("nodemon"),
   base = require("./config/base.js"),
   develop = require("./config/develop.js"),
   product = require("./config/product.js"),
@@ -33,12 +33,7 @@ const mockServer = {
 gulp.task("default", function () {
   nodemon({
     script: mockServer.path,
-    execMap: {
-      js: "node --harmony"
-    },
-    env: {
-      "NODE_ENV": "development"
-    }
+    watch: ["./server/*.js"],
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServer);

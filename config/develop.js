@@ -13,8 +13,9 @@ module.exports = {
     app: common.entry.app,
     vendor: common.entry.vendor,
     live: [
-      "webpack/hot/dev-server",
-      "webpack-dev-server/client?http://localhost:" + base.front
+      "webpack-hot-middleware/client"
+      // "webpack/hot/dev-server",
+      // "webpack-dev-server/client?http://localhost:" + base.front
     ]
   },
   resolve: common.resolve,

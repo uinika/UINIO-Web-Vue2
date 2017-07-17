@@ -1,13 +1,11 @@
 <template>
-  <div></div>
+  <div>
+    <h1>login</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  components: {
-    navbar,
-    sidebar
-  },
   data() {
     return {}
   },
@@ -16,5 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+h1 {
+  background: red;
+}
 </style>

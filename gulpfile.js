@@ -38,7 +38,7 @@ gulp.task("default", function () {
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServer);
-  server.listen(base.front, "127.0.0.1", () => {
+  server.listen(base.front, () => {
     console.info(
       chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/wiserv/index.html")
     );
@@ -80,20 +80,19 @@ gulp.task("clean", () => {
   ]);
 });
 
-/** gulp express */
-gulp.task("middleware", () => {
-  var app = express();
-  const compiler = webpack(webpackConfig.development);
-  app.use(webpackDevMiddleware(compiler, devServer));
-  app.listen(base.front, () => {
-    console.info(
-      "Starting express on \
-      http://localhost:" + base.front + "/wiserv/index.html"
-    );
-  });
-});
-
 /** gulp test */
 gulp.task("test", () => {
-
+  nodemon({
+    script: mockServer.path,
+    watch: ["./server/*.js"],
+  });
+  var app = express();
+  const compiler = webpack(develop);
+  app.use(webpackDevMiddleware(compiler, devServer));
+  app.use(require("webpack-hot-middleware")(compiler));
+  app.listen(base.front, () => {
+    console.info(
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/wiserv/index.html")
+    );
+  });
 });

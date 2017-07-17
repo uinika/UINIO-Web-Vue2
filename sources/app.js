@@ -16,7 +16,7 @@ import Layout from "./layout/index.vue";
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
-const Login = resolve => require(["./dashboard/index.vue"], resolve);
+const Login = resolve => require(["./login/index.vue"], resolve);
 
 const router = new VueRouter({
   routes: [{

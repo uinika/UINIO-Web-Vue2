@@ -1,9 +1,7 @@
 const path = require("path"),
-  base = require("./base"),
   common = require("./common"),
   webpack = require("webpack"),
-  webpackMerge = require("webpack-merge"),
-  ExtractTextPlugin = require("extract-text-webpack-plugin");
+  webpackMerge = require("webpack-merge");
 
 /** Develop Config */
 module.exports = webpackMerge(common, {

@@ -24,15 +24,15 @@ app.use("/", (request, response, next) => {
 });
 
 /** Server & handler */
-const server = app.listen(base.backend, () => {
+const server = app.listen(base.server, () => {
   console.info(
-    chalk.yellow.bgBlue("express-mock-server started on http://localhost:" + base.backend + "/server")
+    chalk.yellow.bgBlue("express-mock-server started on http://localhost:" + base.server + "/mock")
   );
 });
 const handler = () => {
   server.close(() => {
     console.info(
-      chalk.white.bgRed("express-mock-server closed on http://localhost:" + base.backend + "/server")
+      chalk.white.bgRed("express-mock-server closed on http://localhost:" + base.server + "/mock")
     );
   });
 };

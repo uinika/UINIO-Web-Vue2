@@ -1,5 +1,4 @@
 module.exports = {
-  target: "bundles",
-  front: "8000",
-  backend: "5000"
+  client: "8000",
+  server: "5000"
 }

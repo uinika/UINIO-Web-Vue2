@@ -41,9 +41,9 @@ gulp.task("default", () => {
   const compiler = webpack(develop);
   app.use(webpackDevMiddleware(compiler, devServerConfig));
   app.use(webpackHotMiddleware(compiler));
-  app.listen(base.front, () => {
+  app.listen(base.client, () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.client + "/client")
     );
   });
 });
@@ -83,7 +83,7 @@ gulp.task("clean", () => {
 
 /** gulp test */
 // "webpack/hot/dev-server",
-// "webpack-dev-server/client?http://localhost:" + base.front
+// "webpack-dev-server/client?http://localhost:" + base.client
 gulp.task("test", function () {
   nodemon({
     script: mockServer.path,
@@ -91,9 +91,9 @@ gulp.task("test", function () {
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServerConfig);
-  server.listen(base.front, () => {
+  server.listen(base.client, () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.client + "/client")
     );
   });
 });

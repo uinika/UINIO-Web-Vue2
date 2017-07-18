@@ -1,12 +1,11 @@
 const path = require("path"),
-  base = require("./base"),
   common = require("./common"),
   webpack = require("webpack"),
   webpackMerge = require("webpack-merge"),
-  OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
-  ExtractTextPlugin = require("extract-text-webpack-plugin");
+  ExtractTextPlugin = require("extract-text-webpack-plugin"),
+  OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const target = base.target;
+const target = "bundles";
 
 const styles = new ExtractTextPlugin({
   filename: path.join(target, "[name].[contenthash].css")

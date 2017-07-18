@@ -4,8 +4,22 @@ main {
   height: 100%;
   background: url("../assets/login/background.jpg") repeat;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  header, form {
+    position: relative;
+    top: -10%;
+  }
+  header {
+    font-size: 3rem;
+    color: $white;
+    text-align: left;
+    width: 540px + 80px;
+    position: relative;
+    left: 10px;
+    font-weight: bold;
+  }
   form {
     width: 540px + 80px;
     height: 80px;

@@ -8,17 +8,23 @@ export default {
     }
   },
   methods: {
-    onSubmit: () => {
+    onSubmit() {
+      const vm = this;
       Http.fetch({
           method: "post",
           url: Http.url.master + "/login",
           data: {
-            loginName: Encrypt.sha(this.data.username),
-            password: Encrypt.sha(this.data.password)
+            loginName: Encrypt.sha(vm.username),
+            password: Encrypt.sha(vm.password)
           }
         })
         .then(function (result) {
-          console.log(result)
+          const data = result.data;
+          if (Http.protocol(data, 200)) {
+            alert(data.head.message);
+            Encrypt.token.set(head.token);
+            vm.$router.push("/layout/dashboard");
+          }
         })
     }
   }

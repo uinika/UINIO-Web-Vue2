@@ -30,15 +30,10 @@ const devServerConfig = {
   },
 };
 
-// config for express mock server
-const mockServer = {
-  path: "./server/app.js"
-};
-
 /** gulp default */
 gulp.task("default", () => {
   nodemon({
-    script: mockServer.path,
+    script: "./server/app.js",
     watch: ["./server/*.js"],
   });
   var app = express();
@@ -90,7 +85,7 @@ gulp.task("clean", () => {
 // "webpack-dev-server/client?http://localhost:" + Port
 gulp.task("test", function () {
   nodemon({
-    script: mockServer.path,
+    script: "./server/app.js",
     watch: ["./server/*.js"],
   });
   const compiler = webpack(develop);

@@ -48,21 +48,6 @@ gulp.task("default", () => {
   });
 });
 
-/** gulp test */
-gulp.task("test", function () {
-  nodemon({
-    script: mockServer.path,
-    watch: ["./server/*.js"],
-  });
-  const compiler = webpack(develop);
-  const server = new webpackDevServer(compiler, devServerConfig);
-  server.listen(base.front, () => {
-    console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
-    );
-  });
-});
-
 /** gulp build */
 gulp.task("build", () => {
   const compiler = webpack(product);
@@ -93,7 +78,22 @@ gulp.task("release", () => {
 
 /** gulp clean */
 gulp.task("clean", () => {
-  del([
-    "./release/**/*", "./build/**/*"
-  ]);
+  del(["./release/**/*", "./build/**/*"]);
+});
+
+/** gulp test */
+// "webpack/hot/dev-server",
+// "webpack-dev-server/client?http://localhost:" + base.front
+gulp.task("test", function () {
+  nodemon({
+    script: mockServer.path,
+    watch: ["./server/*.js"],
+  });
+  const compiler = webpack(develop);
+  const server = new webpackDevServer(compiler, devServerConfig);
+  server.listen(base.front, () => {
+    console.info(
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.front + "/client")
+    );
+  });
 });

@@ -7,7 +7,7 @@ const path = require("path"),
 
 const target = "bundles";
 
-const styles = new ExtractTextPlugin({
+const extractTextPlugin = new ExtractTextPlugin({
   filename: path.join(target, "[name].[contenthash].css")
 });
 
@@ -31,7 +31,7 @@ module.exports = webpackMerge(common, {
         NODE_ENV: '"production"'
       }
     }),
-    styles,
+    extractTextPlugin,
     new OptimizeCssAssetsPlugin({
       cssProcessor: require("cssnano"),
       cssProcessorOptions: {
@@ -65,7 +65,7 @@ module.exports = webpackMerge(common, {
       }
     }, {
       test: /\.scss$/,
-      use: styles.extract({
+      use: extractTextPlugin.extract({
         use: [{
           loader: "css-loader",
         }, {

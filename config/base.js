@@ -1,4 +1,4 @@
 module.exports = {
-  client: "8000",
-  server: "5000"
+  client: "5000",
+  server: "8000"
 }

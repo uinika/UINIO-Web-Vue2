@@ -1,4 +1,10 @@
 module.exports = {
-  client: "5000",
-  server: "8000"
+  client: {
+    uri: "/dev",
+    port: "5000",
+  },
+  server: {
+    uri: "/mock",
+    port: "8000",
+  }
 }

@@ -2,7 +2,7 @@ const path = require("path"),
   webpack = require("webpack"),
   HtmlWebpackPlugin = require("html-webpack-plugin");
 
-/** Common Config */
+/** common config */
 module.exports = {
   context: path.resolve(__dirname, "../sources"),
   entry: {

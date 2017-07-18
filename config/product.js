@@ -11,7 +11,7 @@ const extractTextPlugin = new ExtractTextPlugin({
   filename: path.join(target, "[name].[contenthash].css")
 });
 
-/** Product Config */
+/** product config */
 module.exports = webpackMerge(common, {
   output: {
     path: path.resolve(__dirname, "../build"),

@@ -14,9 +14,13 @@ const gulp = require("gulp"),
   webpackDevMiddleware = require("webpack-dev-middleware"),
   webpackHotMiddleware = require("webpack-hot-middleware");
 
+// base config
+const Uri = base.client.uri;
+const Port = base.client.port;
+
 // config for devServer
 const devServerConfig = {
-  publicPath: "/wiserv",
+  publicPath: Uri,
   contentBase: "./sources",
   watchContentBase: true,
   hot: true,
@@ -41,9 +45,9 @@ gulp.task("default", () => {
   const compiler = webpack(develop);
   app.use(webpackDevMiddleware(compiler, devServerConfig));
   app.use(webpackHotMiddleware(compiler));
-  app.listen(base.client, () => {
+  app.listen(Port, () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.client + "/client")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri)
     );
   });
 });
@@ -83,7 +87,7 @@ gulp.task("clean", () => {
 
 /** gulp test */
 // "webpack/hot/dev-server",
-// "webpack-dev-server/client?http://localhost:" + base.client
+// "webpack-dev-server/client?http://localhost:" + Port
 gulp.task("test", function () {
   nodemon({
     script: mockServer.path,
@@ -91,9 +95,9 @@ gulp.task("test", function () {
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServerConfig);
-  server.listen(base.client, () => {
+  server.listen(Port, () => {
     console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + base.client + "/client")
+      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri)
     );
   });
 });

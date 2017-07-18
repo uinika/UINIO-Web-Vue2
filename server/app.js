@@ -6,10 +6,14 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   logger = require("./common/logger.js");
 
-/** Test server for build folder */
+// base config
+const Uri = base.server.uri;
+const Port = base.server.port;
+
+/** test server for build folder */
 app.use("/build", express.static("./build"));
 
-/** Express middleware */
+/** express middleware */
 app.use(cors({
   origin: "*",
   methods: "GET, POST, PUT, DELETE, OPTIONS",
@@ -23,22 +27,22 @@ app.use("/", (request, response, next) => {
   next();
 });
 
-/** Server & handler */
-const server = app.listen(base.server, () => {
+/** server & handler */
+const server = app.listen(Port, () => {
   console.info(
-    chalk.yellow.bgBlue("express-mock-server started on http://localhost:" + base.server + "/mock")
+    chalk.yellow.bgBlue("express-mock-server started on http://localhost:" + Port + Uri)
   );
 });
 const handler = () => {
   server.close(() => {
     console.info(
-      chalk.white.bgRed("express-mock-server closed on http://localhost:" + base.server + "/mock")
+      chalk.white.bgRed("express-mock-server closed on http://localhost:" + Port + Uri)
     );
   });
 };
 process.on("SIGTERM", handler);
 process.on("SIGINT", handler);
 
-/** Custom routers */
-app.use("/", require("./login/api"));
-app.use("/", require("./system/api"));
+/** custom routers */
+app.use(Uri, require("./login/api"));
+app.use(Uri, require("./system/api"));

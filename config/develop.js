@@ -3,7 +3,7 @@ const path = require("path"),
   webpack = require("webpack"),
   webpackMerge = require("webpack-merge");
 
-/** Develop Config */
+/** develop config */
 module.exports = webpackMerge(common, {
   entry: {
     live: ["webpack-hot-middleware/client"]

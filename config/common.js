@@ -19,35 +19,32 @@ module.exports = {
       "vue$": "vue/dist/vue.esm.js"
     }
   },
-  plugins: {
-    HtmlWebpackPlugin: new HtmlWebpackPlugin({
+  plugins: [
+    new HtmlWebpackPlugin({
       favicon: "assets/favicon.ico",
       template: "index.html",
       filename: "index.html"
     }),
-    CommonsChunkPlugin: new webpack.optimize.CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({
       names: ["vendor", "manifest"]
     }),
-  },
+  ],
   module: {
-    rules: {
-      "babel-loader": {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
-      },
-      "style-css-loader": {
-        test: /\.css$/,
-        use: [
-          "style-loader", {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1
-            }
-          },
-          "postcss-loader"
-        ]
-      }
-    }
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: "babel-loader"
+    }, {
+      test: /\.css$/,
+      use: [
+        "style-loader", {
+          loader: "css-loader",
+          options: {
+            importLoaders: 1
+          }
+        },
+        "postcss-loader"
+      ]
+    }]
   }
 };

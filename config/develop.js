@@ -12,10 +12,7 @@ module.exports = {
   entry: {
     app: common.entry.app,
     vendor: common.entry.vendor,
-    live: [
-      "webpack-hot-middleware/client"
-
-    ]
+    live: ["webpack-hot-middleware/client"]
   },
   resolve: common.resolve,
   output: {

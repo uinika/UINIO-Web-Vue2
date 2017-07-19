@@ -6,7 +6,7 @@ const path = require("path"),
 /** develop config */
 module.exports = webpackMerge(common, {
   entry: {
-    live: ["webpack-hot-middleware/client"]
+    hot: ["webpack-hot-middleware/client"]
   },
   output: {
     publicPath: "",

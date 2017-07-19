@@ -15,8 +15,8 @@
       <el-menu-item index="4">Repository</el-menu-item>
     </el-menu>
     <div class="tool">
-      <el-select placeholder="Select">
-        <el-option></el-option>
+      <el-select placeholder="Select" v-model="type">
+        <!-- <el-option></el-option> -->
       </el-select>
       <el-input placeholder="Search" icon="search" v-model="search" :on-icon-click="onSearch">
       </el-input>

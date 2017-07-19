@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       search: "",
+      type: ""
     }
   },
   methods: {

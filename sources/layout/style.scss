@@ -4,13 +4,14 @@
     display: flex;
     background-color: $light-black;
     .logo {
-      width: 200px;
-      font-size: 30px;
+      width: 175px;
+      font-size: 39px;
       font-weight: bold;
+      margin-right: 1.5rem;
       color: $white;
-      text-align: center;
+      text-align: right;
       padding: 10px;
-      background: url("../assets/logo.png");
+      background: url("../assets/logo.png") no-repeat scroll 20px 5px/50px 50px;
     }
     .tool {
       position: absolute;

@@ -1,3 +1,17 @@
-<main>
-  <div>dashboard</div>
+<main id="dashboard">
+  <div class="left">
+    <el-select v-model="value" placeholder="Type">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+      </el-option>
+    </el-select>
+    <el-input v-model="input" placeholder="Party"></el-input>
+    <el-input v-model="input" placeholder="Reason"></el-input>
+    <el-input v-model="input" placeholder="Number"></el-input>
+    <div class="operation">
+      <el-button type="default" icon="plus">Add</el-button>
+      <el-button type="primary" icon="search">Search</el-button>
+    </div>
+
+  </div>
+  <div class="right">test</div>
 </main>

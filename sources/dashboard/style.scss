@@ -1,3 +1,22 @@
-main {
-
+@import "../common/base.scss";
+#dashboard {
+  @include fill;
+  display: flex;
+  .left {
+    background: $gray;
+    padding: 1rem;
+    .el-input,
+    .el-select {
+      width: 15rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .operation {
+      float: right;
+    }
+  }
+  .right {
+    width: 100%;
+    background: $white;
+  }
 }

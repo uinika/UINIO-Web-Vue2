@@ -1,5 +1,8 @@
 @import "../common/base.scss";
 #layout {
+  @include fill;
+  display: flex;
+  flex-direction: column;
   header {
     display: flex;
     background-color: $light-black;
@@ -31,5 +34,8 @@
         color: $gray;
       }
     }
+  }
+  .router-layout {
+    height: 100%;
   }
 }

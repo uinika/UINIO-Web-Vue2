@@ -15,21 +15,17 @@
       <el-menu-item index="4">Repository</el-menu-item>
     </el-menu>
     <div class="tool">
-      <el-select v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
+      <el-select placeholder="Select">
+        <el-option></el-option>
       </el-select>
-      <el-input placeholder="请选择日期" icon="search" v-model="input2" :on-icon-click="handleIconClick">
+      <el-input placeholder="Search" icon="search" v-model="search" :on-icon-click="onSearch">
       </el-input>
       <el-dropdown>
         <span class="el-dropdown-link">
-          <i class="fa fa-user"></i>
-          <span>用户</span>
-        <i class="el-icon-caret-bottom el-icon--right"></i>
+          User<i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>Update Password</el-dropdown-item>
-          <el-dropdown-item>771569612</el-dropdown-item>
+          <el-dropdown-item>Update Info</el-dropdown-item>
           <el-dropdown-item divided>Quit</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

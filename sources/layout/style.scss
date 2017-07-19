@@ -15,8 +15,19 @@
     .tool {
       position: absolute;
       right: 0;
-      height: 60px;
-      width: 400px;
+      top: 12px;
+      height: 36px;
+      min-width: 25rem;
+      .el-select {
+        width: 6rem;
+      }
+      .el-input {
+        max-width: 13rem;
+      }
+      .el-dropdown {
+        margin-left: 1rem;
+        color: $gray;
+      }
     }
   }
 }

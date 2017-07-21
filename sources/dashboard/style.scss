@@ -18,5 +18,29 @@
   .right {
     width: 100%;
     background: $white;
+    .table {
+      height: 90%;
+      .head {
+        height: 40px;
+        background-color: $extra-light-gray;
+        span {
+          display: inline-block;
+          width: 30%;
+          font-weight: bold;
+          font-size: 14px;
+          padding: (40px - 14px)/2;
+        }
+      }
+      .body {
+        span {
+          display: inline-block;
+          width: 30%;
+        }
+      }
+    }
+    .pagination {
+      margin: 1.5rem 1rem;
+      text-align: right;
+    }
   }
 }

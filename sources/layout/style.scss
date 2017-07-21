@@ -8,8 +8,10 @@
     display: flex;
     flex-wrap: wrap;
     background-color: $light-black;
+    height: 60px;
     .banner {
       width: 200px;
+
       font-size: 46px;
       font-style: italic;
       font-weight: bold;

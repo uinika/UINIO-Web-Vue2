@@ -23,7 +23,15 @@ export default {
         code: "（Judge）0000004",
         date: "2017/07/21 周五",
         people: "some peoples",
-      }]
+      }],
+      options: [{
+        value: "yes",
+        label: "Finished"
+      }, {
+        value: "no",
+        label: "Unfinished"
+      }],
+      value: "yes"
     }
   },
   methods: {

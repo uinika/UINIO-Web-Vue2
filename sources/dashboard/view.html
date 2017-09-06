@@ -1,12 +1,12 @@
 <main id="dashboard">
   <div class="left">
-    <el-select v-model="value" placeholder="Type">
+    <el-select v-model="value" placeholder="请选择">
       <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
       </el-option>
     </el-select>
-    <el-input v-model="input" placeholder="Party"></el-input>
-    <el-input v-model="input" placeholder="Reason"></el-input>
-    <el-input v-model="input" placeholder="Number"></el-input>
+    <el-input placeholder="Party"></el-input>
+    <el-input placeholder="Reason"></el-input>
+    <el-input placeholder="Number"></el-input>
     <div class="operation">
       <el-button type="default" icon="plus">Add</el-button>
       <el-button type="primary" icon="search">Search</el-button>
@@ -35,8 +35,8 @@
       </div>
     </div>
     <div class="pagination">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]"
-        :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400">
+      <el-pagination @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
+        :total="400">
       </el-pagination>
     </div>
   </div>

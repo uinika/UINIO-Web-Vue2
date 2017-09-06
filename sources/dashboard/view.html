@@ -22,7 +22,7 @@
       </div>
       <div class="body">
         <el-collapse accordion>
-          <el-collapse-item v-for="item in cases">
+          <el-collapse-item v-for="item in cases" key="item.code">
             <template slot="title">
               <span>{{item.name}}</span>
               <span>{{item.code}}</span>

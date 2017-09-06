@@ -27,6 +27,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ["vendor", "manifest"]
     }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   module: {
     rules: [{

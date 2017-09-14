@@ -1,5 +1,6 @@
 // library
 import Vue from "vue";
+import Vuex from "vuex";
 import VueRouter from "vue-router";
 // css
 import "./common/reset.scss";
@@ -13,6 +14,7 @@ import Auth from "./common/auth.js";
 // component
 import Layout from "./layout/index.vue";
 
+Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 

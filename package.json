@@ -22,6 +22,7 @@
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.4.0",
+    "vuex-router-sync": "^4.3.1",
     "ztree": "^3.5.24"
   },
   "devDependencies": {

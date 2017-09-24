@@ -1,3 +1,3 @@
-<template>
-  <h1>Demo</h1>
-</template>
+<template src="./view.html"></template>
+<script src="./script.js"></script>
+<style src="./style.scss" lang="scss" scoped></style>

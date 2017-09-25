@@ -1,6 +1,6 @@
-import Layout from "../../layout/index.vue";
+import Layout from "../../layout/index.vue"
 
-const Login = resolve => require(["../../login/index.vue"], resolve);
+const Login = resolve => require(["../../login/index.vue"], resolve)
 
 export default {
   routes: [{

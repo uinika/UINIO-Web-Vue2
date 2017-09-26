@@ -19,6 +19,24 @@ export default {
       },
       component: resolve => require(["../../dashboard/index.vue"], resolve)
     }, {
+      path: "trial",
+      meta: {
+        auth: true
+      },
+      component: resolve => require(["../../trial/index.vue"], resolve)
+    }, {
+      path: "judge",
+      meta: {
+        auth: true
+      },
+      component: resolve => require(["../../judge/index.vue"], resolve)
+    }, {
+      path: "cases",
+      meta: {
+        auth: true
+      },
+      component: resolve => require(["../../cases/index.vue"], resolve)
+    }, {
       path: "demo",
       meta: {
         auth: true

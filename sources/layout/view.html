@@ -4,22 +4,23 @@
       Aves
     </div>
     <nav class="navigator">
-      <el-menu theme="dark" mode="horizontal">
-        <el-menu-item index="1">Case</el-menu-item>
-        <el-menu-item index="2">OCR</el-menu-item>
-        <el-submenu index="3">
+      <el-menu theme="dark" mode="horizontal" :router="true">
+        <el-menu-item index="cases">Cases</el-menu-item>
+        <el-menu-item index="judge">Judge</el-menu-item>
+        <el-menu-item index="trial">Trial</el-menu-item>
+        <el-submenu index="cases">
           <template slot="title">Template</template>
-          <el-menu-item index="3-1">Tree</el-menu-item>
-          <el-menu-item index="3-2">Trail</el-menu-item>
-          <el-menu-item index="3-3">Record</el-menu-item>
+          <el-menu-item index="cases">Tree Template</el-menu-item>
+          <el-menu-item index="cases">Trail Template</el-menu-item>
+          <el-menu-item index="cases">Judge Template</el-menu-item>
         </el-submenu>
-        <el-menu-item index="4">Repository</el-menu-item>
-        <el-menu-item index="5">Demo</el-menu-item>
+        <el-menu-item index="demo">Calculator </el-menu-item>
+        <el-menu-item index="demo">COR </el-menu-item>
+        <el-menu-item index="demo">Demo</el-menu-item>
       </el-menu>
     </nav>
     <div class="tool">
       <el-select placeholder="Select" v-model="type">
-        <!-- <el-option></el-option> -->
       </el-select>
       <el-input placeholder="Search" icon="search" v-model="search" :on-icon-click="onSearch">
       </el-input>
@@ -34,5 +35,7 @@
       </el-dropdown>
     </div>
   </header>
-  <router-view class="router-layout"></router-view>
+  <transition>
+    <router-view class="router-layout"></router-view>
+  </transition>
 </main>

@@ -20,8 +20,11 @@ export default {
         })
         .then(function (result) {
           const data = result.data;
+          vm.$message({
+            message: data.head.message,
+            duration: 1300
+          });
           if (Http.protocol(data, 200)) {
-            alert(data.head.message);
             Encrypt.token.set(data.head.token);
             vm.$router.push("/layout/dashboard");
           }

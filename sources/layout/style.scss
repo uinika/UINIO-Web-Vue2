@@ -1,7 +1,7 @@
 @import "../common/styles/base.scss";
 #layout {
   @include fill;
-  position: absolute;
+  display: flex;
   header {
     position: fixed;
     display: block;
@@ -49,6 +49,7 @@
   .container {
     @include fill;
     display: block;
+    overflow-y: none;
     margin-top: 60px;
   }
 }

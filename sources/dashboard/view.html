@@ -14,6 +14,11 @@
 
   </div>
   <div class="right">
+    <div class="pagination">
+      <el-pagination @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
+        :total="400">
+      </el-pagination>
+    </div>
     <div class="table">
       <div class="head">
         <span>Name</span>
@@ -34,10 +39,6 @@
         </el-collapse>
       </div>
     </div>
-    <div class="pagination">
-      <el-pagination @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
-      </el-pagination>
-    </div>
+
   </div>
 </main>

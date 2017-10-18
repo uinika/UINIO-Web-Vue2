@@ -1,47 +1,47 @@
-import Layout from "../../layout/index.vue"
+import Layout from '../../layout/index.vue'
 
-const Login = resolve => require(["../../login/index.vue"], resolve)
+const Login = resolve => require(['../../login/index.vue'], resolve)
 
 export default {
   routes: [{
-    path: "/",
+    path: '/',
     component: Login
   }, {
-    path: "/login",
+    path: '/login',
     component: Login
   }, {
-    path: "/layout",
+    path: '/layout',
     component: Layout,
     children: [{
-      path: "dashboard",
+      path: 'dashboard',
       meta: {
         auth: true
       },
-      component: resolve => require(["../../dashboard/index.vue"], resolve)
+      component: resolve => require(['../../dashboard/index.vue'], resolve)
     }, {
-      path: "trial",
+      path: 'trial',
       meta: {
         auth: true
       },
-      component: resolve => require(["../../trial/index.vue"], resolve)
+      component: resolve => require(['../../trial/index.vue'], resolve)
     }, {
-      path: "judge",
+      path: 'judge',
       meta: {
         auth: true
       },
-      component: resolve => require(["../../judge/index.vue"], resolve)
+      component: resolve => require(['../../judge/index.vue'], resolve)
     }, {
-      path: "cases",
+      path: 'cases',
       meta: {
         auth: true
       },
-      component: resolve => require(["../../cases/index.vue"], resolve)
+      component: resolve => require(['../../cases/index.vue'], resolve)
     }, {
-      path: "demo",
+      path: 'demo',
       meta: {
         auth: true
       },
-      component: resolve => require(["../../demo/index.vue"], resolve)
+      component: resolve => require(['../../demo/index.vue'], resolve)
     }]
   }]
 }

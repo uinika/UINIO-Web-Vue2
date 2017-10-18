@@ -1,4 +1,4 @@
-@import "../common/styles/base.scss";
+@import '../common/styles/base.scss';
 #layout {
   @include fill;
   display: flex;
@@ -21,7 +21,7 @@
       font-weight: bold;
       text-align: right;
       color: $white;
-      background: url("../assets/logo.png") no-repeat scroll 20px 5px/50px 50px;
+      background: url('../assets/logo.png') no-repeat scroll 20px 5px/50px 50px;
     }
     .navigator {
       display: inline-block;

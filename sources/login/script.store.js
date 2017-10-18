@@ -1,7 +1,7 @@
 export default {
   state: {
-    username: "",
-    password: ""
+    username: '',
+    password: ''
   },
   mutations: {},
   actions: {},

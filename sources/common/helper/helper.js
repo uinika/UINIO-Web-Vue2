@@ -1,5 +1,5 @@
-import echarts from "echarts";
+import echarts from 'echarts';
 
-export const chart = (selector = "", option = {}) => {
+export const chart = (selector = '', option = {}) => {
   echarts.init(document.querySelector(selector)).setOption(option);
 };

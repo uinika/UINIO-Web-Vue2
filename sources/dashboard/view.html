@@ -1,34 +1,34 @@
-<main id="dashboard">
-  <div class="left">
-    <el-select v-model="value" placeholder="请选择">
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+<main id='dashboard'>
+  <div class='left'>
+    <el-select v-model='value' placeholder='请选择'>
+      <el-option v-for='item in options' :key='item.value' :label='item.label' :value='item.value'>
       </el-option>
     </el-select>
-    <el-input placeholder="Party"></el-input>
-    <el-input placeholder="Reason"></el-input>
-    <el-input placeholder="Number"></el-input>
-    <div class="operation">
-      <el-button type="default" icon="plus">Add</el-button>
-      <el-button type="primary" icon="search">Search</el-button>
+    <el-input placeholder='Party'></el-input>
+    <el-input placeholder='Reason'></el-input>
+    <el-input placeholder='Number'></el-input>
+    <div class='operation'>
+      <el-button type='default' icon='plus'>Add</el-button>
+      <el-button type='primary' icon='search'>Search</el-button>
     </div>
 
   </div>
-  <div class="right">
-    <div class="pagination">
-      <el-pagination @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
+  <div class='right'>
+    <div class='pagination'>
+      <el-pagination @size-change='' @current-change='' :current-page='4' :page-sizes='[100, 200, 300, 400]' :page-size='100' layout='total, sizes, prev, pager, next, jumper'
+        :total='400'>
       </el-pagination>
     </div>
-    <div class="table">
-      <div class="head">
+    <div class='table'>
+      <div class='head'>
         <span>Name</span>
         <span>Code</span>
         <span>Date</span>
       </div>
-      <div class="body">
+      <div class='body'>
         <el-collapse accordion>
-          <el-collapse-item v-for="item in cases" key="item.code">
-            <template slot="title">
+          <el-collapse-item v-for='item in cases' key='item.code'>
+            <template slot='title'>
               <span>{{item.name}}</span>
               <span>{{item.code}}</span>
               <span>{{item.date}}</span>

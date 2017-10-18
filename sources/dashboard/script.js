@@ -1,42 +1,42 @@
-import Http from "../common/helper/http.js";
-import Encrypt from "../common/helper/encrypt.js";
+import Http from '../common/helper/http.js';
+import Encrypt from '../common/helper/encrypt.js';
 export default {
   data() {
     return {
       cases: [{
-        name: "Case A",
-        code: "（Judge）0000001",
-        date: "2017/07/21 周五",
-        people: "some peoples"
+        name: 'Case A',
+        code: '（Judge）0000001',
+        date: '2017/07/21 周五',
+        people: 'some peoples'
       }, {
-        name: "Case B",
-        code: "（Judge）0000002",
-        date: "2017/07/21 周五",
-        people: "some peoples",
+        name: 'Case B',
+        code: '（Judge）0000002',
+        date: '2017/07/21 周五',
+        people: 'some peoples',
       }, {
-        name: "Case C",
-        code: "（Judge）0000003",
-        date: "2017/07/21 周五",
-        people: "some peoples",
+        name: 'Case C',
+        code: '（Judge）0000003',
+        date: '2017/07/21 周五',
+        people: 'some peoples',
       }, {
-        name: "Case D",
-        code: "（Judge）0000004",
-        date: "2017/07/21 周五",
-        people: "some peoples",
+        name: 'Case D',
+        code: '（Judge）0000004',
+        date: '2017/07/21 周五',
+        people: 'some peoples',
       }],
       options: [{
-        value: "yes",
-        label: "Finished"
+        value: 'yes',
+        label: 'Finished'
       }, {
-        value: "no",
-        label: "Unfinished"
+        value: 'no',
+        label: 'Unfinished'
       }],
-      value: "yes"
+      value: 'yes'
     }
   },
   methods: {
     onSearch() {
-      console.log("on Search!");
+      console.log('on Search!');
     }
   }
 };

@@ -1,7 +1,7 @@
-import login from "../../login/script.store"
+import login from '../../login/script.store'
 
 export default {
-  strict: process.env.NODE_ENV !== "production",
+  strict: process.env.NODE_ENV !== 'production',
   modules: {
     login
   }

@@ -1,9 +1,9 @@
-const router = require("express").Router(),
-  util = require("../common/util.js");
+const router = require('express').Router(),
+  util = require('../common/util.js');
 
-router.route("/sys/logs")
+router.route('/sys/logs')
   .get(function (request, response) {
-    response.json(util.json("/system/data/logs.json"));
+    response.json(util.json('/system/data/logs.json'));
   });
 
 module.exports = router;

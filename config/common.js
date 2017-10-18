@@ -1,31 +1,31 @@
-const path = require("path"),
-  webpack = require("webpack"),
-  HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path'),
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /** common config */
 module.exports = {
-  context: path.resolve(__dirname, "../sources"),
+  context: path.resolve(__dirname, '../sources'),
   entry: {
-    app: "./app.js",
+    app: './app.js',
     vendor: [
-      "vue", "vuex", "vue-router", "element-ui", "axios",
-      "jquery", "lodash", "moment",
+      'vue', 'vuex', 'vue-router', 'element-ui', 'axios',
+      'jquery', 'lodash', 'moment',
     ]
   },
   resolve: {
-    extensions: [".js", ".vue", ".json"],
+    extensions: ['.js', '.vue', '.json'],
     alias: {
-      "vue$": "vue/dist/vue.esm.js"
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: "assets/favicon.ico",
-      template: "index.html",
-      filename: "index.html"
+      favicon: 'assets/favicon.ico',
+      template: 'index.html',
+      filename: 'index.html'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ["vendor", "manifest"]
+      names: ['vendor', 'manifest']
     }),
     new webpack.optimize.ModuleConcatenationPlugin()
   ],
@@ -33,17 +33,17 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: "babel-loader"
+      loader: 'babel-loader'
     }, {
       test: /\.css$/,
       use: [
-        "style-loader", {
-          loader: "css-loader",
+        'style-loader', {
+          loader: 'css-loader',
           options: {
             importLoaders: 1
           }
         },
-        "postcss-loader"
+        'postcss-loader'
       ]
     }]
   }

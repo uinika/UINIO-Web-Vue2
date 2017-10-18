@@ -1,19 +1,19 @@
 // library
-import Vue from "vue"
-import Vuex from "vuex"
-import VueRouter from "vue-router"
-import VueRouterSync from "vuex-router-sync"
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VueRouter from 'vue-router'
+import VueRouterSync from 'vuex-router-sync'
 // css
-import "./common/styles/reset.scss"
-import "font-awesome/css/font-awesome.css"
+import './common/styles/reset.scss'
+import 'font-awesome/css/font-awesome.css'
 // ui
-import ElementUI from "element-ui"
-import "element-ui/lib/theme-default/index.css"
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 // util
-import Http from "./common/helper/http.js"
-import Auth from "./common/helper/auth.js"
-import States from "./common/global/store.js"
-import Routers from "./common/global/router.js"
+import Http from './common/helper/http.js'
+import Auth from './common/helper/auth.js'
+import States from './common/global/store.js'
+import Routers from './common/global/router.js'
 
 /** Plugins */
 Vue.use(Vuex)
@@ -38,4 +38,4 @@ unsync()
 const app = new Vue({
   store,
   router
-}).$mount("#app")
+}).$mount('#app')

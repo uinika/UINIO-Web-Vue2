@@ -1,5 +1,5 @@
-import Encrypt from "./encrypt";
-import Axios from "axios";
+import Encrypt from './encrypt';
+import Axios from 'axios';
 
 export default {
   url: window.url,
@@ -10,8 +10,8 @@ export default {
   protocol(data, status) {
     if (data && data.head &&
       data.head.status === status &&
-      data.hasOwnProperty("head") &&
-      data.hasOwnProperty("body"))
+      data.hasOwnProperty('head') &&
+      data.hasOwnProperty('body'))
       return true;
     else
       return false;

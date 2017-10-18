@@ -1,5 +1,5 @@
-import Http from "./http.js";
-import Encrypt from "./encrypt.js";
+import Http from './http.js';
+import Encrypt from './encrypt.js';
 
 export default {
   /**
@@ -9,7 +9,7 @@ export default {
     if (to.matched.some(record => record.meta.auth)) {
       if (!Encrypt.token.get()) {
         next({
-          path: "/login",
+          path: '/login',
           query: {
             redirect: to.fullPath
           }
@@ -28,16 +28,16 @@ export default {
     Http.fetch.interceptors.request.use(function (config) {
       const token = Encrypt.token.get();
       if (token)
-        config.headers.Authorization = "Wiserv " + token;
+        config.headers.Authorization = 'Wiserv ' + token;
       return config;
     }, function (error) {
       return Promise.reject(error);
     });
     Http.fetch.interceptors.response.use(function (response) {
       const head = response.data.head;
-      if (head && typeof head === "object" && head.hasOwnProperty("status")) {
+      if (head && typeof head === 'object' && head.hasOwnProperty('status')) {
         if (head.status === 202) {
-          window.location.href = "#/login";
+          window.location.href = '#/login';
         }
       }
       return response;

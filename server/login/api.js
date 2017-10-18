@@ -1,9 +1,9 @@
-const router = require("express").Router(),
-  util = require("../common/util.js");
+const router = require('express').Router(),
+  util = require('../common/util.js');
 
-router.route("/login")
+router.route('/login')
   .post(function (request, response) {
-    response.json(util.json("/login/data/login.json"));
+    response.json(util.json('/login/data/login.json'));
   });
 
 module.exports = router;

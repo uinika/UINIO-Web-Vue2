@@ -1,15 +1,15 @@
-import Http from "../common/helper/http.js";
-import Encrypt from "../common/helper/encrypt.js";
+import Http from '../common/helper/http.js';
+import Encrypt from '../common/helper/encrypt.js';
 export default {
   data() {
     return {
-      search: "",
-      type: ""
+      search: '',
+      type: ''
     }
   },
   methods: {
     onSearch() {
-      console.log("on Search!");
+      console.log('on Search!');
     }
   }
 };

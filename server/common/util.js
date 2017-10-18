@@ -1,5 +1,5 @@
-const jsonfile = require("jsonfile"),
-  path = require("path");
+const jsonfile = require('jsonfile'),
+  path = require('path');
 
 /** Basic path */
 exports.url = url => {
@@ -9,7 +9,7 @@ exports.url = url => {
 /** Json loader */
 exports.json = name => {
   return jsonfile.readFileSync(
-    path.resolve(__dirname, "..") + name
+    path.resolve(__dirname, '..') + name
   );
 };
 
@@ -18,12 +18,12 @@ exports.protocol = (head, body) => {
   head = head || {};
   body = body || {};
   return {
-    "head": {
-      "status": head.status || "",
-      "token": head.token || "",
-      "message": head.message || "",
-      "total": head.total || ""
+    'head': {
+      'status': head.status || '',
+      'token': head.token || '',
+      'message': head.message || '',
+      'total': head.total || ''
     },
-    "body": body || ""
+    'body': body || ''
   }
 };

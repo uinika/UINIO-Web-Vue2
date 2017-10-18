@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang='zh-CN'>
 
 <head>
   <title>Aves</title>
-  <meta name="renderer" content="webkit" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name='renderer' content='webkit' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
 </head>
 
 <body>
-  <div id="app">
-    <transition name="el-zoom-in-center">
+  <div id='app'>
+    <transition name='el-zoom-in-center'>
       <router-view></router-view>
     </transition>
   </div>
   <script>
     (function (window) {
       window.url = {
-        // master: "http://192.168.13.72:8188/adap_server",
-        master: "http://localhost:8000/mock"
+        // master: 'http://192.168.13.72:8188/adap_server',
+        master: 'http://localhost:8000/mock'
       }
     })(window);
 

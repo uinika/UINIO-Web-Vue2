@@ -4,8 +4,9 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueRouterSync from 'vuex-router-sync'
 // css
-import './common/styles/base.scss'
 import './common/styles/reset.scss'
+import './common/styles/base.scss'
+import './common/styles/grid.scss'
 import 'font-awesome/css/font-awesome.css'
 // ui
 import ElementUI from 'element-ui'

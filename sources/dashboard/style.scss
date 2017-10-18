@@ -1,6 +1,5 @@
-@import '../common/styles/base.scss';
+@import '../common/styles/color';
 #dashboard {
-  @include fill;
   display: flex;
   .left {
     background: $gray;
@@ -22,7 +21,7 @@
       height: 90%;
       .head {
         height: 40px;
-        background-color: $extra-light-gray;
+        background-color: $gray-light-extra;
         span {
           display: inline-block;
           width: 30%;
@@ -39,7 +38,6 @@
       }
     }
     .pagination {
-
       text-align: right;
     }
   }

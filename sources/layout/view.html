@@ -29,7 +29,8 @@
       </el-input>
       <el-dropdown>
         <span class='el-dropdown-link'>
-          User<i class='el-icon-caret-bottom el-icon--right'></i>
+          User
+          <i class='el-icon-caret-bottom el-icon--right'></i>
         </span>
         <el-dropdown-menu slot='dropdown'>
           <el-dropdown-item>Update Info</el-dropdown-item>
@@ -38,7 +39,6 @@
       </el-dropdown>
     </div>
   </header>
-  <div class='container'>
-    <router-view></router-view>
-  </div>
+  <!-- router view -->
+  <router-view class="router"></router-view>
 </main>

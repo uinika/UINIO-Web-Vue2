@@ -2,7 +2,7 @@
 #dashboard {
   display: flex;
   .left {
-    background: $gray;
+    background: $color-gray;
     padding: 1rem;
     .el-input,
     .el-select {
@@ -16,12 +16,12 @@
   }
   .right {
     width: 100%;
-    background: $white;
+    background: $color-white;
     .table {
       height: 90%;
       .head {
         height: 40px;
-        background-color: $gray-light-extra;
+        background-color: $color-gray-light-extra;
         span {
           display: inline-block;
           width: 30%;

@@ -14,7 +14,7 @@
   }
   header {
     font-size: 3rem;
-    color: $white;
+    color: $color-white;
     text-align: left;
     width: 540px + 80px;
     position: relative;
@@ -35,10 +35,10 @@
       height: 50px;
       line-height: 50px;
       font-size: 16px;
-      color: #666;
+      color: $color-silver;
       font-weight: bold;
       border: none;
-      background-color: #f5f6f7;
+      background-color: $color-gray-light-extra;
       outline: none;
     }
     button {
@@ -46,9 +46,9 @@
       width: 60px;
       margin: 11px 16px;
       font-weight: bold;
-      color: $white;
+      color: $color-white;
       font-size: 15px;
-      background: $danger;
+      background: $color-danger;
       cursor: pointer;
       border-radius: 0 5px 5px 0;
       outline: none;
@@ -57,7 +57,7 @@
         opacity: 0.9;
       }
       &:active {
-        background: red;
+        background: $color-danger;
       }
     }
   }

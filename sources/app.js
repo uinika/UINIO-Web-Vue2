@@ -14,29 +14,29 @@ import 'element-ui/lib/theme-default/index.css'
 import Http from './common/helper/http.js'
 import Auth from './common/helper/auth.js'
 import States from './common/global/store.js'
-import Routers from './common/global/router.js'
+import Routers from './router.js'
 
 /** Plugins */
-Vue.use(Vuex)
-Vue.use(VueRouter)
-Vue.use(ElementUI)
+Vue.use(Vuex);
+Vue.use(VueRouter);
+Vue.use(ElementUI);
 
 /** Routers */
 const router = new VueRouter(Routers)
 router.beforeEach((to, from, next) => {
-  Auth.accessibility(to, from, next)
-  Auth.interceptor()
-})
+  Auth.accessibility(to, from, next);
+  Auth.interceptor();
+});
 
 /** Store */
-const store = new Vuex.Store(States)
+const store = new Vuex.Store(States);
 
 /** Sync $route to store */
-const unsync = VueRouterSync.sync(store, router)
-unsync()
+const unsync = VueRouterSync.sync(store, router);
+unsync();
 
 /** Mount */
 const app = new Vue({
   store,
   router
-}).$mount('#app')
+}).$mount('#app');

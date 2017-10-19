@@ -13,7 +13,7 @@ import 'element-ui/lib/theme-default/index.css'
 // util
 import Http from './common/helper/http.js'
 import Auth from './common/helper/auth.js'
-import States from './common/global/store.js'
+import States from './common/scripts/store.js'
 import Routers from './router.js'
 
 /** Plugins */

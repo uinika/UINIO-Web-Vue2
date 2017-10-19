@@ -4,17 +4,17 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueRouterSync from 'vuex-router-sync'
 // css
-import './common/styles/base.scss'
-import './common/styles/reset.scss'
-import 'font-awesome/css/font-awesome.css'
+import './common/styles/base.scss';
+import './common/styles/reset.scss';
+import 'font-awesome/css/font-awesome.css';
 // ui
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-default/index.css';
 // util
-import Http from './common/helper/http.js'
-import Auth from './common/helper/auth.js'
-import States from './common/scripts/store.js'
-import Routers from './router.js'
+import Http from './common/scripts/http.js';
+import Auth from './common/scripts/auth.js';
+import States from './common/scripts/store.js';
+import Routers from './router.js';
 
 /** Plugins */
 Vue.use(Vuex);

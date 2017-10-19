@@ -1,33 +1,43 @@
-import Http from '../common/helper/http.js';
-import Encrypt from '../common/helper/encrypt.js';
+import Http from '../common/scripts/http.js';
+import Encrypt from '../common/scripts/encrypt.js';
 export default {
   data() {
     return {
-      username: '',
+      loginName: '',
       password: ''
     }
   },
   methods: {
     onSubmit() {
       const vm = this;
+      console.info(Http.url.master)
       Http.fetch({
           method: 'post',
           url: Http.url.master + '/login',
           data: {
-            loginName: Encrypt.sha(vm.username),
+            loginName: Encrypt.sha(vm.loginName),
             password: Encrypt.sha(vm.password)
           }
         })
         .then(function (result) {
           const data = result.data;
+          if (Http.protocol(data, 200)) {
+            return data
+          }
+        })
+        .then(function (data) {
           vm.$message({
             message: data.head.message
           });
-          if (Http.protocol(data, 200)) {
-            Encrypt.token.set(data.head.token);
-            vm.$router.push('/layout/dashboard');
-          }
+          return data;
         })
+        .then(function (data) {
+          Encrypt.token.set(data.head.token);
+          return data;
+        })
+        .then(function (data) {
+          vm.$router.push('/layout/dashboard');
+        });
     }
   }
 };

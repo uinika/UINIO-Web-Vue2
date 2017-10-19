@@ -1,5 +1,5 @@
-import Http from '../common/helper/http.js';
-import Encrypt from '../common/helper/encrypt.js';
+import Http from '../common/scripts/http.js';
+import Encrypt from '../common/scripts/encrypt.js';
 export default {
   data() {
     return {

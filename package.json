@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
-    "element-ui": "^1.4.6",
+    "element-ui": "^1.4.7",
     "font-awesome": "^4.7.0",
     "iview": "^2.4.0",
     "jquery": "^3.2.1",

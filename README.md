@@ -10,7 +10,7 @@
 
 ## Installation and deployment
 1. git clone https://github.com/uinika/aves.git
-2. cd flamingo
+2. cd aves
 3. npm i
 4. gulp
 5. Open browser http://localhost:8000/wiserv/index.html

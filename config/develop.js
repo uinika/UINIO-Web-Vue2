@@ -5,6 +5,7 @@ const path = require('path'),
 
 /** develop config */
 module.exports = webpackMerge(common, {
+  mode: 'development',
   entry: {
     hot: ['webpack-hot-middleware/client']
   },

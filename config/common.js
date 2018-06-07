@@ -24,9 +24,6 @@ module.exports = {
       template: 'index.html',
       filename: 'index.html'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }),
     new webpack.optimize.ModuleConcatenationPlugin()
   ],
   module: {

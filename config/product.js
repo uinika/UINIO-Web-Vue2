@@ -13,19 +13,17 @@ const extractTextPlugin = new ExtractTextPlugin({
 
 /** product config */
 module.exports = webpackMerge(common, {
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, '../build'),
     filename: path.join(target, '[name].[chunkhash].js'),
     chunkFilename: path.join(target, '[id].[chunkhash].js')
   },
   devtool: 'source-map',
+  optimization: {
+    minimize: true
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: true
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

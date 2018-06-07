@@ -1,6 +1,5 @@
-import Layout from './layout/index.vue'
-
-const Login = resolve => require(['./login/index.vue'], resolve)
+const Login = () =>
+  import (['./login/index.vue']);
 
 export default {
   routes: [{
@@ -11,37 +10,43 @@ export default {
     component: Login
   }, {
     path: '/layout',
-    component: Layout,
+    component: () =>
+      import (['./layout/index.vue']),
     children: [{
       path: 'dashboard',
       meta: {
         auth: true
       },
-      component: resolve => require(['./dashboard/index.vue'], resolve)
+      component: () =>
+        import (['./dashboard/index.vue'])
     }, {
       path: 'trial',
       meta: {
         auth: true
       },
-      component: resolve => require(['./trial/index.vue'], resolve)
+      component: () =>
+        import (['./trial/index.vue'])
     }, {
       path: 'judge',
       meta: {
         auth: true
       },
-      component: resolve => require(['./judge/index.vue'], resolve)
+      component: () =>
+        import (['./judge/index.vue'])
     }, {
       path: 'cases',
       meta: {
         auth: true
       },
-      component: resolve => require(['./cases/index.vue'], resolve)
+      component: () =>
+        import (['./cases/index.vue'])
     }, {
       path: 'demo',
       meta: {
         auth: true
       },
-      component: resolve => require(['./demo/index.vue'], resolve)
+      component: () =>
+        import (['./demo/index.vue'])
     }]
   }]
 }

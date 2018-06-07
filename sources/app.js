@@ -9,7 +9,7 @@ import './common/styles/reset.scss';
 import 'font-awesome/css/font-awesome.css';
 // ui
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 // util
 import Http from './common/scripts/http.js';
 import Auth from './common/scripts/auth.js';

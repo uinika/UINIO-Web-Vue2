@@ -24,6 +24,11 @@ module.exports = webpackMerge(common, {
       }
     })
   ],
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  },
   module: {
     rules: [{
       test: /\.vue$/,

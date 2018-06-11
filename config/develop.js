@@ -17,14 +17,9 @@ module.exports = webpackMerge(common, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
-    })
   ],
   optimization: {
+    noEmitOnErrors: true,
     splitChunks: {
       chunks: "all"
     }

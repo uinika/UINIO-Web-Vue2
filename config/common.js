@@ -26,6 +26,9 @@ module.exports = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin()
   ],
+  optimization: {
+    runtimeChunk: "single"
+  },
   module: {
     rules: [{
       test: /\.js$/,

@@ -1,5 +1,6 @@
 const path = require('path'),
   webpack = require('webpack'),
+  vueLoaderPlugin = require('vue-loader/lib/plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /** common config */
@@ -24,7 +25,8 @@ module.exports = {
       template: 'index.html',
       filename: 'index.html'
     }),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new vueLoaderPlugin()
   ],
   optimization: {
     runtimeChunk: "single"

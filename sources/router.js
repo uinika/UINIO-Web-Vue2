@@ -17,23 +17,11 @@ export default {
       },
       component: () => import ("./dashboard/index.vue")
     }, {
-      path: 'trial',
+      path: 'tool',
       meta: {
         auth: true
       },
-      component: () => import ("./trial/index.vue")
-    }, {
-      path: 'judge',
-      meta: {
-        auth: true
-      },
-      component: () => import ("./judge/index.vue")
-    }, {
-      path: 'cases',
-      meta: {
-        auth: true
-      },
-      component: () => import ("./cases/index.vue")
+      component: () => import ("./tool/index.vue")
     }, {
       path: 'demo',
       meta: {

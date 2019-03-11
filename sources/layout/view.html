@@ -1,40 +1,36 @@
-<main id='layout'>
+<main id="layout">
   <header>
-    <div class='logo'>
+    <div class="logo">
       Aves
     </div>
-    <nav class='navigator'>
-      <el-menu theme='dark' mode='horizontal' :router='true'>
-        <el-menu-item index='cases'>Cases</el-menu-item>
-        <el-menu-item index='judge'>Judge</el-menu-item>
-        <el-menu-item index='trial'>Trial</el-menu-item>
-        <el-submenu index='helper'>
-          <template slot='title'>Tools</template>
-          <el-menu-item index='demo'>Calculator </el-menu-item>
-          <el-menu-item index='demo'>COR </el-menu-item>
-          <el-menu-item index='demo'>Demo</el-menu-item>
+    <nav class="navigator">
+      <el-menu class="menu" mode="horizontal" :router="true">
+        <el-menu-item index="dashboard">Dashboard</el-menu-item>
+        <el-submenu index="demo">
+          <template slot="title">Helper</template>
+          <el-menu-item index="demo">demo-1</el-menu-item>
+          <el-menu-item index="demo">demo-2</el-menu-item>
+          <el-menu-item index="demo">demo-3</el-menu-item>
         </el-submenu>
-        <el-submenu index='cases'>
-          <template slot='title'>Template</template>
-          <el-menu-item index='cases'>Tree Template</el-menu-item>
-          <el-menu-item index='cases'>Trail Template</el-menu-item>
-          <el-menu-item index='cases'>Judge Template</el-menu-item>
+        <el-submenu index="tool">
+          <template slot="title">Tool</template>
+          <el-menu-item index="tool">tool-1</el-menu-item>
+          <el-menu-item index="tool">tool-2</el-menu-item>
+          <el-menu-item index="tool">tool-3</el-menu-item>
         </el-submenu>
       </el-menu>
     </nav>
-    <div class='tool'>
-      <el-select placeholder='Select' v-model='type'>
-      </el-select>
-      <el-input placeholder='Search' icon='search' v-model='search' :on-icon-click='onSearch'>
-      </el-input>
-      <el-dropdown>
-        <span class='el-dropdown-link'>
+    <div class="tool">
+      <el-select placeholder="Select" v-model="type"></el-select>
+      <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search" v-on:click="onSearch"></el-input>
+      <el-dropdown trigger="click" @command="handleCommand">
+        <span class="el-dropdown-link">
           User
-          <i class='el-icon-caret-bottom el-icon--right'></i>
+          <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
-        <el-dropdown-menu slot='dropdown'>
+        <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>Update Info</el-dropdown-item>
-          <el-dropdown-item divided>Quit</el-dropdown-item>
+          <el-dropdown-item command="quit" divided>Quit</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

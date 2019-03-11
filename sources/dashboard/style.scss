@@ -1,7 +1,9 @@
-@import '../common/styles/color';
+@import "../common/styles/color";
 #dashboard {
   display: flex;
   .left {
+    display: inline-block;
+    width: 15rem;
     background: $color-gray;
     padding: 1rem;
     .el-input,
@@ -15,6 +17,7 @@
     }
   }
   .right {
+    display: inline-block;
     width: 100%;
     background: $color-white;
     .table {

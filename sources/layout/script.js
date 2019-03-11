@@ -1,15 +1,22 @@
-import Http from '../common/scripts/http.js';
-import Encrypt from '../common/scripts/encrypt.js';
+import Http from "../common/scripts/http.js";
+import Encrypt from "../common/scripts/encrypt.js";
 export default {
   data() {
     return {
-      search: '',
-      type: ''
-    }
+      search: "",
+      type: ""
+    };
   },
   methods: {
     onSearch() {
-      console.log('on Search!');
+      console.log("on Search!");
+    },
+    handleCommand(command) {
+      switch (command) {
+        case "quit":
+          this.$router.push("/login");
+          break;
+      }
     }
   }
 };

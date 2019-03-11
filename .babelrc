@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "@babel/preset-env"
-  ],
+  "presets": ["@babel/preset-env", "@vue/babel-preset-jsx"],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",

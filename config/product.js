@@ -11,7 +11,7 @@ const target = "bundles";
 module.exports = webpackMerge(common, {
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "../build"),
+    path: path.resolve(__dirname, "../build/package"),
     filename: path.join(target, "[name].[chunkhash].js"),
     chunkFilename: path.join(target, "[id].[chunkhash].js")
   },
@@ -71,6 +71,9 @@ module.exports = webpackMerge(common, {
           },
           {
             loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader"
           },
           {
             loader: "sass-loader"

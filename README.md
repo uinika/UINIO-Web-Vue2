@@ -1,6 +1,6 @@
 # Aves
 
-## a custom vue2 & webpack4 scaffold without vue-cli.
+a custom vue2 & webpack4 scaffold without vue-cli.
 
 ![](sources/assets/favicon.ico)
 
@@ -16,7 +16,7 @@
 1. git clone https://github.com/uinika/aves.git
 2. cd aves
 3. npm i
-4. gulp
+4. npm start
 5. Open browser http://localhost:8000/wiserv/index.html
 
 ## Thirdparty Library
@@ -70,14 +70,14 @@
 
 > Update base url for global ajax connection
 
-2. gulp clean
+2. npm run clean
 
 > remove all of thing within the build & release folder
 
-3. gulp build
+3. npm run pack
 
 > compile source code
 
-4. gulp release --tar/zip
+4. npm run release
 
 > compress build folder to the release

@@ -27,43 +27,45 @@ const devServerConfig = {
   lazy: false,
   stats: {
     colors: true
-  },
+  }
 };
 
 /** gulp default */
-gulp.task("default", () => {
+gulp.task("default", done => {
   nodemon({
     script: "./server/app.js",
-    watch: ["./server/*.js"],
+    watch: ["./server/*.js"]
   });
   var app = express();
   const compiler = webpack(develop);
   app.use(webpackDevMiddleware(compiler, devServerConfig));
   app.use(webpackHotMiddleware(compiler));
   app.listen(Port, () => {
-    console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri)
-    );
+    console.info(chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri));
   });
+  done();
 });
 
 /** gulp build */
-gulp.task("build", () => {
+gulp.task("build", done => {
   const compiler = webpack(product);
   compiler.run((err, stats) => {
     if (err) {
       console.error(err);
       return;
-    };
-    console.info(stats.toString({
-      chunks: false,
-      colors: true
-    }));
+    }
+    console.info(
+      stats.toString({
+        chunks: false,
+        colors: true
+      })
+    );
   });
+  done();
 });
 
 /** gulp release */
-gulp.task("release", () => {
+gulp.task("release", done => {
   const timestamp = moment().format("YYYY-MM-DD HH.mm.ss");
   !fs.existsSync("release") ? fs.mkdirSync("release") : {};
   const output = fs.createWriteStream("./release/release " + timestamp + ".zip");
@@ -73,26 +75,27 @@ gulp.task("release", () => {
   archive.pipe(output);
   archive.directory("./build", false);
   archive.finalize();
+  done();
 });
 
 /** gulp clean */
-gulp.task("clean", () => {
+gulp.task("clean", done => {
   del(["./release/**/*", "./build/**/*"]);
+  done();
 });
 
 /** gulp test */
 // "webpack/hot/dev-server",
 // "webpack-dev-server/client?http://localhost:" + Port
-gulp.task("test", function () {
+gulp.task("test", done => {
   nodemon({
     script: "./server/app.js",
-    watch: ["./server/*.js"],
+    watch: ["./server/*.js"]
   });
   const compiler = webpack(develop);
   const server = new webpackDevServer(compiler, devServerConfig);
   server.listen(Port, () => {
-    console.info(
-      chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri)
-    );
+    console.info(chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri));
   });
+  done();
 });

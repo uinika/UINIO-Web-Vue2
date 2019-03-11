@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueRouterSync from 'vuex-router-sync'
-import 'babel-polyfill';
+import '@babel/polyfill';
 // css
 import './common/styles/base.scss';
 import './common/styles/reset.scss';

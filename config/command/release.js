@@ -1,5 +1,4 @@
-const gulp = require("gulp"),
-  fs = require("fs"),
+const fs = require("fs"),
   archiver = require("archiver"),
   moment = require("moment");
 

@@ -1,14 +1,15 @@
 {
-  "name": "Aves",
+  "name": "aves",
   "version": "5.0.1",
   "description": "a custom vue2 & webpack4 scaffold without vue-cli.",
   "scripts": {
     "clean": "node ./config/command/clean",
-    "pack": "node ./config/command/pack",
-    "release": "node ./config/command/release",
+    "pack": "npm run clean && node ./config/command/pack",
+    "release": "npm run pack && node ./config/command/release",
     "start": "node ./config/command/start",
     "test": "node ./config/command/test"
   },
+  "sideEffects": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/uinika/aves.git"
@@ -22,7 +23,6 @@
     "element-ui": "^2.6.1",
     "font-awesome": "^4.7.0",
     "framework7-vue": "^4.1.0",
-    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "rxjs": "^6.4.0",

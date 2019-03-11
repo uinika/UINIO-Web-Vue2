@@ -27,7 +27,7 @@ nodemon({
   script: "./server/app.js",
   watch: ["./server/*.js"]
 });
-var app = express();
+const app = express();
 const compiler = webpack(develop);
 app.use(webpackDevMiddleware(compiler, devServerConfig));
 app.use(webpackHotMiddleware(compiler));

@@ -12,9 +12,6 @@
     </div>
   </div>
   <div class="right">
-    <div class="pagination">
-      <el-pagination @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400"> </el-pagination>
-    </div>
     <div class="table">
       <div class="head">
         <span>Name</span>
@@ -23,9 +20,9 @@
       </div>
       <div class="body">
         <el-collapse accordion>
-          <el-collapse-item v-for="item in cases">
+          <el-collapse-item v-for="item in cases" :key="item.code">
             <template slot="title">
-              <span>{{ item.name }}</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}</span>
               <span>{{ item.code }}</span>
               <span>{{ item.date }}</span>
             </template>
@@ -34,6 +31,9 @@
           </el-collapse-item>
         </el-collapse>
       </div>
+    </div>
+    <div class="pagination">
+      <el-pagination background :page-size="100" @size-change="" @current-change="" :current-page="4" :page-sizes="[100, 200, 300, 400]" layout="total, sizes, prev, pager, next, jumper" :total="400"> </el-pagination>
     </div>
   </div>
 </div>

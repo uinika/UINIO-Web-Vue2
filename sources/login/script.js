@@ -11,6 +11,7 @@ export default {
     onSubmit() {
       const vm = this;
       console.info(Http.url.master)
+      vm.$router.push('/layout/dashboard');
       Http.fetch({
           method: 'post',
           url: Http.url.master + '/login',

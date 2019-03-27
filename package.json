@@ -1,6 +1,6 @@
 {
   "name": "aves",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "a custom vue2 & webpack4 scaffold without vue-cli.",
   "scripts": {
     "clean": "node ./config/command/clean",
@@ -21,9 +21,6 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "axios": "^0.18.0",
     "element-ui": "^2.6.1",
-    "font-awesome": "^4.7.0",
-    "framework7": "^4.1.0",
-    "framework7-vue": "^4.1.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "rxjs": "^6.4.0",

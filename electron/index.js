@@ -28,7 +28,7 @@ app.on("ready", () => {
   });
 
   // mainWindow.loadFile("output/build/index.html"); // 从本地文件路径加载
-  mainWindow.loadURL("http://localhost:5005/dev/index.html"); // 从Web服务的URL加载
+  mainWindow.loadURL("http://localhost:5000/dev/#/"); // 从Web服务的URL加载
   // mainWindow.webContents.openDevTools(); // 开启调试模式
 
   mainWindow.on("closed", () => {

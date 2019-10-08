@@ -1,6 +1,6 @@
 # Aves
 
-a custom vue2 & webpack4 scaffold without vue-cli.
+a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
 ![](sources/assets/favicon.ico)
 
@@ -13,20 +13,23 @@ a custom vue2 & webpack4 scaffold without vue-cli.
 
 ## Installation and deployment
 
+```bash
 1. git clone https://github.com/uinika/aves.git
 2. cd aves
 3. npm i
 4. npm start
-5. Open browser with http://localhost:5000/dev/#/login
+5. Open browser with http://localhost:5000/dev/#/
+```
 
 ## Thirdparty Library
 
 - [Vue 2.6.x](https://vuejs.org/)
 - [Vuex 3.1.x](https://vuejs.org/)
-- [Vue-Router 3.0.x](https://vuejs.org/)
-- [Webpack 4.29.x](https://webpack.js.org/)
-- [NodeJS 10.15.x](https://nodejs.org/)
-- [Element-UI 2.6.x](element.eleme.io/)
+- [Vue-Router 3.1.x](https://vuejs.org/)
+- [Webpack 4.41.x](https://webpack.js.org/)
+- [NodeJS 10.16.x](https://nodejs.org/)
+- [Element-UI 2.12.x](element.eleme.io/)
+- [Vuetify 2.1.x](https://vuetifyjs.com/)
 
 ## Transfer Protocol
 
@@ -68,11 +71,11 @@ a custom vue2 & webpack4 scaffold without vue-cli.
 
 1. Update penguin/sources/partials/common/http.js
 
-> Update base url for global ajax connection
+> Update base url for global ajax connection.
 
 2. npm run clean
 
-> remove all of thing within the build & release folder
+> Remove all of thing within the `output/build`.
 
 3. npm run build
 
@@ -84,3 +87,4 @@ a custom vue2 & webpack4 scaffold without vue-cli.
 
 5. npm run electron
 
+>  you must execute `npm start` before activate this command.

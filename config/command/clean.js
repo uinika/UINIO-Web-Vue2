@@ -1,4 +1,4 @@
 const del = require("del");
 
 /** npm run clean */
-del(["./output/**/*"]);
+del(["./output/build/**/*"]);

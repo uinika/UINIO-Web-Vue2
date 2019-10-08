@@ -1,4 +1,4 @@
 const del = require("del");
 
-/** gulp clean */
+/** npm run clean */
 del(["./output/**/*"]);

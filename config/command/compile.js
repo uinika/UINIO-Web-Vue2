@@ -1,5 +1,6 @@
 const path = require("path");
 
+/** npm run compile */
 exports.default = {
   asar: false,
   appId: "com.gi-de",

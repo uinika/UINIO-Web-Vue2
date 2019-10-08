@@ -7,11 +7,11 @@ const webpack = require("webpack"),
   webpackDevMiddleware = require("webpack-dev-middleware"),
   webpackHotMiddleware = require("webpack-hot-middleware");
 
-// base config
+/* base config */
 const Uri = base.client.uri;
 const Port = base.client.port;
 
-// config for devServer
+/* config for devServer */
 const devServerConfig = {
   publicPath: Uri,
   watchContentBase: true,
@@ -22,7 +22,7 @@ const devServerConfig = {
   }
 };
 
-/** gulp default */
+/** npm start */
 nodemon({
   script: "./server/app.js",
   watch: ["./server/*.js"]

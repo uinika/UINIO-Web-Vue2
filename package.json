@@ -2,11 +2,12 @@
   "name": "aves",
   "version": "6.0.0",
   "description": "a custom vue2 & webpack4 scaffold without vue-cli.",
+  "main": "./electron/index.js",
   "scripts": {
     "start": "node ./config/command/start",
     "clean": "node ./config/command/clean",
     "build": "npm run clean && node ./config/command/build",
-    "release": "npm run pack && node ./config/command/release",
+    "release": "node ./config/command/release",
     "electron": "electron .",
     "compile": "electron-builder --config ./config/command/compile.js",
     "rebuild": "./node_modules/.bin/electron-rebuild"

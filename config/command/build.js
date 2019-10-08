@@ -1,7 +1,7 @@
 const webpack = require("webpack"),
   product = require("../product.js");
 
-/** gulp build */
+/** npm run build */
 const compiler = webpack(product);
 compiler.run((err, stats) => {
   if (err) {

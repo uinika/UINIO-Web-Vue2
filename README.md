@@ -74,10 +74,13 @@ a custom vue2 & webpack4 scaffold without vue-cli.
 
 > remove all of thing within the build & release folder
 
-3. npm run pack
+3. npm run build
 
-> compile source code
+> compile source code to the directory `output/build`.
 
 4. npm run release
 
-> compress build folder to the release
+> compress build folder to the directory `output/release year-month-day hour.minute.second.zip`.
+
+5. npm run electron
+

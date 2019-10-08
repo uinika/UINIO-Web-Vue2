@@ -11,7 +11,7 @@ const target = "bundles";
 module.exports = webpackMerge(common, {
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "../build/package"),
+    path: path.resolve(__dirname, "../output/build"),
     filename: path.join(target, "[name].[chunkhash].js"),
     chunkFilename: path.join(target, "[id].[chunkhash].js")
   },
@@ -48,6 +48,11 @@ module.exports = webpackMerge(common, {
         }
       },
       {
+        resourceQuery: /blockType=i18n/,
+        type: "javascript/auto",
+        loader: "@kazupon/vue-i18n-loader"
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {
@@ -67,7 +72,10 @@ module.exports = webpackMerge(common, {
         test: /\.scss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
           },
           {
             loader: "css-loader"

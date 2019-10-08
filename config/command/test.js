@@ -20,7 +20,7 @@ const devServerConfig = {
   }
 };
 
-/** gulp test */
+/** npm run test */
 // "webpack/hot/dev-server",
 // "webpack-dev-server/client?http://localhost:" + Port
 nodemon({

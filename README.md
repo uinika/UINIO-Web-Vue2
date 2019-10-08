@@ -2,7 +2,7 @@
 
 a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
-![](sources/assets/logo.png)
+![](sources/assets/favicon.ico)
 
 ## Domain Object
 
@@ -11,9 +11,7 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
   - dashboard`dashboard`
   - demo`demo`
 
-![](sources/assets/electron1.png)
-
-![](sources/assets/electron2.png)
+![](sources/assets/electron.png)
 
 ## Installation and deployment
 

@@ -8,7 +8,7 @@ module.exports = {
   context: path.resolve(__dirname, "../sources"),
   entry: {
     app: "./app.js",
-    vendor: ["vue", "vuex", "vue-router", "element-ui", "axios", "rxjs", "lodash", "moment"]
+    vendor: ["vue", "vuex", "vue-router", "axios", "rxjs", "lodash", "moment"]
   },
   resolve: {
     extensions: [".js", ".vue", ".json"],
@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: "assets/images/favicon.ico",
+      favicon: "assets/favicon.ico",
       template: "index.html",
       filename: "index.html"
     }),

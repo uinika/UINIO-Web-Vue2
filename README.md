@@ -2,7 +2,7 @@
 
 a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
-![](sources/assets/images/logo.png)
+![](sources/assets/logo.png)
 
 ## Domain Object
 
@@ -10,6 +10,10 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 - layout`layout`
   - dashboard`dashboard`
   - demo`demo`
+
+![](sources/assets/electron1.png)
+
+![](sources/assets/electron2.png)
 
 ## Installation and deployment
 
@@ -89,6 +93,3 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
 >  you must execute `npm start` before activate this command.
 
-![](sources/assets/electron1.png)
-
-![](sources/assets/electron2.png)

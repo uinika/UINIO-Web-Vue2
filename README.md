@@ -2,7 +2,7 @@
 
 a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
-![](sources/assets/images/favicon.ico)
+![](sources/assets/images/logo.png)
 
 ## Domain Object
 
@@ -88,3 +88,7 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 5. npm run electron
 
 >  you must execute `npm start` before activate this command.
+
+![](sources/assets/electron1.png)
+
+![](sources/assets/electron2.png)

@@ -15,7 +15,7 @@ app.on("ready", () => {
     width: 1000,
     height: 650,
     minWidth: 1000,
-    minHeight: 650,
+    minHeight: 600,
     frame: true,
     darkTheme: true,
     backgroundColor: "#282828",

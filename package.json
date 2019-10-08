@@ -3,11 +3,13 @@
   "version": "6.0.0",
   "description": "a custom vue2 & webpack4 scaffold without vue-cli.",
   "scripts": {
-    "clean": "node ./config/command/clean",
-    "pack": "npm run clean && node ./config/command/pack",
-    "release": "npm run pack && node ./config/command/release",
     "start": "node ./config/command/start",
-    "test": "node ./config/command/test"
+    "clean": "node ./config/command/clean",
+    "build": "npm run clean && node ./config/command/build",
+    "release": "npm run pack && node ./config/command/release",
+    "electron": "electron .",
+    "compile": "electron-builder --config ./config/command/compile.js",
+    "rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "sideEffects": true,
   "repository": {
@@ -57,6 +59,7 @@
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
+    "electron": "^6.0.11",
     "express": "^4.17.1",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",

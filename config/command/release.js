@@ -4,11 +4,11 @@ const fs = require("fs"),
 
 /** gulp release */
 const timestamp = moment().format("YYYY-MM-DD HH.mm.ss");
-!fs.existsSync("build/package") ? fs.mkdirSync("build/package") : {};
-const output = fs.createWriteStream("./build/release " + timestamp + ".zip");
+!fs.existsSync("build/package") ? fs.mkdirSync("output/build") : {};
+const output = fs.createWriteStream("./output/release " + timestamp + ".zip");
 const archive = archiver("zip", {
   prefix: "release"
 });
 archive.pipe(output);
-archive.directory("./build", false);
+archive.directory("./output/build", false);
 archive.finalize();

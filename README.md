@@ -17,7 +17,7 @@ a custom vue2 & webpack4 scaffold without vue-cli.
 2. cd aves
 3. npm i
 4. npm start
-5. Open browser http://localhost:5000/dev/#/index.html
+5. Open browser with http://localhost:5000/dev/#/login
 
 ## Thirdparty Library
 

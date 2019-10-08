@@ -2,7 +2,7 @@
 
 a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
-![](sources/assets/favicon.ico)
+![](sources/assets/images/favicon.ico)
 
 ## Domain Object
 

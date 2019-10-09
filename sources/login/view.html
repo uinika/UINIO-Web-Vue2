@@ -3,8 +3,11 @@
     Aves
   </header>
   <form>
-    <input v-model='loginName' type='text' placeholder='请输入用户名'>
+    <input v-model='username' type='text' placeholder='请输入用户名'>
     <input v-model='password' type='password' placeholder='请输入密码'>
-    <button @click='onSubmit()' type='button'>登&nbsp;录</button>
+    <button @click='onSubmit()' type='button'> {{ $t("Login") }}</button>
+    <el-switch v-model="$i18n.locale" active-text="English" active-value="EN" inactive-text="中文" inactive-value="CN"
+      active-color="#ff4949">
+    </el-switch>
   </form>
 </main>

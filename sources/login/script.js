@@ -1,28 +1,29 @@
-import Http from '../common/scripts/http.js';
+// import this.http from '../common/scripts/http.js';
 import Encrypt from '../common/scripts/encrypt.js';
 export default {
   data() {
     return {
-      loginName: '',
-      password: ''
+      language: "CN",
+      username: "",
+      password: ""
     }
   },
   methods: {
     onSubmit() {
       const vm = this;
-      console.info(Http.url.master)
+      console.info(this.http.url.master)
       vm.$router.push('/layout/dashboard');
-      Http.fetch({
-          method: 'post',
-          url: Http.url.master + '/login',
-          data: {
-            loginName: Encrypt.sha(vm.loginName),
-            password: Encrypt.sha(vm.password)
-          }
-        })
+      this.http.fetch({
+        method: 'post',
+        url: this.http.url.master + '/login',
+        data: {
+          username: Encrypt.sha(vm.username),
+          password: Encrypt.sha(vm.password)
+        }
+      })
         .then(function (result) {
           const data = result.data;
-          if (Http.protocol(data, 200)) {
+          if (this.http.protocol(data, 200)) {
             return data
           }
         })

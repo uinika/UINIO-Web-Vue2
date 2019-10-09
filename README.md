@@ -28,6 +28,7 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 - [Vue 2.6.x](https://vuejs.org/)
 - [Vuex 3.1.x](https://vuejs.org/)
 - [Vue-Router 3.1.x](https://vuejs.org/)
+- [Vue-i18n 8.14.x](http://kazupon.github.io/vue-i18n/)
 - [Webpack 4.41.x](https://webpack.js.org/)
 - [NodeJS 10.16.x](https://nodejs.org/)
 - [Element-UI 2.12.x](element.eleme.io/)
@@ -89,5 +90,4 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
 5. npm run electron
 
->  you must execute `npm start` before activate this command.
-
+> you must execute `npm start` before activate this command.

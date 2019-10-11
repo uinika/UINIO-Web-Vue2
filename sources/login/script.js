@@ -11,11 +11,11 @@ export default {
   methods: {
     onSubmit() {
       const vm = this;
-      console.info(this.http.url.master)
+      console.info(vm.http.url.master)
       vm.$router.push('/layout/dashboard');
-      this.http.fetch({
+      vm.http.fetch({
         method: 'post',
-        url: this.http.url.master + '/login',
+        url: vm.http.url.master + '/login',
         data: {
           username: Encrypt.sha(vm.username),
           password: Encrypt.sha(vm.password)
@@ -23,7 +23,7 @@ export default {
       })
         .then(function (result) {
           const data = result.data;
-          if (this.http.protocol(data, 200)) {
+          if (vm.http.protocol(data, 200)) {
             return data
           }
         })

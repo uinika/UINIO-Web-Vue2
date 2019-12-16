@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang='zh-CN'>
+<html lang="zh-CN" style="overflow:hidden">
 
 <head>
-  <title>Aves</title>
-  <meta name='renderer' content='webkit' />
-  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-  <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>Automobile Wallet</title>
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
 </head>
 
 <body>
-  <div id='app'>
-    <transition name='el-zoom-in-center'>
+  <v-app id="app">
+    <transition name="el-zoom-in-center" mode="out-in">
       <router-view></router-view>
     </transition>
-  </div>
+  </v-app>
   <script>
     (function (window) {
       window.url = {
-        master: 'http://localhost:8000/mock',
-      }
+        master: "http://localhost:8000/mock"
+      };
     })(window);
-
   </script>
 </body>
 

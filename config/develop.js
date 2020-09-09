@@ -1,10 +1,10 @@
 const path = require("path"),
   common = require("./common"),
   webpack = require("webpack"),
-  webpackMerge = require("webpack-merge");
+  {merge} = require("webpack-merge");
 
 /** develop config */
-module.exports = webpackMerge(common, {
+module.exports = merge(common, {
   mode: "development",
   entry: {
     hot: ["webpack-hot-middleware/client"]

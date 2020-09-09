@@ -1,14 +1,14 @@
 const path = require("path"),
   common = require("./common"),
   webpack = require("webpack"),
-  webpackMerge = require("webpack-merge"),
+  {merge} = require("webpack-merge"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const target = "bundles";
 
 /** product config */
-module.exports = webpackMerge(common, {
+module.exports = merge(common, {
   mode: "production",
   output: {
     path: path.resolve(__dirname, "../output/build"),

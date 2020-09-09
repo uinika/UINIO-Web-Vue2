@@ -26,13 +26,13 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 ## Thirdparty Library
 
 - [Vue 2.6.x](https://vuejs.org/)
-- [Vuex 3.1.x](https://vuejs.org/)
-- [Vue-Router 3.1.x](https://vuejs.org/)
-- [Vue-i18n 8.14.x](http://kazupon.github.io/vue-i18n/)
-- [Webpack 4.41.x](https://webpack.js.org/)
-- [NodeJS 10.16.x](https://nodejs.org/)
-- [Element-UI 2.12.x](element.eleme.io/)
-- [Vuetify 2.1.x](https://vuetifyjs.com/)
+- [Vuex 3.5.x](https://vuejs.org/)
+- [Vue-Router 3.4.x](https://vuejs.org/)
+- [Vue-i18n 8.21.x](http://kazupon.github.io/vue-i18n/)
+- [Webpack 4.44.x](https://webpack.js.org/)
+- [NodeJS 12.18.x](https://nodejs.org/)
+- [Element-UI 2.13.x](element.eleme.io/)
+- [Vuetify 2.3.x](https://vuetifyjs.com/)
 
 ## Transfer Protocol
 

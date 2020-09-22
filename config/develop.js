@@ -1,7 +1,7 @@
 const path = require("path"),
   common = require("./common"),
   webpack = require("webpack"),
-  {merge} = require("webpack-merge");
+  { merge } = require("webpack-merge");
 
 /** develop config */
 module.exports = merge(common, {
@@ -14,8 +14,9 @@ module.exports = merge(common, {
     filename: "[name].js"
   },
   devtool: "cheap-module-eval-source-map",
-  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   optimization: {
+    namedModules: true,
     noEmitOnErrors: true,
     splitChunks: {
       chunks: "all"

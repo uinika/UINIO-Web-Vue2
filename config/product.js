@@ -5,15 +5,15 @@ const path = require("path"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const target = "bundles";
+const target = "bundles/";
 
 /** product config */
 module.exports = merge(common, {
   mode: "production",
   output: {
     path: path.resolve(__dirname, "../output/build"),
-    filename: path.join(target, "[name].[chunkhash].js"),
-    chunkFilename: path.join(target, "[id].[chunkhash].js")
+    filename: target.concat("[name].[chunkhash].js"),
+    chunkFilename: target.concat("[id].[chunkhash].js")
   },
   devtool: "source-map",
   optimization: {
@@ -26,7 +26,7 @@ module.exports = merge(common, {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: path.join(target, "[name].[contenthash].css")
+      filename: target.concat("[name].[contenthash].css")
     }),
     new OptimizeCssAssetsPlugin({
       cssProcessor: require("cssnano"),

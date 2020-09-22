@@ -22,11 +22,11 @@ module.exports = {
       template: "index.html",
       filename: "index.html"
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new vueLoaderPlugin()
   ],
   optimization: {
-    runtimeChunk: "single"
+    runtimeChunk: "single",
+    concatenateModules: true
   },
   module: {
     rules: [

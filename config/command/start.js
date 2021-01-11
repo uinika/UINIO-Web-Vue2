@@ -14,12 +14,12 @@ const Port = base.client.port;
 /* config for devServer */
 const devServerConfig = {
   publicPath: Uri,
-  watchContentBase: true,
-  hot: true,
-  lazy: false,
-  stats: {
-    colors: true
-  }
+  // watchContentBase: true,
+  // hot: true,
+  // lazy: false,
+  // stats: {
+  //   colors: true
+  // }
 };
 
 /** npm start */

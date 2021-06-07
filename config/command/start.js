@@ -25,7 +25,7 @@ const devServerConfig = {
 /** npm start */
 nodemon({
   script: "./server/app.js",
-  watch: ["./server/*.js"]
+  watch: ["./server/"]
 });
 const app = express();
 const compiler = webpack(develop);

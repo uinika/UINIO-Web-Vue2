@@ -1,6 +1,6 @@
 # Aves
 
-a elegance vue2 & electron, webpack4 scaffold without vue-cli.
+a elegance **Vue 2** & **Webpack 5** scaffold without vue-cli.
 
 ![](sources/assets/favicon.ico)
 
@@ -25,14 +25,14 @@ a elegance vue2 & electron, webpack4 scaffold without vue-cli.
 
 ## Thirdparty Library
 
+- [NodeJS 16.13.x](https://nodejs.org/)
 - [Vue 2.6.x](https://vuejs.org/)
 - [Vuex 3.6.x](https://vuejs.org/)
-- [Vue-Router 3.4.x](https://vuejs.org/)
+- [Vue-Router 3.5.x](https://vuejs.org/)
 - [Vue-i18n 8.22.x](http://kazupon.github.io/vue-i18n/)
-- [Webpack 4.45.x](https://webpack.js.org/)
-- [NodeJS 12.18.x](https://nodejs.org/)
-- [Element-UI 2.14.x](element.eleme.io/)
-- [Vuetify 2.4.x](https://vuetifyjs.com/)
+- [Webpack 5.65.x](https://webpack.js.org/)
+- [Element-UI 2.15.x](element.eleme.io/)
+- [Vuetify 2.6.x](https://vuetifyjs.com/)
 
 ## Transfer Protocol
 

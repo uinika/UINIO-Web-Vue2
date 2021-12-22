@@ -5,7 +5,8 @@ const webpack = require("webpack"),
   base = require("../base.js"),
   develop = require("../develop.js"),
   webpackDevMiddleware = require("webpack-dev-middleware"),
-  webpackHotMiddleware = require("webpack-hot-middleware");
+  webpackHotMiddleware = require("webpack-hot-middleware"),
+  open = require('open');
 
 /* base config */
 const Uri = base.client.uri;
@@ -34,3 +35,8 @@ app.use(webpackHotMiddleware(compiler));
 app.listen(Port, () => {
   console.info(chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri));
 });
+
+/** automatically open the browser */
+(async () => {
+  await open("http://localhost:" + Port + Uri + "/index.html");
+})();

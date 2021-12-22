@@ -1,9 +1,9 @@
 const path = require("path"),
   common = require("./common"),
   webpack = require("webpack"),
-  {merge} = require("webpack-merge"),
+  { merge } = require("webpack-merge"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-  OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+  CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const target = "bundles/";
 
@@ -17,7 +17,11 @@ module.exports = merge(common, {
   },
   devtool: "source-map",
   optimization: {
-    minimize: true
+    minimize: true,
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -27,15 +31,6 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({
       filename: target.concat("[name].[contenthash].css")
-    }),
-    new OptimizeCssAssetsPlugin({
-      cssProcessor: require("cssnano"),
-      cssProcessorOptions: {
-        discardComments: {
-          removeAll: true
-        }
-      },
-      canPrint: true
     })
   ],
   module: {
@@ -54,18 +49,16 @@ module.exports = merge(common, {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/images/[name].[hash].[ext]"
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name].[hash].[ext]'
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/fonts/[name].[hash].[ext]"
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name].[hash].[ext]'
         }
       },
       {

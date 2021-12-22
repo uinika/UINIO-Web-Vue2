@@ -13,11 +13,11 @@ module.exports = merge(common, {
     publicPath: "",
     filename: "[name].js"
   },
-  devtool: "cheap-module-eval-source-map",
+  devtool: "eval-cheap-module-source-map",
   plugins: [new webpack.HotModuleReplacementPlugin()],
   optimization: {
-    namedModules: true,
-    noEmitOnErrors: true,
+    moduleIds: 'named',
+    emitOnErrors: true,
     splitChunks: {
       chunks: "all"
     }
@@ -35,18 +35,16 @@ module.exports = merge(common, {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/images/[name].[ext]"
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name].[ext]'
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "assets/fonts/[name].[ext]"
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name].[ext]'
         }
       },
       {

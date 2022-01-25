@@ -3,7 +3,9 @@ const webpack = require("webpack"),
   chalk = require("chalk"),
   base = require("../base.js"),
   develop = require("../develop.js"),
-  webpackDevServer = require("webpack-dev-server"),
+  fs = require("fs"),
+  path = require("path"),
+  webpackDevServer = require("webpack-dev-server");
 
 // base config
 const Uri = base.client.uri;
@@ -11,13 +13,16 @@ const Port = base.client.port;
 
 // config for devServer
 const devServerConfig = {
-  publicPath: Uri,
-  watchContentBase: true,
+  // publicPath: Uri,
+  port: Port,
   hot: true,
-  lazy: false,
-  stats: {
-    colors: true
-  }
+  open: true,
+  host: "hank",
+  // disableHostCheck: true,
+  https: {
+    key: fs.readFileSync(path.resolve(__dirname, "../certificate/hank-key.pem")),
+    cert: fs.readFileSync(path.resolve(__dirname, "../certificate/hank.pem")),
+  },
 };
 
 /** npm run test */
@@ -28,7 +33,11 @@ nodemon({
   watch: ["./server/*.js"]
 });
 const compiler = webpack(develop);
-const server = new webpackDevServer(compiler, devServerConfig);
-server.listen(Port, () => {
+const server = new webpackDevServer(devServerConfig, compiler);
+
+const runServer = async () => {
   console.info(chalk.green.bgBlue("webpack-dev-server starting on http://localhost:" + Port + Uri));
-});
+  await server.start();
+};
+
+runServer();

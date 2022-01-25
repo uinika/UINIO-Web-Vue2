@@ -5,6 +5,7 @@
   "main": "./electron/index.js",
   "scripts": {
     "start": "node ./config/command/start",
+    "server": "node ./config/command/server",
     "clean": "node ./config/command/clean",
     "build": "npm run clean && node ./config/command/build",
     "release": "node ./config/command/release",

@@ -1,4 +1,4 @@
-# UINIO-Vue2-Template
+# UINIO-Web-Vue2
 
 a elegance **Vue 2** & **Webpack 5** scaffold without vue-cli.
 
@@ -16,7 +16,7 @@ a elegance **Vue 2** & **Webpack 5** scaffold without vue-cli.
 ## Installation and deployment
 
 ```bash
-1. git clone https://github.com/uinika/UINIO-Vue2-Template.git
+1. git clone https://github.com/uinika/UINIO-Web-Vue2.git
 2. cd aves
 3. npm i
 4. npm start

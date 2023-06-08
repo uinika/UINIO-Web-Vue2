@@ -30,7 +30,7 @@
           width: 30%;
           font-weight: bold;
           font-size: 14px;
-          padding: (40px - 14px)/2;
+          padding: calc((40px - 14px) / 2);
         }
       }
       .body {

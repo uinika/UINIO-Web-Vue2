@@ -1,6 +1,6 @@
 {
-  "name": "aves",
-  "version": "6.5.0",
+  "name": "uinio-web-vue2",
+  "version": "1.0.0",
   "description": "a custom Vue 2 & Webpack 5 scaffold without vue-cli.",
   "main": "./electron/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "sideEffects": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/uinika/aves.git"
+    "url": "https://github.com/uinika/UINIO-Web-Vue2.git"
   },
   "author": "Hank",
   "license": "MIT",
